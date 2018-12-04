@@ -5,5 +5,31 @@
       "firstName": "Kelly",
       "lastName": "Morin"
     }
+  ],
+  "securityQuestions": [
+    {
+      "id": 1,
+      "question": "What was the make of your first car?"
+    },
+    {
+      "id": 2,
+      "question": "What is your favorite color?"
+    },
+    {
+      "id": 3,
+      "question": "What is your father's middle name?"
+    },
+    {
+      "id": 4,
+      "question": "What high school did you attend?"
+    },
+    {
+      "id": 5,
+      "question": "In what city were you born?"
+    },
+    {
+      "id": 6,
+      "question": "What is the name of your first pet?"
+    }
   ]
 }
