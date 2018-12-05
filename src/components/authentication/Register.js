@@ -67,7 +67,6 @@ export default class Register extends Component{
         stateToChange["confirmPassword"] = password
         this.setState(stateToChange)
       } else{
-        console.log("passwords do not match")
         stateToChange["confirmPassword"] = ""
         this.setState(stateToChange)
       }
@@ -90,6 +89,7 @@ export default class Register extends Component{
   handleFormSubmit=()=>{
     if(this.state.firstName === "" || this.state.lastName === "" || this.state.username === "" || this.state.email === "" || this.state.password === "" || this.state.confirmPassword === ""){
       alert("please fill out all required fields")
+      return
     } else if(this.state.terms === false){
       alert("please agree to the terms and conditions")
       return
