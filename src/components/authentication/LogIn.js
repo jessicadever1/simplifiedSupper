@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Form} from 'semantic-ui-react'
 import APIManager from '../../modules/APIManager';
 
+//TODO: Update field validation to be in realtime, and error messages to display inline, not as console logs
 export default class LogIn extends Component{
   state={
     username: "",
@@ -18,7 +19,8 @@ export default class LogIn extends Component{
     APIManager.getAllCategory(`users/?q=${this.state.username}`).then(user => {
       if(user.length){
         if(user[0].password === this.state.password){
-          sessionStorage.setItem("id", user[0].id)
+          this.props.loginFunction(user[0].id)
+          // sessionStorage.setItem("id", user[0].id)
           this.setState({username: "", password: ""})
           return
         } else{
