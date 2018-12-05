@@ -16,7 +16,7 @@ export default class GetStartedCategory extends Component{
       <React.Fragment>
         <div>Welcome, {this.props.activeUser.firstName}! Thanks for joining Simplified Supper. Let's get you started by selecting your first recipe. </div>
         <Form>
-          <Form.Select label="What are you in the mood for?" options={this.state.categories} />
+          <Form.Select label="What are you in the mood for?" options={this.state.categories} name="category" onChange={this.props.handleDropdownChange}/>
         </Form>
         <button id="category" onClick={this.props.handleButtonClick}>Next Page</button>
       </React.Fragment>

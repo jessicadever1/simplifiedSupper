@@ -249,5 +249,67 @@
       "text": "Portugese",
       "value": "Portugese"
     }
+  ],
+  "courses":[
+    {
+      "id": 1,
+      "text": "Main Dishes",
+      "value": "Main Dishes"
+    },
+    {
+      "id": 2,
+      "text": "Desserts",
+      "value": "Desserts"
+    },
+    {
+      "id": 3,
+      "text": "Side Dishes",
+      "value": "Side Dishes"
+    },
+    {
+      "id": 4,
+      "text": "Lunch and Snacks",
+      "value": "Lunch and Snacks"
+    },
+    {
+      "id": 5,
+      "text": "Appetizers",
+      "value": "Appetizers"
+    },
+    {
+      "id": 6,
+      "text": "Salads",
+      "value": "Salads"
+    },
+    {
+      "id": 7,
+      "text": "Breads",
+      "value": "Breads"
+    },
+    {
+      "id": 8,
+      "text": "Breakfast and Brunch",
+      "value": "Breakfast and Brunch"
+    },
+    {
+      "id": 9,
+      "text": "Soups",
+      "value": "Soups"
+    },
+    {
+      "id": 10,
+      "text": "Beverages",
+      "value": "Beverages"
+    },
+    {
+      "id": 11,
+      "text": "Condiments and Sauces",
+      "value": "Condiments and Sauces"
+    },
+    {
+      "id": 12,
+      "text": "Cocktails",
+      "value": "Cocktails"
+    }
   ]
 }
