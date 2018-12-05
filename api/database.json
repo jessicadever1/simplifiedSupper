@@ -3,33 +3,88 @@
     {
       "id": 1,
       "firstName": "Kelly",
-      "lastName": "Morin"
+      "lastName": "Morin",
+      "username": "kmorin06",
+      "email": "kmorin06@gmail.com",
+      "password": "1234",
+      "terms": true,
+      "securityQuestionId": 2,
+      "securityQuestionResponse": "Pink"
+    },
+    {
+      "firstName": "Test",
+      "lastName": "Account",
+      "username": "testAccount",
+      "email": "test@test.com",
+      "password": "1234",
+      "id": 2
+    },
+    {
+      "firstName": "Testing",
+      "lastName": "Validation",
+      "username": "test",
+      "email": "testing@test.com",
+      "password": "123",
+      "id": 3
+    },
+    {
+      "firstName": "testing",
+      "lastName": "terms",
+      "username": "termstest",
+      "email": "terms@test.com",
+      "password": "123",
+      "terms": true,
+      "id": 4
+    },
+    {
+      "firstName": "kelly",
+      "lastName": "morin",
+      "username": "km",
+      "email": "km",
+      "password": "123",
+      "terms": true,
+      "id": 5
+    },
+    {
+      "firstName": "testing",
+      "lastName": "checkbox",
+      "username": "checkbox",
+      "email": "w",
+      "password": "w",
+      "terms": true,
+      "id": 6
     }
   ],
   "securityQuestions": [
     {
       "id": 1,
-      "question": "What was the make of your first car?"
+      "text": "What was the make of your first car?",
+      "value": "What was the make of your first car?"
     },
     {
       "id": 2,
-      "question": "What is your favorite color?"
+      "text": "What is your favorite color?",
+      "value": "What is your favorite color?"
     },
     {
       "id": 3,
-      "question": "What is your father's middle name?"
+      "text": "What is your father's middle name?",
+      "value": "What is your father's middle name?"
     },
     {
       "id": 4,
-      "question": "What high school did you attend?"
+      "text": "What high school did you attend?",
+      "value": "What high school did you attend?"
     },
     {
       "id": 5,
-      "question": "In what city were you born?"
+      "text": "In what city were you born?",
+      "value": "In what city were you born?"
     },
     {
       "id": 6,
-      "question": "What is the name of your first pet?"
+      "text": "What is the name of your first pet?",
+      "value": "What is the name of your first pet?"
     }
   ]
 }
