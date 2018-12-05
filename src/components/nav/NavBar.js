@@ -4,6 +4,7 @@ import {Menu, Dropdown} from 'semantic-ui-react'
 import APIManager from '../../modules/APIManager';
 
 //TODO: Need to set up routing that if no user is logged in, the nav bar is not visible
+//TODO: Need to add the simplified supper logo to the nav bar
 export default class NavBar extends Component{
   state={
     activeItem: 'home',

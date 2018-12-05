@@ -45,3 +45,9 @@ const URL = "http://localhost:8088/"
 }
 
 export default new APIManager()
+
+/*
+id: cd5fb393
+key:
+fe16ea520b72c15ff39525eed9947f8f
+*/

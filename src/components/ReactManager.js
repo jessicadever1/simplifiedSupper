@@ -1,13 +1,16 @@
 import React, {Component} from 'react'
-import {Redirect} from 'react-router-dom'
+import {Route, Redirect} from 'react-router-dom'
 import NavBar from './nav/NavBar'
 import ApplicationViews from './ApplicationViews'
 import APIManager from '../modules/APIManager'
 
+//TODO: Update navbar function to display dynamically based on if the user is logged in or not
+
 export default class ReactManager extends Component{
   state={
     securityQuestions: [],
-    activeUser: []
+    activeUser: [],
+    newUser: false,
   }
 
   componentDidMount=()=>{
@@ -17,10 +20,8 @@ export default class ReactManager extends Component{
   resetState=()=>{
     APIManager.getAllCategory("securityQuestions").then((questions) => this.setState({securityQuestions: questions})).then(()=> {
       let currentUser= parseInt(sessionStorage.getItem("id"))
-      console.log(currentUser)
       if(isNaN(currentUser)){
         this.setState({activeUser: []})
-        console.log("No one is logged in")
       } else{
         APIManager.getOneFromCategory("users", currentUser)
         .then((user)=> this.setState({activeUser: user}))
@@ -38,11 +39,20 @@ export default class ReactManager extends Component{
     this.resetState();
   }
 
+  createNewUser=(newUser)=>{
+    APIManager.saveItem("users", newUser)
+    .then((user)=> {
+      sessionStorage.setItem("id", user.id)
+    })
+    this.resetState()
+    this.setState({newUser: true})
+  }
+
   render(){
     return(
       <React.Fragment>
         <NavBar activeUser={this.state.activeUser} logoutFunction={this.logoutFunction}/>
-        <ApplicationViews securityQuestions={this.state.securityQuestions} logoutFunction={this.logoutFunction} loginFunction={this.loginFunction}/>
+        <ApplicationViews securityQuestions={this.state.securityQuestions} logoutFunction={this.logoutFunction} loginFunction={this.loginFunction} createNewUser={this.createNewUser} newUser={this.state.newUser} activeUser={this.state.activeUser}/>
       </React.Fragment>
     )
   }

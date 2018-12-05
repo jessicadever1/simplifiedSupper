@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {Form} from 'semantic-ui-react'
+import {Redirect} from 'react-router-dom'
+import {Form, Dropdown} from 'semantic-ui-react'
 import APIManager from '../../modules/APIManager';
 
 //TODO: Add the ability to upload profile pic
@@ -13,16 +14,16 @@ And it should check if the email address is unique
 And it should check if the password and confirmed password match
 */
 
-// const options =[
-//   {key: 'm', text: 'Male', value: 'male'},
-//   {key: 'f', text: 'Female', value: 'female'},
-//   {key: 'n', text: 'Prefer not to say', value: 'prefer not to say'}
-// ]
+const options =[
+  {key: 'm', text: 'Male', value: 'male'},
+  {key: 'f', text: 'Female', value: 'female'},
+  {key: 'n', text: 'Prefer not to say', value: 'prefer not to say'}
+]
 export default class Register extends Component{
   state={
     firstName: "",
     lastName: "",
-    // gender: "",
+    gender: "",
     username: "",
     email: "",
     password: "",
@@ -32,6 +33,8 @@ export default class Register extends Component{
     terms: false,
     errorMessage: ""
   }
+
+  handleDropdownChange =(e, {name, value}) => this.setState({ [name]: value})
 
   handleFieldChange =(evt)=>{
     const stateToChange = {}
@@ -80,7 +83,19 @@ export default class Register extends Component{
         this.setState(stateToChange)
       }
     }
+    // else if(evt.target === "gender"){
+    //   console.log("you have selected the gender dropdown")
+    //   console.log(evt.target.options.length)
+    //   let genders= []
+    //   for(let i = 0; i < evt.target.options.length; i++){
+    //     if(evt.target.options[i].selected){
+    //       genders.push(evt.target.options[i])
+    //     }
+    //   }
+    //   stateToChange[evt.target.id] = genders
+    // }
     else {
+      console.log(evt.target)
       stateToChange[evt.target.id] = evt.target.value
       this.setState(stateToChange)
     }
@@ -103,12 +118,11 @@ export default class Register extends Component{
         password: this.state.confirmPassword,
         terms: this.state.terms
       }
-      APIManager.saveItem("users", newUser).then((user)=> {
-        sessionStorage.setItem("id", user.id)
+      this.props.createNewUser(newUser)
         this.setState({
           firstName: "",
           lastName: "",
-          // gender: "",
+          gender: "",
           username: "",
           email: "",
           password: "",
@@ -118,9 +132,8 @@ export default class Register extends Component{
           // sqAnswer: "",
         })
       document.querySelector("#confirmPassword").value = ""
-    })
     }
-  }
+    }
 
   render(){
     const {firstName, lastName, username, email, password, terms} = this.state
@@ -130,7 +143,7 @@ export default class Register extends Component{
           <Form.Group widths="equal">
             <Form.Input fluid label="First Name" placeholder="First Name" id="firstName" value={firstName} onChange={this.handleFieldChange} required></Form.Input>
             <Form.Input fluid label="Last Name" placeholder="Last Name" id="lastName" value={lastName} onChange={this.handleFieldChange}required></Form.Input>
-            {/* <Form.Select fluid label="Gender" options={options} placeholder="Gender" id="gender" onChange={this.handleFieldChange}/> */}
+            <Form.Select fluid label="Gender" options={options} placeholder="Gender" id="gender" onChange={this.handleDropdownChange}/>
           </Form.Group>
           <Form.Input label="Username" placeholder="Username" id="username" value={username} onChange={this.handleFieldChange}required></Form.Input>
           <Form.Input label="Email Address" placeholder="Email Address" id="email" value={email} onChange={this.handleFieldChange} required ></Form.Input>
