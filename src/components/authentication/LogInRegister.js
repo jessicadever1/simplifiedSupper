@@ -14,9 +14,9 @@ export default class LogInOrRegister extends Component {
     const { activeItem } = this.state
     let LogInOrRegister = ""
     if (activeItem === "LogIn"){
-      LogInOrRegister = <LogIn />
+      LogInOrRegister = <LogIn loginFunction={this.props.loginFunction}/>
     } else if (activeItem === "Register"){
-      LogInOrRegister = <Register securityQuestions={this.props.securityQuestions}/>
+      LogInOrRegister = <Register securityQuestions={this.props.securityQuestions} createNewUser={this.props.createNewUser}/>
     }
 
     return (

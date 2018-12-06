@@ -53,6 +53,42 @@
       "password": "w",
       "terms": true,
       "id": 6
+    },
+    {
+      "firstName": "Kelly",
+      "lastName": "Morin",
+      "username": "newusertest",
+      "email": "newuser@test.com",
+      "password": "12",
+      "terms": true,
+      "id": 7
+    },
+    {
+      "firstName": "Trying",
+      "lastName": "Something",
+      "username": "hopefully",
+      "email": "k@K",
+      "password": "12",
+      "terms": true,
+      "id": 8
+    },
+    {
+      "firstName": "Get",
+      "lastName": "Started",
+      "username": "GetStarted",
+      "email": "GSUser@test.com",
+      "password": "12",
+      "terms": true,
+      "id": 9
+    },
+    {
+      "firstName": "Trying",
+      "lastName": "Routing",
+      "username": "1234",
+      "email": "1234",
+      "password": "12",
+      "terms": true,
+      "id": 10
     }
   ],
   "securityQuestions": [
@@ -85,6 +121,195 @@
       "id": 6,
       "text": "What is the name of your first pet?",
       "value": "What is the name of your first pet?"
+    }
+  ],
+  "cuisines": [
+    {
+      "id": 1,
+      "text": "American",
+      "value": "American"
+    },
+    {
+      "id": 2,
+      "text": "Italian",
+      "value": "Italian"
+    },
+    {
+      "id": 3,
+      "text": "Asian",
+      "value": "Asian"
+    },
+    {
+      "id": 4,
+      "text": "Mexican",
+      "value": "Mexican"
+    },
+    {
+      "id": 5,
+      "text":"Southern & Soul Food",
+      "value":"Southern & Soul Food"
+    },
+    {
+      "id": 6,
+      "text":"French",
+      "value":"French"
+    },
+    {
+      "id": 7,
+      "text": "Southwestern",
+      "value":"Southwestern"
+    },
+    {
+      "id": 8,
+      "text": "Barbecue",
+      "value": "Barbecue"
+    },
+    {
+      "id": 9,
+      "text": "Indian",
+      "value": "Indian"
+    },
+    {
+      "id": 10,
+      "text": "Chinese",
+      "value": "Chinese"
+    },
+    {
+      "id": 11,
+      "text": "Cajun & Cerole",
+      "value": "Cajun & Cerole"
+    },
+    {
+      "id": 12,
+      "text": "English",
+      "value": "English"
+    },
+    {
+      "id": 13,
+      "text": "Mediterranean",
+      "value": "Mediterranean"
+    },
+    {
+      "id": 14,
+      "text": "Greek",
+      "value": "Greek"
+    },
+    {
+      "id": 15,
+      "text": "Spanish",
+      "value": "Spanish"
+    },
+    {
+      "id": 16,
+      "text": "German",
+      "value": "German"
+    },
+    {
+      "id": 17,
+      "text": "Thai",
+      "value": "Thai"
+    },
+    {
+      "id": 18,
+      "text": "Moroccan",
+      "value": "Moroccan"
+    },
+    {
+      "id": 19,
+      "text": "Irish",
+      "value": "Irish"
+    },
+    {
+      "id": 20,
+      "text": "Japanese",
+      "value": "Japanese"
+    },
+    {
+      "id": 21,
+      "text": "Cuban",
+      "value": "Cuban"
+    },
+    {
+      "id": 22,
+      "text": "Hawaiin",
+      "value": "Hawaiin"
+    },
+    {
+      "id": 23,
+      "text": "Swedish",
+      "value": "Swedish"
+    },
+    {
+      "id": 24,
+      "text": "Hungarian",
+      "value": "Hungarian"
+    },
+    {
+      "id": 25,
+      "text": "Portugese",
+      "value": "Portugese"
+    }
+  ],
+  "courses":[
+    {
+      "id": 1,
+      "text": "Main Dishes",
+      "value": "Main Dishes"
+    },
+    {
+      "id": 2,
+      "text": "Desserts",
+      "value": "Desserts"
+    },
+    {
+      "id": 3,
+      "text": "Side Dishes",
+      "value": "Side Dishes"
+    },
+    {
+      "id": 4,
+      "text": "Lunch and Snacks",
+      "value": "Lunch and Snacks"
+    },
+    {
+      "id": 5,
+      "text": "Appetizers",
+      "value": "Appetizers"
+    },
+    {
+      "id": 6,
+      "text": "Salads",
+      "value": "Salads"
+    },
+    {
+      "id": 7,
+      "text": "Breads",
+      "value": "Breads"
+    },
+    {
+      "id": 8,
+      "text": "Breakfast and Brunch",
+      "value": "Breakfast and Brunch"
+    },
+    {
+      "id": 9,
+      "text": "Soups",
+      "value": "Soups"
+    },
+    {
+      "id": 10,
+      "text": "Beverages",
+      "value": "Beverages"
+    },
+    {
+      "id": 11,
+      "text": "Condiments and Sauces",
+      "value": "Condiments and Sauces"
+    },
+    {
+      "id": 12,
+      "text": "Cocktails",
+      "value": "Cocktails"
     }
   ]
 }
