@@ -10,10 +10,6 @@ export default class NavBar extends Component{
     activeItem: 'home',
   }
 
-  componentDidMount=()=>{
-    console.log(this.props)
-  }
-
 
   handleItemClick=(e, {name}) => this.setState({activeItem: name})
 
@@ -34,7 +30,7 @@ render(){
         <Menu.Menu position="right">
           <Dropdown item text={activeUserName}>
             <Dropdown.Menu>
-              <Dropdown.Item as={Link} to="/viewProfile" name='viewProfile' active={activeItem === 'viewProfile'} onClick={this.handleItemClick}>View Profile</Dropdown.Item>
+              <Dropdown.Item as={Link} to="/ViewProfile" name='viewProfile' active={activeItem === 'viewProfile'} onClick={this.handleItemClick}>View Profile</Dropdown.Item>
               <Dropdown.Item as={Link} to="/logout" name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick}>logout</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

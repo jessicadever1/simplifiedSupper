@@ -146,18 +146,18 @@
     },
     {
       "id": 5,
-      "text":"Southern & Soul Food",
-      "value":"Southern & Soul Food"
+      "text": "Southern & Soul Food",
+      "value": "Southern & Soul Food"
     },
     {
       "id": 6,
-      "text":"French",
-      "value":"French"
+      "text": "French",
+      "value": "French"
     },
     {
       "id": 7,
       "text": "Southwestern",
-      "value":"Southwestern"
+      "value": "Southwestern"
     },
     {
       "id": 8,
@@ -250,7 +250,7 @@
       "value": "Portugese"
     }
   ],
-  "courses":[
+  "courses": [
     {
       "id": 1,
       "text": "Main Dishes",

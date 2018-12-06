@@ -3,6 +3,7 @@ import {Form} from 'semantic-ui-react'
 import APIManager from '../../modules/APIManager';
 
 //TODO: Update field validation to be in realtime, and error messages to display inline, not as console logs
+//TODO: Look at adding a 'remember me' option to the login form
 export default class LogIn extends Component{
   state={
     username: "",

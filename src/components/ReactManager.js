@@ -48,6 +48,10 @@ export default class ReactManager extends Component{
     this.setState({newUser: true})
   }
 
+  updateUserInfo=(updatedUser, id)=>{
+    APIManager.updateItem("users", id, updatedUser).then((user)=> this.setState({activeUser: user}))
+  }
+
   render(){
     return(
       <React.Fragment>
