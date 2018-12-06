@@ -15,6 +15,8 @@ import React, {Component} from 'react'
 import GetStartedCategory from './GetStartedCategory'
 import GetStartedDish from './GetStartedDish'
 import GetStartedProtein from './GetStartedProtein'
+import SuggestedRecipes from './SuggestedRecipes';
+import APIManager from '../../modules/APIManager';
 
 
 export default class GetStarted extends Component{
@@ -25,6 +27,7 @@ export default class GetStarted extends Component{
     selectedCategory: false,
     selectedDish: false,
     selectedProtein: false,
+    matches: []
   }
   handleDropdownChange =(e, {name, value}) => this.setState({ [name]: value})
 
@@ -33,12 +36,18 @@ export default class GetStarted extends Component{
       this.setState({selectedCategory: true})
       return
     } else if(evt.target.id === "dish"){
-      this.setState({selectedDish: true})
-      return
-    } else if(evt.target.id === "protein"){
-      this.setState({selectedProtein: true})
-      return
+      APIManager.newUserSuggestedRecipes(this.state.category, this.state.dish)
+      .then((response)=>{
+        this.setState({
+          matches: response.matches,
+          selectedDish: true
+        })
+      })
     }
+    // else if(evt.target.id === "protein"){
+    //   this.setState({selectedProtein: true})
+    //   return
+    // }
   }
   render(){
     let getStarted=""
@@ -46,9 +55,14 @@ export default class GetStarted extends Component{
       getStarted = <GetStartedCategory handleButtonClick={this.handleButtonClick} activeUser={this.props.activeUser} handleDropdownChange={this.handleDropdownChange}/>
     } else if(this.state.selectedCategory === true && this.state.selectedDish === false){
       getStarted = <GetStartedDish handleButtonClick={this.handleButtonClick} handleDropdownChange={this.handleDropdownChange} category={this.state.category}/>
-    } else if(this.state.selectedCategory === true && this.state.selectedDish === true && this.state.selectedProtein === false){
-      getStarted = <GetStartedProtein handleButtonClick={this.handleButtonClick} handleDropdownChange={this.handleDropdownChange}/>
+    } else if(this.state.selectedCategory === true && this.state.selectedDish === true){
+      getStarted = <SuggestedRecipes matches={this.state.matches}/>
     }
+    // else if(this.state.selectedCategory === true && this.state.selectedDish === true && this.state.selectedProtein === false){
+    //   getStarted = <GetStartedProtein handleButtonClick={this.handleButtonClick} handleDropdownChange={this.handleDropdownChange}/>
+    // } else if(this.state.selectedCategory === true && this.state.selectedDish === true && this.state.selectedProtein === true){
+    //   getStarted = <SuggestedRecipes />
+    // }
     return(
       <React.Fragment>
         {getStarted}

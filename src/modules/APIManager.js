@@ -1,4 +1,5 @@
 const URL = "http://localhost:8088/"
+const YummlyURL ="http://api.yummly.com/v1/api/recipes?_app_id=cd5fb393&_app_key=fe16ea520b72c15ff39525eed9947f8f"
 
  class APIManager{
   getAllCategory(category) {
@@ -42,9 +43,20 @@ const URL = "http://localhost:8088/"
     })
   }
 
+  newUserSuggestedRecipes(cuisine, course){
+    return fetch(`${YummlyURL}&requirePictures=true&allowedCuisine[]=cuisine^cuisine-${cuisine}&allowedCourse[]=course-${course}`)
+    .then(results => results.json())
+    // .then(recipes => console.log(recipes))
+  }
+
 }
 
 export default new APIManager()
+
+// http://api.yummly.com/v1/api/recipes?_app_id=YOUR_ID&_app_key=YOUR_APP_KEY&q=onion+soup
+// &allowedCourse[]=course^course-Appetizers
+// http://api.yummly.com/v1/api/recipes?_app_id=YOUR_ID&_app_key=YOUR_APP_KEY&q=onion+soup
+// &allowedCuisine[]=cuisine^cuisine-american
 
 /*
 id: cd5fb393
