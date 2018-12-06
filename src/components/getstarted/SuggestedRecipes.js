@@ -1,10 +1,35 @@
 import React, {Component} from 'react'
 import {Placeholder, Grid, Segment, Card, Image, Header} from 'semantic-ui-react'
 import './GetStarted.css'
+import APIManager from '../../modules/APIManager';
+import RecipeCard from '../recipeSuggestionEngine/RecipeCard';
 
+//TODO: If there is a query with no response, default to no response details and redirect to the beginning of query.
 export default class SuggestedRecipes extends Component{
+  state={
+    showRecipe: false,
+    recipeDetails: []
+  }
+
+  seeRecipeDetails=(id)=>{
+    APIManager.getRecipeDetails(id)
+    .then((response)=>
+    this.setState({
+      recipeDetails: response,
+      showRecipe: true,
+    })
+    )
+  }
+
+  closeRecipeDetails=()=>{
+    this.setState({showRecipe: false})
+  }
 
   render(){
+    let showRecpie = ""
+    if(this.state.showRecipe === true){
+      showRecpie = <RecipeCard closeRecipeDetails={this.closeRecipeDetails} recipeDetails={this.state.recipeDetails}/>
+    }
     return(
       <React.Fragment>
         <div className="suggested-recipes">
@@ -26,8 +51,8 @@ export default class SuggestedRecipes extends Component{
                 <Grid.Column verticalAlign="bottom" style={{maxWidth: 700, height: '100%'}} color="pink" className="displayRecipes">
               <Card.Group itemsPerRow={4}>
                 {
-                  this.props.matches.map((match, index) => {
-                    return <Card key={index}>
+                  this.props.matches.matches.map((match, index) => {
+                    return <Card key={index} onClick={()=>this.seeRecipeDetails(match.id)}>
                       <Image src={match.imageUrlsBySize[90]} />
                       <Card.Content>
                         <Card.Header>{match.recipeName}</Card.Header>
@@ -43,6 +68,7 @@ export default class SuggestedRecipes extends Component{
               </Grid.Row>
           </Grid>
         </div>
+        {showRecpie}
       </React.Fragment>
     )
   }

@@ -127,134 +127,134 @@
     {
       "id": 1,
       "text": "American",
-      "value": "American"
+      "value": "american"
     },
     {
       "id": 2,
       "text": "Italian",
-      "value": "Italian"
+      "value": "italian"
     },
     {
       "id": 3,
       "text": "Asian",
-      "value": "Asian"
+      "value": "asian"
     },
     {
       "id": 4,
       "text": "Mexican",
-      "value": "Mexican"
+      "value": "mexican"
     },
     {
       "id": 5,
       "text":"Southern & Soul Food",
-      "value":"Southern & Soul Food"
+      "value":"southern"
     },
     {
       "id": 6,
       "text":"French",
-      "value":"French"
+      "value":"french"
     },
     {
       "id": 7,
       "text": "Southwestern",
-      "value":"Southwestern"
+      "value":"southwestern"
     },
     {
       "id": 8,
       "text": "Barbecue",
-      "value": "Barbecue"
+      "value": "barbecue-bbq"
     },
     {
       "id": 9,
       "text": "Indian",
-      "value": "Indian"
+      "value": "indian"
     },
     {
       "id": 10,
       "text": "Chinese",
-      "value": "Chinese"
+      "value": "chinese"
     },
     {
       "id": 11,
       "text": "Cajun & Cerole",
-      "value": "Cajun & Cerole"
+      "value": "cajun"
     },
     {
       "id": 12,
       "text": "English",
-      "value": "English"
+      "value": "english"
     },
     {
       "id": 13,
       "text": "Mediterranean",
-      "value": "Mediterranean"
+      "value": "mediterranean"
     },
     {
       "id": 14,
       "text": "Greek",
-      "value": "Greek"
+      "value": "greek"
     },
     {
       "id": 15,
       "text": "Spanish",
-      "value": "Spanish"
+      "value": "spanish"
     },
     {
       "id": 16,
       "text": "German",
-      "value": "German"
+      "value": "german"
     },
     {
       "id": 17,
       "text": "Thai",
-      "value": "Thai"
+      "value": "thai"
     },
     {
       "id": 18,
       "text": "Moroccan",
-      "value": "Moroccan"
+      "value": "moroccan"
     },
     {
       "id": 19,
       "text": "Irish",
-      "value": "Irish"
+      "value": "irish"
     },
     {
       "id": 20,
       "text": "Japanese",
-      "value": "Japanese"
+      "value": "japanese"
     },
     {
       "id": 21,
       "text": "Cuban",
-      "value": "Cuban"
+      "value": "cuban"
     },
     {
       "id": 22,
       "text": "Hawaiin",
-      "value": "Hawaiin"
+      "value": "hawaiian"
     },
     {
       "id": 23,
       "text": "Swedish",
-      "value": "Swedish"
+      "value": "swedish"
     },
     {
       "id": 24,
       "text": "Hungarian",
-      "value": "Hungarian"
+      "value": "hungarian"
     },
     {
       "id": 25,
       "text": "Portugese",
-      "value": "Portugese"
+      "value": "portugese"
     }
   ],
   "courses":[
     {
       "id": 1,
       "text": "Main Dishes",
-      "value": "Main Dishes"
+      "value": "Main+Dishes"
     },
     {
       "id": 2,
@@ -264,12 +264,12 @@
     {
       "id": 3,
       "text": "Side Dishes",
-      "value": "Side Dishes"
+      "value": "Side+Dishes"
     },
     {
       "id": 4,
       "text": "Lunch and Snacks",
-      "value": "Lunch and Snacks"
+      "value": "Lunch+and+Snacks"
     },
     {
       "id": 5,
@@ -289,7 +289,7 @@
     {
       "id": 8,
       "text": "Breakfast and Brunch",
-      "value": "Breakfast and Brunch"
+      "value": "Breakfast+and+Brunch"
     },
     {
       "id": 9,
@@ -304,7 +304,7 @@
     {
       "id": 11,
       "text": "Condiments and Sauces",
-      "value": "Condiments and Sauces"
+      "value": "Condiments+and+Sauces"
     },
     {
       "id": 12,

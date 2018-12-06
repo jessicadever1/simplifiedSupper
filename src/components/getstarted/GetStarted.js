@@ -1,12 +1,5 @@
 /*
 
-When the user selects a type of cuisine
-Then they will be presented with the opportunity to narrow their search by type of dish or protein
-
-When the user selects the sub-category of their choice
-Then they will be taken to the recipe suggestion engine with the result that best match what they have selected
-And the user will be allowed to click each of the recipe cards to pull up the full details
-
 When the user clicks any of the recipe cards, they will be taken to the appropriate recipe details (see #6 )
 And be given the affordance to select the date they would like to make that recipe
 */
@@ -14,7 +7,7 @@ And be given the affordance to select the date they would like to make that reci
 import React, {Component} from 'react'
 import GetStartedCategory from './GetStartedCategory'
 import GetStartedDish from './GetStartedDish'
-import GetStartedProtein from './GetStartedProtein'
+// import GetStartedProtein from './GetStartedProtein'
 import SuggestedRecipes from './SuggestedRecipes';
 import APIManager from '../../modules/APIManager';
 
@@ -37,12 +30,13 @@ export default class GetStarted extends Component{
       return
     } else if(evt.target.id === "dish"){
       APIManager.newUserSuggestedRecipes(this.state.category, this.state.dish)
-      // .then((response)=>{
-      //   this.setState({
-      //     matches: response.matches,
-      //     selectedDish: true
-      //   })
-      // })
+      .then((response)=>{
+        console.log(response)
+        this.setState({
+          matches: response,
+          selectedDish: true
+        })
+      })
     }
     // else if(evt.target.id === "protein"){
     //   this.setState({selectedProtein: true})
