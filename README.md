@@ -1,3 +1,66 @@
+# Simplified Supper
+  Insert Simplified Supper description here.
+
+## Table of Contents
+  Insert Final Table of Contents here.
+
+## Technologies Used
+  ### Development Languages and Libraries
+  ### Development Tools
+
+##Instructions for Installing Simplified Supper
+{bold} You will need to have command line tools installed for your computer to use terminal commands.
+  Mac users follow the instructions below
+  Linux/ Windows users, please visit the Git page {link} and follow the instructions for set up
+
+ {bold}Open your terminal and type
+  {code snippet} git --version
+
+  {bold} You will now need to configure your git account. In the terminal window, type:
+    {code snippet}
+    git config -global user.name "Your Name"
+    gut config -global user.email "Your Email"
+    {/code snippet}
+
+  {bold} Create a new directory to store the files in. Type this into your terminal window.
+    {code snippet}
+    mkdir simplified-supper
+    cd simplified-supper
+    git clone {insert clone link for repo}
+
+  {bold} If you do not have Node.js installed on your machine, visit the {link} Node.js Download Page {/link} and follow the instructions. To ensure that it is installed correctly, in your terminal window, type
+    {code snippet}
+    echo $PATH
+    {/code snippet}
+
+    Ensure that the result has the following in the $PATH
+    {code snippet}
+      /usr/local/bin
+    {/code snippet}
+    or
+    {code snippet}
+      /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+    {/code snippet}
+
+  {bold} You will need to go into the lib folder in your directory and install and build npm modules and also your json-server. In your terminal, type
+    NOTE: I need to double check this process, this may be outdated with react
+    {code snippet}
+      cd simplified-supper/src/lib
+      npm init
+      npm i
+      sudo npm install -g json-server
+    {/code snippet}
+
+  {bold} Now create a new directory inside the nutshell directory to store your JSON data. Type:
+    {code snippet}
+    cd ../..
+    mkdir api
+    touch api/database.json
+    {/code snippet}
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
