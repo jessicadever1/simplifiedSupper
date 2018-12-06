@@ -44,9 +44,23 @@ const YummlyURL ="http://api.yummly.com/v1/api/recipes?_app_id=cd5fb393&_app_key
   }
 
   newUserSuggestedRecipes(cuisine, course){
-    return fetch(`${YummlyURL}&requirePictures=true&allowedCuisine[]=cuisine^cuisine-${cuisine}&allowedCourse[]=course-${course}`)
+    let exculdedCuisines = []
+    let updatedCuisines = []
+    this.getAllCategory("cuisines")
+    .then((results)=>{
+      results.forEach(result =>{
+        if(result.text !==  cuisine){
+          exculdedCuisines.push(result.text)
+        }
+      })
+      exculdedCuisines.forEach(item =>{
+         updatedCuisines.push(`&excludedCuisine[]=cuisine^cuisine-${item}`)
+      })
+      console.log(updatedCuisines.join(''))
+      // return fetch(`${YummlyURL}&allowedCuisine[]=cuisine^cuisine-${cuisine}&allowedCourse[]=course^course-${course}${updatedCuisines.join('')}`)
+    })
     .then(results => results.json())
-    // .then(recipes => console.log(recipes))
+    .then(recipes => console.log(recipes))
   }
 
 }

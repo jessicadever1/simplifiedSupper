@@ -37,12 +37,12 @@ export default class GetStarted extends Component{
       return
     } else if(evt.target.id === "dish"){
       APIManager.newUserSuggestedRecipes(this.state.category, this.state.dish)
-      .then((response)=>{
-        this.setState({
-          matches: response.matches,
-          selectedDish: true
-        })
-      })
+      // .then((response)=>{
+      //   this.setState({
+      //     matches: response.matches,
+      //     selectedDish: true
+      //   })
+      // })
     }
     // else if(evt.target.id === "protein"){
     //   this.setState({selectedProtein: true})
