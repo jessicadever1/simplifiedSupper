@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Placeholder, Grid, Segment, Card, Image, Header} from 'semantic-ui-react'
+import {Grid, Card, Image, Header} from 'semantic-ui-react'
 import './GetStarted.css'
 import APIManager from '../../modules/APIManager';
 import RecipeCard from '../recipeSuggestionEngine/RecipeCard';

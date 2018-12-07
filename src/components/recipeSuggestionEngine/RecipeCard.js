@@ -7,9 +7,8 @@ And edit the date the recipe is assigned to
 */
 
 import React, {Component} from 'react'
-import {Modal, Header, Statistic, Image, Button, Input, Grid, GridColumn} from 'semantic-ui-react'
+import {Modal, Header, Statistic, Image, Button, Input} from 'semantic-ui-react'
 import './Recipe.css'
-import APIManager from '../../modules/APIManager';
 
 
 //FIXME: Close Icon on Modal does not work

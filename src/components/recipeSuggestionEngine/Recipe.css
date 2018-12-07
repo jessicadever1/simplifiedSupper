@@ -1,3 +1,11 @@
 .isHidden{
   visibility: hidden;
 }
+
+.rbc-time-content{
+  display: none!important;
+}
+
+.rbc-time-header-gutter{
+  display: none!important;
+}
