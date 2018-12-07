@@ -6,7 +6,7 @@ import APIManager from '../../modules/APIManager';
 //TODO: Add the ability to upload profile pic
 //TODO: Insert placeholder profile pic if user does not want to upload their own
 //FIXME: If part of a username is taken it erases the username during typing with the set state function in handle field change
-//FIXME: Update field validation to display error or success on change
+//FIXME: Update field validation to display error or success on change (Look at username validation for example. this is working code. EOD Friday 12/7)
 //TODO: Capture security question id before post
 /*
 Then the system should check if the username is unique
@@ -31,7 +31,11 @@ export default class Register extends Component{
     securityQuestion: "",
     sqAnswer: "",
     terms: false,
-    errorMessage: ""
+    errorMessage: "",
+    firstNameError: false,
+    lastNameError: false,
+    usernameError: false,
+    disabled: false,
   }
 
   handleDropdownChange =(e, {name, value}) => this.setState({ [name]: value})
@@ -53,12 +57,17 @@ export default class Register extends Component{
       })
     } else if(evt.target.id === "username"){
       let username = evt.target.value
+      this.setState({usernameError: false, disabled: false})
       APIManager.getAllCategory("users").then(users => {
         users.forEach(user => {
           if(user.username === username){
-            stateToChange["username"] = ""
+            stateToChange["usernameError"] = true
+            stateToChange["disabled"] = true
             this.setState(stateToChange)
+            // stateToChange["username"] = ""
+            // this.setState(stateToChange)
           } else{
+            // stateToChange["usernameError"] = false
             stateToChange["username"] = username
             this.setState(stateToChange)
           }
@@ -129,18 +138,18 @@ export default class Register extends Component{
       <React.Fragment>
         <Form onSubmit={this.handleFormSubmit}>
           <Form.Group widths="equal">
-            <Form.Input fluid label="First Name" placeholder="First Name" id="firstName" value={firstName} onChange={this.handleFieldChange} required></Form.Input>
-            <Form.Input fluid label="Last Name" placeholder="Last Name" id="lastName" value={lastName} onChange={this.handleFieldChange}required></Form.Input>
+            <Form.Input fluid label="First Name" placeholder="First Name" id="firstName" value={firstName} onChange={this.handleFieldChange} required error={this.state.firstNameError}></Form.Input>
+            <Form.Input fluid label="Last Name" placeholder="Last Name" id="lastName" value={lastName} onChange={this.handleFieldChange}required error={this.state.lastNameError}></Form.Input>
             <Form.Select fluid label="Gender" name="gender" options={options} placeholder="Gender" id="gender" onChange={this.handleDropdownChange}/>
           </Form.Group>
-          <Form.Input label="Username" placeholder="Username" id="username" value={username} onChange={this.handleFieldChange}required></Form.Input>
+          <Form.Input label="Username" placeholder="Username" id="username" value={username} onChange={this.handleFieldChange}required error={this.state.usernameError}></Form.Input>
           <Form.Input label="Email Address" placeholder="Email Address" id="email" value={email} onChange={this.handleFieldChange} required ></Form.Input>
           <Form.Input label="Password" type="password" placeholder="Password" id="password" value={password} onChange={this.handleFieldChange}required></Form.Input>
           <Form.Input label="Confirm Password" type="password" placeholder="Confirm Password" id="confirmPassword" onChange={this.handleFieldChange} required></Form.Input>
           <Form.Select label="Please Select a Security Question" name="securityQuestion" options={this.props.securityQuestions} placeholder="Please Select a Security Question" id="securityQuestion" onChange={this.handleDropdownChange}/>
           <Form.Input label="Your Answer to the Security Question" placeholder="Your Answer Here" id="sqAnswer" value={sqAnswer} onChange={this.handleFieldChange}required></Form.Input>
           <Form.Checkbox label="I agree to the Terms and Conditions" id="terms" checked={terms} onChange={this.handleFieldChange} />
-          <Form.Button>Submit</Form.Button>
+          <Form.Button disabled={this.state.disabled}>Submit</Form.Button>
         </Form>
       </React.Fragment>
     )
