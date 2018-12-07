@@ -7,7 +7,7 @@ And edit the date the recipe is assigned to
 */
 
 import React, {Component} from 'react'
-import {Modal, Header, Statistic, Image, Button, Input} from 'semantic-ui-react'
+import {Modal, Header, Statistic, Image, Button, Input, Confirm} from 'semantic-ui-react'
 import './Recipe.css'
 
 
@@ -18,6 +18,7 @@ export default class RecipeCard extends Component{
 
   state={
     addToCalendar: false,
+    confirmDelete: false,
     date: "",
   }
 
@@ -27,6 +28,14 @@ export default class RecipeCard extends Component{
 
   handleCalendarChange=(name, value)=>{
     this.setState({ [name]: value})
+  }
+
+  confirmDelete=()=>{
+    this.setState({confirmDelete: true})
+  }
+
+  cancelDelete=()=>{
+    this.setState({confirmDelete: false})
   }
 
   makeButtons=(getStarted)=>{
@@ -39,11 +48,15 @@ export default class RecipeCard extends Component{
       return <React.Fragment>
         <Input type="date" onChange={(evt)=> this.handleCalendarChange("date", evt.target.value)}></Input>
         <Button primary onClick={()=>this.props.handleCalendarChange( this.props.recipeDetails.id, this.state.date)}>Save Changes</Button>
+        <Button primary onClick={()=>this.confirmDelete()}>Delete Recipe</Button>
       </React.Fragment>
     }
   }
 
   render(){
+    if(this.state.confirmDelete === true){
+      return <Confirm open={this.state.confirmDelete}onCancel={this.cancelDelete} onConfirm={()=>this.props.deleteRecipe()}></Confirm>
+    }
     return(
       <React.Fragment>
         <Modal open closeIcon>

@@ -20,6 +20,7 @@ import RecipeCard from './RecipeCard';
 let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
 
 //FIXME: Everything is showing up on the calendar 1 day behind when it is actually scheduled
+//TODO: Make sure recipes shown are the ones specific to the active user
 
 
 
@@ -78,7 +79,6 @@ export default class RecipeCalendar extends Component{
   }
 
   showRecipeDetails=(event)=>{
-    console.log(event)
     APIManager.getRecipeDetails(event.id)
     .then((response)=>
       this.setState({
@@ -106,9 +106,17 @@ export default class RecipeCalendar extends Component{
     })
   }
 
+  deleteRecipe=()=>{
+    APIManager.deleteItem("usersRecipes", this.state.activeRecipeKey)
+    .then(()=>{
+      this.updateData()
+      this.closeRecipeDetails()
+    })
+  }
+
   render(){
     if(this.state.viewRecipeDetails === true){
-      return <RecipeCard recipeDetails={this.state.recipeDetails} getStarted={this.state.getStarted} closeRecipeDetails={this.closeRecipeDetails} handleCalendarChange={this.handleCalendarChange}/>
+      return <RecipeCard recipeDetails={this.state.recipeDetails} getStarted={this.state.getStarted} closeRecipeDetails={this.closeRecipeDetails} handleCalendarChange={this.handleCalendarChange} deleteRecipe={this.deleteRecipe}/>
     }
     return(
       <React.Fragment>
