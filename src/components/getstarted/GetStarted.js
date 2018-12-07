@@ -33,9 +33,17 @@ export default class GetStarted extends Component{
       .then((response)=>{
         console.log(response)
         this.setState({
-          matches: response,
+          matches: [],
           selectedDish: true
         })
+      })
+    } else if(evt.target.id === "startOver"){
+      this.setState({
+        selectedCategory: false,
+        selectedDish: false,
+        matches: [],
+        category: "",
+        dish: ""
       })
     }
     // else if(evt.target.id === "protein"){
@@ -60,7 +68,7 @@ export default class GetStarted extends Component{
     } else if(this.state.selectedCategory === true && this.state.selectedDish === false){
       return <GetStartedDish handleButtonClick={this.handleButtonClick} handleDropdownChange={this.handleDropdownChange} category={this.state.category}/>
     } else if(this.state.selectedCategory === true && this.state.selectedDish === true){
-      return <SuggestedRecipes handleCalendarChange={this.handleCalendarChange} matches={this.state.matches}/>
+      return <SuggestedRecipes handleCalendarChange={this.handleCalendarChange} matches={this.state.matches} category={this.state.category} dish={this.state.dish} handleButtonClick={this.handleButtonClick}/>
     }
     // else if(this.state.selectedCategory === true && this.state.selectedDish === true && this.state.selectedProtein === false){
     //   getStarted = <GetStartedProtein handleButtonClick={this.handleButtonClick} handleDropdownChange={this.handleDropdownChange}/>

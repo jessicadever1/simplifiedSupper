@@ -59,7 +59,7 @@ export default class RecipeCard extends Component{
     }
     return(
       <React.Fragment>
-        <Modal open closeIcon>
+        <Modal open closeOnDocumentClick={true}>
           <Modal.Header>
 
           </Modal.Header>

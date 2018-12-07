@@ -1,10 +1,8 @@
 import React, {Component} from 'react'
-import {Grid, Card, Image, Header} from 'semantic-ui-react'
+import {Grid, Card, Image, Header, Segment, Icon, Button} from 'semantic-ui-react'
 import './GetStarted.css'
 import APIManager from '../../modules/APIManager';
 import RecipeCard from '../recipeSuggestionEngine/RecipeCard';
-
-//TODO: If there is a query with no response, default to no response details and redirect to the beginning of query.
 export default class SuggestedRecipes extends Component{
   state={
     showRecipe: false,
@@ -31,6 +29,14 @@ export default class SuggestedRecipes extends Component{
     if(this.state.showRecipe === true){
       showRecpie = <RecipeCard getStarted={this.state.getStarted}
       handleCalendarChange={this.props.handleCalendarChange} closeRecipeDetails={this.closeRecipeDetails} recipeDetails={this.state.recipeDetails}/>
+    } else if(this.props.matches.length === 0){
+      return <Segment>
+        <Header>
+          <Icon name="thumbs down icon"/>
+          Bummer, we dont have any recipes suggestions for {this.props.category} {this.props.dish}
+        </Header>
+        <Button id="startOver" primary onClick={this.props.handleButtonClick}>Try Again</Button>
+      </Segment>
     }
     return(
       <React.Fragment>
