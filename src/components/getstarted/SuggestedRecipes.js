@@ -8,6 +8,7 @@ import RecipeCard from '../recipeSuggestionEngine/RecipeCard';
 export default class SuggestedRecipes extends Component{
   state={
     showRecipe: false,
+    getStarted: true,
     recipeDetails: []
   }
 
@@ -28,7 +29,8 @@ export default class SuggestedRecipes extends Component{
   render(){
     let showRecpie = ""
     if(this.state.showRecipe === true){
-      showRecpie = <RecipeCard handleCalendarChange={this.props.handleCalendarChange} closeRecipeDetails={this.closeRecipeDetails} recipeDetails={this.state.recipeDetails}/>
+      showRecpie = <RecipeCard getStarted={this.state.getStarted}
+      handleCalendarChange={this.props.handleCalendarChange} closeRecipeDetails={this.closeRecipeDetails} recipeDetails={this.state.recipeDetails}/>
     }
     return(
       <React.Fragment>

@@ -11,7 +11,7 @@ import GetStartedDish from './GetStartedDish'
 import SuggestedRecipes from './SuggestedRecipes';
 import APIManager from '../../modules/APIManager';
 
-
+//TODO: Find a way to store where the user is in the get started process so you can come back to the phase in the process if they leave before completion
 export default class GetStarted extends Component{
   state={
     category: "",

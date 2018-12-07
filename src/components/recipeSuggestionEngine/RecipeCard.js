@@ -17,11 +17,30 @@ import './Recipe.css'
 export default class RecipeCard extends Component{
 
   state={
-    addToCalendar: false
+    addToCalendar: false,
+    date: "",
   }
 
   handleButtonClick=()=>{
     this.setState({addToCalendar: true})
+  }
+
+  handleCalendarChange=(name, value)=>{
+    this.setState({ [name]: value})
+  }
+
+  makeButtons=(getStarted)=>{
+    if(getStarted === true){
+     return <React.Fragment>
+        <Input type="date" className={`${this.state.addToCalendar === false ? "isHidden" : ""}`} onChange={(evt)=>this.props.handleCalendarChange(evt, this.props.recipeDetails.id)}></Input>
+        <Button primary onClick={()=>this.handleButtonClick()}>Add to Calendar</Button>
+      </React.Fragment>
+    } else{
+      return <React.Fragment>
+        <Input type="date" onChange={(evt)=> this.handleCalendarChange("date", evt.target.value)}></Input>
+        <Button primary onClick={()=>this.props.handleCalendarChange( this.props.recipeDetails.id, this.state.date)}>Save Changes</Button>
+      </React.Fragment>
+    }
   }
 
   render(){
@@ -83,10 +102,7 @@ export default class RecipeCard extends Component{
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-                <Input type="date" className={`${this.state.addToCalendar === false ? "isHidden" : ""}`} onChange={(evt)=>this.props.handleCalendarChange(evt, this.props.recipeDetails.id)}></Input>
-                <Button primary onClick={this.handleButtonClick}>
-                  Add to Calendar
-                </Button>
+            {this.makeButtons(this.props.getStarted)}
           </Modal.Actions>
         </Modal>
       </React.Fragment>
