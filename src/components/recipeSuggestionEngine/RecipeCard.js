@@ -9,9 +9,11 @@ And edit the date the recipe is assigned to
 import React, {Component} from 'react'
 import {Modal, Header, Statistic, Image, Button, Input, Grid, GridColumn} from 'semantic-ui-react'
 import './Recipe.css'
+import APIManager from '../../modules/APIManager';
 
 
 //FIXME: Close Icon on Modal does not work
+//FIXME: Add Instructions to app
 
 export default class RecipeCard extends Component{
 
@@ -24,10 +26,6 @@ export default class RecipeCard extends Component{
   }
 
   render(){
-    // let datePicker = ""
-    // if(this.state.addToCalendar === true){
-    //   return <input type="date"></input>
-    // }
     return(
       <React.Fragment>
         <Modal open closeIcon>
@@ -52,7 +50,7 @@ export default class RecipeCard extends Component{
                       {
                         this.props.recipeDetails.nutritionEstimates.map(item =>{
                           if(item.attribute === "FAT_KCAL"){
-                            return<Statistic >
+                            return<Statistic key={item.id}>
                             <Statistic.Value>{item.value}</Statistic.Value>
                             <Statistic.Label>Calories</Statistic.Label>
                             </Statistic>
@@ -86,9 +84,7 @@ export default class RecipeCard extends Component{
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-                <div>
-                  <Input type="date" className={`${this.state.addToCalendar === false ? "isHidden" : ""}`}></Input>
-                </div>
+                <Input type="date" className={`${this.state.addToCalendar === false ? "isHidden" : ""}`} onChange={(evt)=>this.props.handleCalendarChange(evt, this.props.recipeDetails.id)}></Input>
                 <Button primary onClick={this.handleButtonClick}>
                   Add to Calendar
                 </Button>

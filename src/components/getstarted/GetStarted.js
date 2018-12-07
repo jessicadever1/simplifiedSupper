@@ -43,24 +43,29 @@ export default class GetStarted extends Component{
     //   return
     // }
   }
+
+  handleCalendarChange=(evt, id)=>{
+    let newRecipe ={
+      userId: parseInt(sessionStorage.getItem("id")),
+      recipeId: id,
+      date: evt.target.value
+    }
+    APIManager.saveItem("usersRecipes", newRecipe)
+    .then(()=> this.props.history.push("/"))
+  }
+
   render(){
-    let getStarted=""
     if(this.state.selectedCategory === false){
-      getStarted = <GetStartedCategory handleButtonClick={this.handleButtonClick} activeUser={this.props.activeUser} handleDropdownChange={this.handleDropdownChange}/>
+      return <GetStartedCategory handleButtonClick={this.handleButtonClick} activeUser={this.props.activeUser} handleDropdownChange={this.handleDropdownChange}/>
     } else if(this.state.selectedCategory === true && this.state.selectedDish === false){
-      getStarted = <GetStartedDish handleButtonClick={this.handleButtonClick} handleDropdownChange={this.handleDropdownChange} category={this.state.category}/>
+      return <GetStartedDish handleButtonClick={this.handleButtonClick} handleDropdownChange={this.handleDropdownChange} category={this.state.category}/>
     } else if(this.state.selectedCategory === true && this.state.selectedDish === true){
-      getStarted = <SuggestedRecipes matches={this.state.matches}/>
+      return <SuggestedRecipes handleCalendarChange={this.handleCalendarChange} matches={this.state.matches}/>
     }
     // else if(this.state.selectedCategory === true && this.state.selectedDish === true && this.state.selectedProtein === false){
     //   getStarted = <GetStartedProtein handleButtonClick={this.handleButtonClick} handleDropdownChange={this.handleDropdownChange}/>
     // } else if(this.state.selectedCategory === true && this.state.selectedDish === true && this.state.selectedProtein === true){
     //   getStarted = <SuggestedRecipes />
     // }
-    return(
-      <React.Fragment>
-        {getStarted}
-      </React.Fragment>
-    )
   }
 }

@@ -28,7 +28,7 @@ export default class SuggestedRecipes extends Component{
   render(){
     let showRecpie = ""
     if(this.state.showRecipe === true){
-      showRecpie = <RecipeCard closeRecipeDetails={this.closeRecipeDetails} recipeDetails={this.state.recipeDetails}/>
+      showRecpie = <RecipeCard handleCalendarChange={this.props.handleCalendarChange} closeRecipeDetails={this.closeRecipeDetails} recipeDetails={this.state.recipeDetails}/>
     }
     return(
       <React.Fragment>

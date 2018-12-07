@@ -8,6 +8,7 @@ import GetStarted from './getstarted/GetStarted';
 import ViewProfile from './authentication/ViewUser'
 import Home from './home/home'
 import SuggestedRecipes from './getstarted/SuggestedRecipes';
+import RecipeCard from './recipeSuggestionEngine/RecipeCard';
 
 export default class ApplicationViews extends Component{
 
@@ -31,20 +32,18 @@ export default class ApplicationViews extends Component{
           return <Logout logoutFunction={this.props.logoutFunction}/>
         }} />
         <Route exact path="/GetStarted" render={(props)=>{
-          return <GetStarted  activeUser={this.props.activeUser}/>
+          return <GetStarted  {...props} activeUser={this.props.activeUser}/>
         }} />
         <Route exact path="/ViewProfile" render={(props)=>{
           return <ViewProfile activeUser={this.props.activeUser}/>
         }} />
         <Route exact path="/SuggestedRecipes" render={(props)=> {
-          return <SuggestedRecipes />
+          return <SuggestedRecipes {...props}/>
         }} />
-        {/* /* <Route exact path="/login" render={(props)=>{
-          return <Login />
+        <Route exact path="/RecipeCard" render={(props)=> {
+          return <RecipeCard {...props} />
         }} />
-        <Route exact path="/register" render={(props)=>{
-          return <Register />
-        }} /> */ }
+
 
       </React.Fragment>
     )
