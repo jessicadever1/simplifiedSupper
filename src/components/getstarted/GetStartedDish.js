@@ -14,7 +14,6 @@ export default class GetStartedDish extends Component{
   render(){
     return(
       <React.Fragment>
-        Get Started Dish Component
         <div>Mmmm...{this.props.category} food sounds delicious. Let's get a little bit more selective</div>
         <Form>
           <Form.Select label="What type of dish would you like to make?" options={this.state.dishes} name="dish" onChange={this.props.handleDropdownChange} />

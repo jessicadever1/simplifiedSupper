@@ -1,4 +1,7 @@
 const URL = "http://localhost:8088/"
+const YummlySearch ="http://api.yummly.com/v1/api/recipes"
+const YummlyDetails="http://api.yummly.com/v1/api/recipe/"
+const YummlyAuth = "?_app_id=cd5fb393&_app_key=fe16ea520b72c15ff39525eed9947f8f"
 
  class APIManager{
   getAllCategory(category) {
@@ -42,9 +45,23 @@ const URL = "http://localhost:8088/"
     })
   }
 
+  newUserSuggestedRecipes(cuisine, course){
+
+      return fetch(`${YummlySearch}${YummlyAuth}&requirePictures=true&allowedCuisine[]=cuisine^cuisine-${cuisine}&allowedCourse[]=course^course-${course}`)
+    .then(results => results.json())
+    // .then(recipes => console.log(recipes))
+  }
+
+  getRecipeDetails(id){
+    return fetch(`${YummlyDetails}${id}${YummlyAuth}`)
+    .then(results => results.json())
+  }
+
 }
 
 export default new APIManager()
+
+
 
 /*
 id: cd5fb393
