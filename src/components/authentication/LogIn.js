@@ -8,13 +8,18 @@ export default class LogIn extends Component{
   state={
     username: "",
     password: "",
+    usernameFocus: false,
+    passwordFocus: false,
+    usernameError: false,
+    passwordError: false,
+    disabled: false,
   }
 
   handleFieldChange=(evt)=>{
     let stateToChange = {}
     stateToChange[evt.target.id] = evt.target.value
     this.setState(stateToChange)
-  }
+    }
 
   handleFormSubmit=()=>{
     APIManager.getAllCategory(`users/?q=${this.state.username}`).then(user => {
