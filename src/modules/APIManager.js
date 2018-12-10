@@ -46,8 +46,8 @@ const YummlyAuth = "?_app_id=cd5fb393&_app_key=fe16ea520b72c15ff39525eed9947f8f"
   }
 
   newUserSuggestedRecipes(cuisine, course){
-
-      return fetch(`${YummlySearch}${YummlyAuth}&requirePictures=true&allowedCuisine[]=cuisine^cuisine-${cuisine}&allowedCourse[]=course^course-${course}`)
+    // console.log(`${YummlySearch}${YummlyAuth}&requirePictures=true&allowedCuisine[]=cuisine^cuisine-${cuisine}&allowedCourse[]=course^course-${course}&facetField[]=diet`)
+      return fetch(`${YummlySearch}${YummlyAuth}&requirePictures=true&allowedCuisine[]=cuisine^cuisine-${cuisine}&allowedCourse[]=course^course-${course}&facetField[]=diet&facetField[]=ingredient`)
     .then(results => results.json())
     // .then(recipes => console.log(recipes))
   }

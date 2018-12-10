@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import RecipeCalendar from '../recipeSuggestionEngine/RecipeCalendar'
 import {Grid, Header, Card, Placeholder} from 'semantic-ui-react'
+import RecipeSuggestionEngine from '../recipeSuggestionEngine/RecipeSuggestionEngine';
 
 export default class Home extends Component{
 
@@ -24,6 +25,7 @@ export default class Home extends Component{
             </Grid.Row>
             <Grid.Row color="orange">
               <Grid.Column style={{maxWidth: 700}} color="yellow">
+                <RecipeSuggestionEngine />
                 <Card.Group itemsPerRow={3}>
                   <Card>
                     <Card.Content>
