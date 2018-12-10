@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import BigCalendar from 'react-big-calendar'
 import moment from 'moment'
-import APIManager from '../../modules/APIManager'
-import '../../../node_modules/react-big-calendar/lib/css/react-big-calendar.css'
-import './Recipe.css'
+import APIManager from '../../../modules/APIManager'
+import '../../../../node_modules/react-big-calendar/lib/css/react-big-calendar.css'
+import '../Recipe.css'
 import {Card, Image} from 'semantic-ui-react'
-import RecipeCard from './RecipeCard';
+import RecipeModal from '../RecipeModal/RecipeModal';
 
 
 
@@ -110,7 +110,7 @@ export default class RecipeCalendar extends Component{
 
   render(){
     if(this.state.viewRecipeDetails === true){
-      return <RecipeCard recipeDetails={this.state.recipeDetails} getStarted={this.state.getStarted} closeRecipeDetails={this.closeRecipeDetails} handleCalendarChange={this.handleCalendarChange} deleteRecipe={this.deleteRecipe} date={this.state.date} open={this.state.open}/>
+      return <RecipeModal recipeDetails={this.state.recipeDetails} getStarted={this.state.getStarted} closeRecipeDetails={this.closeRecipeDetails} handleCalendarChange={this.handleCalendarChange} deleteRecipe={this.deleteRecipe} date={this.state.date} open={this.state.open}/>
     }
     return(
       <React.Fragment>

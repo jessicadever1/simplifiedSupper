@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Grid, Card, Image, Header, Segment, Icon, Button} from 'semantic-ui-react'
-import './GetStarted.css'
-import APIManager from '../../modules/APIManager';
-import RecipeCard from '../recipeSuggestionEngine/RecipeCard';
+import '../../../getstarted/GetStarted.css'
+import APIManager from '../../../../modules/APIManager';
+import RecipeModal from '../../RecipeModal/RecipeModal';
 export default class SuggestedRecipes extends Component{
   state={
     showRecipe: false,
@@ -29,7 +29,7 @@ export default class SuggestedRecipes extends Component{
   render(){
     let showRecpie = ""
     if(this.state.showRecipe === true){
-      showRecpie = <RecipeCard getStarted={this.state.getStarted}
+      showRecpie = <RecipeModal getStarted={this.state.getStarted}
       handleCalendarChange={this.props.handleCalendarChange} closeRecipeDetails={this.closeRecipeDetails} recipeDetails={this.state.recipeDetails} open={this.state.open}/>
     } else if(this.props.matches.length === 0){
       return <Segment>

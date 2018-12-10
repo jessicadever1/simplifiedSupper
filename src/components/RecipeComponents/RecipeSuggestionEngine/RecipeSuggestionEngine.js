@@ -8,7 +8,8 @@ Then the recipe suggestion engine will update with new recipes based on the comb
 */
 
 import React, {Component} from 'react'
-import APIManager from '../../modules/APIManager'
+import APIManager from '../../../modules/APIManager'
+import BuildSuggestions from './BuildSuggestions'
 
 export default class RecipeSuggestionEngine extends Component{
   state={
@@ -94,7 +95,7 @@ export default class RecipeSuggestionEngine extends Component{
         } else{
           correctIngredients.forEach(item => {
             if(ingredient.includes(item)){
-              console.log("item", item, "ingredient", ingredient)
+              // console.log("item", item, "ingredient", ingredient)
             }
             // if(item.includes(ingredient)){
             //   let updatedIngredient = correctIngredients.find(value => value.includes(ingredient))
@@ -121,22 +122,24 @@ export default class RecipeSuggestionEngine extends Component{
           }
         })
       })
-      console.log("ingredient", ingredients)
-      console.log(unfoundIngredient)
+      // console.log("ingredient", ingredients)
+      // console.log(unfoundIngredient)
       let newSet = new Set(data)
       let someData = Array.from(newSet)
-      console.log("someData", someData)
-      console.log("newData",newData)
-      console.log("data", data)
+      // console.log("someData", someData)
+      // console.log("newData",newData)
+      // console.log("data", data)
 
-      this.setState({recipeIngredients: data})
+      this.setState({recipeIngredients: someData})
     }
+
 
 
   render(){
     return(
       <React.Fragment>
         <p>Hi, this will be the recipe suggestion engine</p>
+        <BuildSuggestions ingredients={this.state.recipeIngredients}/>
         {/* <div>{this.splitIngredients()}</div> */}
       </React.Fragment>
     )

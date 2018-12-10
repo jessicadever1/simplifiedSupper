@@ -6,9 +6,9 @@ import LogInRegister from './authentication/LogInRegister'
 import Logout from './authentication/Logout'
 import GetStarted from './getstarted/GetStarted';
 import ViewProfile from './authentication/ViewUser'
-import Home from './home/home'
-import SuggestedRecipes from './getstarted/SuggestedRecipes';
-import RecipeCard from './recipeSuggestionEngine/RecipeCard';
+import Home from './HomePage/Home'
+import SuggestedRecipes from './RecipeComponents/RecipeSuggestionEngine/GetStartedSuggestions/SuggestedRecipes';
+import RecipeModal from './RecipeComponents/RecipeModal/RecipeModal'
 
 export default class ApplicationViews extends Component{
 
@@ -41,7 +41,7 @@ export default class ApplicationViews extends Component{
           return <SuggestedRecipes {...props}/>
         }} />
         <Route exact path="/RecipeCard" render={(props)=> {
-          return <RecipeCard {...props} />
+          return <RecipeModal {...props} />
         }} />
 
 

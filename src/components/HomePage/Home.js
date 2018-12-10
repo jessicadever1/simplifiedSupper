@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import RecipeCalendar from '../recipeSuggestionEngine/RecipeCalendar'
+import RecipeCalendar from '../RecipeComponents/RecipeCalendar/RecipeCalendar'
 import {Grid, Header, Card, Placeholder} from 'semantic-ui-react'
-import RecipeSuggestionEngine from '../recipeSuggestionEngine/RecipeSuggestionEngine';
+import RecipeSuggestionEngine from '../RecipeComponents/RecipeSuggestionEngine/RecipeSuggestionEngine';
 
 export default class Home extends Component{
 

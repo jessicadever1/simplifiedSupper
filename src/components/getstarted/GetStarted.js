@@ -8,7 +8,7 @@ import React, {Component} from 'react'
 import GetStartedCategory from './GetStartedCategory'
 import GetStartedDish from './GetStartedDish'
 // import GetStartedProtein from './GetStartedProtein'
-import SuggestedRecipes from './SuggestedRecipes';
+import SuggestedRecipes from '../RecipeComponents/RecipeSuggestionEngine/GetStartedSuggestions/SuggestedRecipes';
 import APIManager from '../../modules/APIManager';
 import moment from 'moment'
 

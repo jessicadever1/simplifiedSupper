@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Modal, Header, Statistic, Image, Button, Input, Confirm} from 'semantic-ui-react'
-import './Recipe.css'
+import '../Recipe.css'
 import moment from 'moment'
 
 
