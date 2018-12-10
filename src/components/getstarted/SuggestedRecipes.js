@@ -7,6 +7,7 @@ export default class SuggestedRecipes extends Component{
   state={
     showRecipe: false,
     getStarted: true,
+    open: false,
     recipeDetails: []
   }
 
@@ -16,19 +17,20 @@ export default class SuggestedRecipes extends Component{
     this.setState({
       recipeDetails: response,
       showRecipe: true,
+      open: true,
     })
     )
   }
 
   closeRecipeDetails=()=>{
-    this.setState({showRecipe: false})
+    this.setState({showRecipe: false, open: false})
   }
 
   render(){
     let showRecpie = ""
     if(this.state.showRecipe === true){
       showRecpie = <RecipeCard getStarted={this.state.getStarted}
-      handleCalendarChange={this.props.handleCalendarChange} closeRecipeDetails={this.closeRecipeDetails} recipeDetails={this.state.recipeDetails}/>
+      handleCalendarChange={this.props.handleCalendarChange} closeRecipeDetails={this.closeRecipeDetails} recipeDetails={this.state.recipeDetails} open={this.state.open}/>
     } else if(this.props.matches.length === 0){
       return <Segment>
         <Header>

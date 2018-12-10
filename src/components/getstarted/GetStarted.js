@@ -10,6 +10,7 @@ import GetStartedDish from './GetStartedDish'
 // import GetStartedProtein from './GetStartedProtein'
 import SuggestedRecipes from './SuggestedRecipes';
 import APIManager from '../../modules/APIManager';
+import moment from 'moment'
 
 //TODO: Find a way to store where the user is in the get started process so you can come back to the phase in the process if they leave before completion
 export default class GetStarted extends Component{
@@ -20,6 +21,7 @@ export default class GetStarted extends Component{
     selectedCategory: false,
     selectedDish: false,
     selectedProtein: false,
+    open: false,
     matches: []
   }
   handleDropdownChange =(e, {name, value}) => this.setState({ [name]: value})
@@ -31,9 +33,8 @@ export default class GetStarted extends Component{
     } else if(evt.target.id === "dish"){
       APIManager.newUserSuggestedRecipes(this.state.category, this.state.dish)
       .then((response)=>{
-        console.log(response)
         this.setState({
-          matches: [],
+          matches: response,
           selectedDish: true
         })
       })
@@ -56,7 +57,7 @@ export default class GetStarted extends Component{
     let newRecipe ={
       userId: parseInt(sessionStorage.getItem("id")),
       recipeId: id,
-      date: evt.target.value
+      date: moment(evt.target.value)
     }
     APIManager.saveItem("usersRecipes", newRecipe)
     .then(()=> this.props.history.push("/"))

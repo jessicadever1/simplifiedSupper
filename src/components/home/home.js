@@ -51,7 +51,7 @@ export default class Home extends Component{
             </Grid.Row>
             <Grid.Row verticalAlign="bottom" style={{maxHeight: '80%'}} color="teal">
               <Grid.Column verticalAlign="bottom" style={{maxWidth: 800, height: '100%'}} color="pink" className="calendar">
-                <RecipeCalendar />
+                <RecipeCalendar activeUser={this.props.activeUser}/>
               </Grid.Column>
             </Grid.Row>
           </Grid>

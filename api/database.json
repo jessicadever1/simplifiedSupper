@@ -316,20 +316,38 @@
     {
       "userId": 1,
       "recipeId": "Brown-Rice-Stir-fry-With-Vegetables-2607012",
-      "date": "2018-12-10",
+      "date": "2018-12-10T06:00:00.000Z",
       "id": 1
     },
     {
       "userId": 1,
-      "recipeId": "Tomato_-olive_-and-mozzarella-salad-with-basil-vinaigrette-309565",
-      "date": "2018-12-17",
-      "id": 2
+      "recipeId": "Quick-Roasted-Broccoli-with-Soy-Sauce-and-Sesame-Seeds-2221343",
+      "date": "2018-12-13T06:00:00.000Z",
+      "id": 3
     },
     {
       "userId": 1,
-      "recipeId": "Quick-Roasted-Broccoli-with-Soy-Sauce-and-Sesame-Seeds-2221343",
-      "date": "2018-12-11",
-      "id": 3
+      "recipeId": "Japanese-Quick-Pickled-Cucumbers-2283517",
+      "date": "2018-12-14T06:00:00.000Z",
+      "id": 4
+    },
+    {
+      "userId": 2,
+      "recipeId": "Weeknight-Minestrone-1387406",
+      "date": "2018-12-11T06:00:00.000Z",
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "recipeId": "French-Toast-Souffle-2013932",
+      "date": "2018-12-12T06:00:00.000Z",
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "recipeId": "Spiced-rice-303409",
+      "date": "2018-12-11T06:00:00.000Z",
+      "id": 7
     }
   ]
 }

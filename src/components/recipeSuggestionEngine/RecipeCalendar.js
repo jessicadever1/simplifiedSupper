@@ -1,11 +1,3 @@
-/*
-Given an active user is logged into their account and is currently viewing a recipe through the recipe suggestion engine (See #3 #6 #7 )
-When the user selects a recipe to view full details
-Then the user will be presented with the option to add the recipe to their calendar using a drop down field
-When the date is selected and the user closes the recipe
-Then they will see the new recipe card added to their calendar on the date they selected
-*/
-
 import React, {Component} from 'react'
 import BigCalendar from 'react-big-calendar'
 import moment from 'moment'
@@ -14,14 +6,6 @@ import '../../../node_modules/react-big-calendar/lib/css/react-big-calendar.css'
 import './Recipe.css'
 import {Card, Image} from 'semantic-ui-react'
 import RecipeCard from './RecipeCard';
-// import dates from '../../../node_modules/react-big-calendar/lib/utils/dates'
-// import events from '../../../node_modules/react-big-calendar/lib/utils'
-
-let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
-
-//FIXME: Everything is showing up on the calendar 1 day behind when it is actually scheduled
-//TODO: Make sure recipes shown are the ones specific to the active user
-
 
 
 
@@ -31,7 +15,9 @@ export default class RecipeCalendar extends Component{
     localizer: BigCalendar.momentLocalizer(moment),
     viewRecipeDetails: false,
     getStarted: false,
+    open: false,
     activeRecipeKey: "",
+    date: "",
     recipeDetails: [],
     events: [],
   }
@@ -45,24 +31,30 @@ export default class RecipeCalendar extends Component{
     .then((usersRecipes)=>{
       let recipeEvents = []
       usersRecipes.forEach(recipe => {
-        recipeEvents.push(APIManager.getRecipeDetails(recipe.recipeId)
-        .then((recipeDetails)=> {
-          let expandedRecipe ={
-            id: recipe.recipeId,
-            eventId: recipe.id,
-            title: recipeDetails.name,
-            allDay: true,
-            start: recipe.date,
-            end: recipe.date,
-            recipeDetails: recipeDetails
-          }
-          return expandedRecipe
-        } ))
+        if(recipe.userId === parseInt(sessionStorage.getItem("id"))){
+          recipeEvents.push(APIManager.getRecipeDetails(recipe.recipeId)
+            .then((recipeDetails)=> {
+              let expandedRecipe = {
+                id: recipe.recipeId,
+                eventId: recipe.id,
+                title: recipeDetails.name,
+                allDay: true,
+                start: recipe.date,
+                end: recipe.date,
+                recipeDetails: recipeDetails
+              }
+              return expandedRecipe
+            })
+          )
+        } else{
+          return
+        }
       })
       return Promise.all(recipeEvents)
-    }).then((data)=> {
+    })
+    .then(data => {
       this.setState({
-        events: data,
+        events: data
       })
     })
   }
@@ -83,14 +75,16 @@ export default class RecipeCalendar extends Component{
     .then((response)=>
       this.setState({
         recipeDetails: response,
+        date: event.start,
         activeRecipeKey: event.eventId,
         viewRecipeDetails: true,
+        open: true,
       })
     )
   }
 
   closeRecipeDetails=()=>{
-    this.setState({viewRecipeDetails: false})
+    this.setState({viewRecipeDetails: false, open: false})
   }
 
   handleCalendarChange=(id, date)=>{
@@ -116,7 +110,7 @@ export default class RecipeCalendar extends Component{
 
   render(){
     if(this.state.viewRecipeDetails === true){
-      return <RecipeCard recipeDetails={this.state.recipeDetails} getStarted={this.state.getStarted} closeRecipeDetails={this.closeRecipeDetails} handleCalendarChange={this.handleCalendarChange} deleteRecipe={this.deleteRecipe}/>
+      return <RecipeCard recipeDetails={this.state.recipeDetails} getStarted={this.state.getStarted} closeRecipeDetails={this.closeRecipeDetails} handleCalendarChange={this.handleCalendarChange} deleteRecipe={this.deleteRecipe} date={this.state.date} open={this.state.open}/>
     }
     return(
       <React.Fragment>

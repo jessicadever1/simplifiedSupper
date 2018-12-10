@@ -23,7 +23,7 @@ export default class ApplicationViews extends Component{
           if(this.isNewUser()){
             return <Redirect to="/GetStarted" />
           } else if(this.isAuthenticated()){
-            return <Home />
+            return <Home activeUser={this.props.activeUser}/>
           }else{
             return <LogInRegister securityQuestions={this.props.securityQuestions} loginFunction={this.props.loginFunction} createNewUser={this.props.createNewUser}/>
           }

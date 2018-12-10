@@ -1,22 +1,15 @@
-/*
-Given a user is reviewing recipes through either the recipe suggestion or directly in their calendar
-When the user clicks on the preview of the recipe
-Then the user should be presented with the full recipe details
-And be offered the affordance to add the recipe to a specific day
-And edit the date the recipe is assigned to
-*/
-
 import React, {Component} from 'react'
 import {Modal, Header, Statistic, Image, Button, Input, Confirm} from 'semantic-ui-react'
 import './Recipe.css'
+import moment from 'moment'
 
 
-//FIXME: Close Icon on Modal does not work
 //FIXME: Add Instructions to app
 
 export default class RecipeCard extends Component{
 
   state={
+    open: false,
     addToCalendar: false,
     confirmDelete: false,
     date: "",
@@ -46,7 +39,7 @@ export default class RecipeCard extends Component{
       </React.Fragment>
     } else{
       return <React.Fragment>
-        <Input type="date" onChange={(evt)=> this.handleCalendarChange("date", evt.target.value)}></Input>
+        <Input type="date" value={moment(this.props.date).format("YYYY-MM-DD")} onChange={(evt)=> this.handleCalendarChange("date", moment(evt.target.value))}></Input>
         <Button primary onClick={()=>this.props.handleCalendarChange( this.props.recipeDetails.id, this.state.date)}>Save Changes</Button>
         <Button primary onClick={()=>this.confirmDelete()}>Delete Recipe</Button>
       </React.Fragment>
@@ -59,7 +52,7 @@ export default class RecipeCard extends Component{
     }
     return(
       <React.Fragment>
-        <Modal open closeOnDocumentClick={true}>
+        <Modal open={this.props.open} onClose={this.props.closeRecipeDetails}>
           <Modal.Header>
 
           </Modal.Header>
