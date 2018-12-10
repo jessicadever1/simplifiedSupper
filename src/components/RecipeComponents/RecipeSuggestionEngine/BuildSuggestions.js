@@ -8,7 +8,7 @@ export default class BuildSuggestions extends Component{
 
   componentDidMount=()=>{
     // this.setState({ingredients: this.props.ingredients})
-    this.percentageMatchCalculator(this.props.ingredients)
+    // this.percentageMatchCalculator(this.props.ingredients)
   }
   percentageMatchCalculator=(ingredients)=>{
     console.log(ingredients)

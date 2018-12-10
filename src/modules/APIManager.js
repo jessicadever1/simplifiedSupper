@@ -53,19 +53,19 @@ const YummlyAuth = "?_app_id=cd5fb393&_app_key=fe16ea520b72c15ff39525eed9947f8f"
   }
 
   existingUsersSuggestedRecipes(ingredients){
-    console.log("Inside API")
     let recipeString=[]
-    let newingredients = ingredients
-    console.log(newingredients)
     ingredients.forEach(ingredient=>{
-      console.log(ingredient)
-      console.log(`allowedIngredient[]=${ingredient}`)
-      recipeString.push(`allowedIngredient[]=${ingredient}`)
+      let splitIngredient=ingredient.split(" ")
+      if(splitIngredient.length > 1){
+        let newIngredient = splitIngredient.join("+")
+        recipeString.push(`&allowedIngredient[]=${newIngredient}`)
+      } else{
+        recipeString.push(`&allowedIngredient[]=${ingredient}`)
+      }
     })
-    recipeString.join("")
-    // console.log(recipeString)
-    // return fetch(`${YummlySearch}${YummlyAuth}&requirePictures=true&facetField[]=diet&facetField[]=ingredient`)
-    // .then(results => results.json())
+    let finalIngredientList = recipeString.join("")
+    return fetch(`${YummlySearch}${YummlyAuth}&requirePictures=true${finalIngredientList}`)
+    .then(results => results.json())
   }
 
   getRecipeDetails(id){

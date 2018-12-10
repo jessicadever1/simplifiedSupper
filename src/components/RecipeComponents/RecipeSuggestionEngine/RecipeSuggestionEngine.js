@@ -56,6 +56,7 @@ export default class RecipeSuggestionEngine extends Component{
       // this.updateDatabase()
       this.splitIngredients()
     })
+    .then(()=> this.percentageMatchCalculator())
   }
 
   splitIngredients=()=>{
@@ -131,6 +132,12 @@ export default class RecipeSuggestionEngine extends Component{
       // console.log("data", data)
 
       this.setState({recipeIngredients: someData})
+    }
+
+    percentageMatchCalculator=()=>{
+      console.log(this.state.recipeIngredients)
+      APIManager.existingUsersSuggestedRecipes(this.state.recipeIngredients)
+      .then(data => console.log(data))
     }
 
 
