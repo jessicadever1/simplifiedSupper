@@ -62,6 +62,7 @@ export default class RecipeSuggestionEngine extends Component{
     let ingredients = []
     let unfoundIngredient = []
     let data=[]
+    let newData = []
     let numbers =["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1/2", "1/4", "1/8", "3/4", "⅛", "⅓", "½", "(100", "(80"]
     let measurements =["cups", "teaspoon", "tablespoon", "tsp.", "Tbsp.", "tbsp", "T", "cup", "g", "tablespoons", "lb.", "head", "g)", "handful", "cloves", "florets", "large"]
     let other=["optional", "Check", "of", "and", "for", "(optional)", "(see", "trimming", "instructions)"]
@@ -86,17 +87,46 @@ export default class RecipeSuggestionEngine extends Component{
       })
 
       data.forEach((ingredient, index) => {
-        let correctIngredients = this.state.ingredients
+        let correctIngredients = this.state.ingredients.map(item => item.toLowerCase())
         if(correctIngredients.includes(ingredient)){
           let updatedIngredient = correctIngredients.find(value => ingredient === value)
           data.splice(index, 1, updatedIngredient)
         } else{
-          let updatedIngredient = "N/A"
-          data.splice(index, 1, updatedIngredient)
-          unfoundIngredient.push(ingredient)
+          correctIngredients.forEach(item => {
+            if(ingredient.includes(item)){
+              console.log("item", item, "ingredient", ingredient)
+            }
+            // if(item.includes(ingredient)){
+            //   let updatedIngredient = correctIngredients.find(value => value.includes(ingredient))
+            //   data.splice(index, 1, updatedIngredient)
+            //   console.log("updatedIngredients", updatedIngredient)
+            //   // console.log("item", item, "ingredient", ingredient)
+            // }
+            // else if(!item.includes(ingredient)){
+              // return
+            // } else{
+              // let updatedIngredient = "N/A"
+              // data.splice(index, 1, updatedIngredient)
+              // unfoundIngredient.push(ingredient)
+            // }
+          })
         }
       })
+      unfoundIngredient.forEach((item, index) =>{
+        let correctIngredients = this.state.ingredients.map(item => item.toLowerCase())
+        correctIngredients.forEach(ingredient => {
+          if(ingredient.includes(item)){
+            // unfoundIngredient.splice(index, 0, item)
+            ingredients.push(ingredient)
+          }
+        })
+      })
+      console.log("ingredient", ingredients)
       console.log(unfoundIngredient)
+      let newSet = new Set(data)
+      let someData = Array.from(newSet)
+      console.log("someData", someData)
+      console.log("newData",newData)
       console.log("data", data)
 
       this.setState({recipeIngredients: data})
