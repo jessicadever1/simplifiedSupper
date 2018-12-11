@@ -16,6 +16,7 @@ export default class RecipeSuggestionEngine extends Component{
     recipeDetails: [],
     ingredients: [],
     recipeIngredients: [],
+    matchedRecipes: [],
   }
 
   componentDidMount=()=>{
@@ -53,7 +54,6 @@ export default class RecipeSuggestionEngine extends Component{
     })
     .then(data =>{
       this.setState({recipeDetails: data, ingredients: ingredients})
-      // this.updateDatabase()
       this.splitIngredients()
     })
     .then(()=> this.percentageMatchCalculator())
@@ -123,31 +123,78 @@ export default class RecipeSuggestionEngine extends Component{
           }
         })
       })
-      // console.log("ingredient", ingredients)
-      // console.log(unfoundIngredient)
       let newSet = new Set(data)
       let someData = Array.from(newSet)
-      // console.log("someData", someData)
-      // console.log("newData",newData)
-      // console.log("data", data)
-
       this.setState({recipeIngredients: someData})
     }
 
     percentageMatchCalculator=()=>{
-      console.log(this.state.recipeIngredients)
-      APIManager.existingUsersSuggestedRecipes(this.state.recipeIngredients)
-      .then(data => console.log(data))
+      let filteredRecipes = []
+      let newFilter = []
+      APIManager.getAllCategory("recipes")
+      .then((recipes)=> {
+        recipes.forEach(recipe=>{
+          let counter = 0
+          recipe.ingredients.forEach(ingredient =>{
+            if(this.state.ingredients.includes(ingredient)){
+              counter += 1
+            }
+          })
+          let percentageMatch = (counter/recipe.ingredients.length)*100
+          if(percentageMatch > 90){
+            // if(filteredRecipes.find(recipeId => ))
+            let newObj = Object.assign({}, recipe, {percentageMatch: percentageMatch })
+            filteredRecipes.push(newObj)
+          }
+          })
+        console.log("filtered recipes",filteredRecipes)
+        let newData = new Set(filteredRecipes)
+        let test = Array.from(newData)
+        console.log(test.length)
+        newFilter.push(filteredRecipes[0])
+        filteredRecipes.forEach(recipe => {
+          if(newFilter.includes(recipe.recipeId)){
+            console.log("match")
+          } else{
+            newFilter.push(recipe)
+            // console.log("no match")
+          }
+        })
+        // let newAray = filteredRecipes.filter(val => val.recipeId !== filteredRecipes.recipe.recipeId)
+        // console.log(newAray.length)
+        // filteredRecipes.forEach((recipe, index) =>{
+        //   console.log("inside filtered recipes for each")
+        //   newFilter.forEach(item =>{
+        //     console.log("inside new filter for each")
+        //     if(item.includes(recipe.id)){
+        //       console.log("match found")
+        //     } else{
+        //       console.log("no match found")
+        //     }
+        //   })
+          // if(!newFilter.includes(recipe.id)){
+          //   newFilter.push(recipe)
+          // }
+        // })
+        console.log(newFilter.length)
+        // this.setState({matchedRecipes: filteredRecipes})
+      })
     }
 
+    ingredientAvailability = (key, value) => {
+      this.setState(prevState => {
+        //key is ingredient.id
+        //value is true or false
+        let obj = Object.assign({}, prevState.ingredientAvailability, {[key]: value})
+        return {ingredientAvailability: obj}
+      })
+    }
 
 
   render(){
     return(
       <React.Fragment>
-        <p>Hi, this will be the recipe suggestion engine</p>
-        <BuildSuggestions ingredients={this.state.recipeIngredients}/>
-        {/* <div>{this.splitIngredients()}</div> */}
+        <BuildSuggestions ingredients={this.state.recipeIngredients} matchedRecipes={this.state.matchedRecipes}/>
       </React.Fragment>
     )
   }

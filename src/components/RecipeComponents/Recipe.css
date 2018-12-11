@@ -9,3 +9,7 @@
 .rbc-time-header-gutter{
   display: none!important;
 }
+
+.displayRecipes{
+  overflow-y: auto;
+}
