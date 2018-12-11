@@ -62,7 +62,7 @@ export default class SuggestedRecipes extends Component{
               <Card.Group itemsPerRow={4}>
                 {
                   this.props.matches.matches.map((match, index) => {
-                    return <Card key={index} onClick={()=>this.seeRecipeDetails(match.id)}>
+                    return <Card key={index} onClick={()=>this.seeRecipeDetails(match, "getStarted")}>
                       <Image src={match.imageUrlsBySize[90]} />
                       <Card.Content>
                         <Card.Header>{match.recipeName}</Card.Header>

@@ -147,19 +147,19 @@ export default class RecipeSuggestionEngine extends Component{
             filteredRecipes.push(newObj)
           }
           })
-        console.log("filtered recipes",filteredRecipes)
-        let newData = new Set(filteredRecipes)
-        let test = Array.from(newData)
-        console.log(test.length)
-        newFilter.push(filteredRecipes[0])
-        filteredRecipes.forEach(recipe => {
-          if(newFilter.includes(recipe.recipeId)){
-            console.log("match")
-          } else{
-            newFilter.push(recipe)
-            // console.log("no match")
-          }
-        })
+        // console.log("filtered recipes",filteredRecipes)
+        // let newData = new Set(filteredRecipes)
+        // let test = Array.from(newData)
+        // console.log(test.length)
+        // newFilter.push(filteredRecipes[0])
+        // filteredRecipes.forEach(recipe => {
+        //   if(newFilter.includes(recipe.recipeId)){
+        //     console.log("match")
+        //   } else{
+        //     newFilter.push(recipe)
+        //     // console.log("no match")
+        //   }
+        // })
         // let newAray = filteredRecipes.filter(val => val.recipeId !== filteredRecipes.recipe.recipeId)
         // console.log(newAray.length)
         // filteredRecipes.forEach((recipe, index) =>{
@@ -176,8 +176,7 @@ export default class RecipeSuggestionEngine extends Component{
           //   newFilter.push(recipe)
           // }
         // })
-        console.log(newFilter.length)
-        // this.setState({matchedRecipes: filteredRecipes})
+        this.setState({matchedRecipes: filteredRecipes})
       })
     }
 
@@ -194,7 +193,7 @@ export default class RecipeSuggestionEngine extends Component{
   render(){
     return(
       <React.Fragment>
-        <BuildSuggestions ingredients={this.state.recipeIngredients} matchedRecipes={this.state.matchedRecipes}/>
+        <BuildSuggestions ingredients={this.state.recipeIngredients} matchedRecipes={this.state.matchedRecipes} showRecipeDetails={this.props.showRecipeDetails}/>
       </React.Fragment>
     )
   }

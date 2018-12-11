@@ -22,45 +22,45 @@ export default class RecipeCalendar extends Component{
     events: [],
   }
 
-  componentDidMount = () =>{
-    this.updateData()
-  }
+  // componentDidMount = () =>{
+  //   this.updateData()
+  // }
 
-  updateData=()=>{
-    APIManager.getAllCategory("usersRecipes?_expand=user")
-    .then((usersRecipes)=>{
-      let recipeEvents = []
-      usersRecipes.forEach(recipe => {
-        if(recipe.userId === parseInt(sessionStorage.getItem("id"))){
-          recipeEvents.push(APIManager.getRecipeDetails(recipe.recipeId)
-            .then((recipeDetails)=> {
-              let expandedRecipe = {
-                id: recipe.recipeId,
-                eventId: recipe.id,
-                title: recipeDetails.name,
-                allDay: true,
-                start: recipe.date,
-                end: recipe.date,
-                recipeDetails: recipeDetails
-              }
-              return expandedRecipe
-            })
-          )
-        } else{
-          return
-        }
-      })
-      return Promise.all(recipeEvents)
-    })
-    .then(data => {
-      this.setState({
-        events: data
-      })
-    })
-  }
+  // updateData=()=>{
+  //   APIManager.getAllCategory("usersRecipes?_expand=user")
+  //   .then((usersRecipes)=>{
+  //     let recipeEvents = []
+  //     usersRecipes.forEach(recipe => {
+  //       if(recipe.userId === parseInt(sessionStorage.getItem("id"))){
+  //         recipeEvents.push(APIManager.getRecipeDetails(recipe.recipeId)
+  //           .then((recipeDetails)=> {
+  //             let expandedRecipe = {
+  //               id: recipe.recipeId,
+  //               eventId: recipe.id,
+  //               title: recipeDetails.name,
+  //               allDay: true,
+  //               start: recipe.date,
+  //               end: recipe.date,
+  //               recipeDetails: recipeDetails
+  //             }
+  //             return expandedRecipe
+  //           })
+  //         )
+  //       } else{
+  //         return
+  //       }
+  //     })
+  //     return Promise.all(recipeEvents)
+  //   })
+  //   .then(data => {
+  //     this.setState({
+  //       events: data
+  //     })
+  //   })
+  // }
 
   Event=({event})=>{
-    return <Card key={event.id}>
+    return <Card key={event.id} className="">
       {/* <Image src={event.imageUrlsBySize[90]} /> */}
       <Card.Content>
         {/* <Card.Header>{event.title}</Card.Header> */}
@@ -70,58 +70,58 @@ export default class RecipeCalendar extends Component{
     </Card>
   }
 
-  showRecipeDetails=(event)=>{
-    APIManager.getRecipeDetails(event.id)
-    .then((response)=>
-      this.setState({
-        recipeDetails: response,
-        date: event.start,
-        activeRecipeKey: event.eventId,
-        viewRecipeDetails: true,
-        open: true,
-      })
-    )
-  }
+  // showRecipeDetails=(event)=>{
+  //   APIManager.getRecipeDetails(event.id)
+  //   .then((response)=>
+  //     this.setState({
+  //       recipeDetails: response,
+  //       date: event.start,
+  //       activeRecipeKey: event.eventId,
+  //       viewRecipeDetails: true,
+  //       open: true,
+  //     })
+  //   )
+  // }
 
-  closeRecipeDetails=()=>{
-    this.setState({viewRecipeDetails: false, open: false})
-  }
+  // closeRecipeDetails=()=>{
+  //   this.setState({viewRecipeDetails: false, open: false})
+  // }
 
-  handleCalendarChange=(id, date)=>{
-    let updatedRecipe ={
-      userId: parseInt(sessionStorage.getItem("id")),
-      recipeId: id,
-      date: date,
-    }
-    APIManager.updateItem("usersRecipes", this.state.activeRecipeKey, updatedRecipe)
-    .then(()=> {
-      this.updateData()
-      this.closeRecipeDetails()
-    })
-  }
+  // handleCalendarChange=(id, date)=>{
+  //   let updatedRecipe ={
+  //     userId: parseInt(sessionStorage.getItem("id")),
+  //     recipeId: id,
+  //     date: date,
+  //   }
+  //   APIManager.updateItem("usersRecipes", this.state.activeRecipeKey, updatedRecipe)
+  //   .then(()=> {
+  //     this.updateData()
+  //     this.closeRecipeDetails()
+  //   })
+  // }
 
-  deleteRecipe=()=>{
-    APIManager.deleteItem("usersRecipes", this.state.activeRecipeKey)
-    .then(()=>{
-      this.updateData()
-      this.closeRecipeDetails()
-    })
-  }
+  // deleteRecipe=()=>{
+  //   APIManager.deleteItem("usersRecipes", this.state.activeRecipeKey)
+  //   .then(()=>{
+  //     this.updateData()
+  //     this.closeRecipeDetails()
+  //   })
+  // }
 
   render(){
-    if(this.state.viewRecipeDetails === true){
-      return <RecipeModal recipeDetails={this.state.recipeDetails} getStarted={this.state.getStarted} closeRecipeDetails={this.closeRecipeDetails} handleCalendarChange={this.handleCalendarChange} deleteRecipe={this.deleteRecipe} date={this.state.date} open={this.state.open}/>
-    }
+    // if(this.state.viewRecipeDetails === true){
+    //   return <RecipeModal recipeDetails={this.state.recipeDetails} getStarted={this.state.getStarted} closeRecipeDetails={this.closeRecipeDetails} handleCalendarChange={this.handleCalendarChange} deleteRecipe={this.props.deleteRecipe} date={this.state.date} open={this.state.open}/>
+    // }
     return(
       <React.Fragment>
         <BigCalendar
           defaultView ={BigCalendar.Views.WEEK}
           step ={360}
           localizer={this.state.localizer}
-          events={this.state.events}
+          events={this.props.events}
           startAccessor="start"
           endAccessor="end"
-          onSelectEvent={(evt, key) => this.showRecipeDetails(evt, key)}
+          onSelectEvent={(event) => this.props.showRecipeDetails(event, "calendar")}
           components={{
             event: this.Event,
           }}
