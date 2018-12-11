@@ -1,0 +1,194 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "text": "Main Dishes",
+      "value": "Main+Dishes"
+    },
+    {
+      "id": 2,
+      "text": "Desserts",
+      "value": "Desserts"
+    },
+    {
+      "id": 3,
+      "text": "Side Dishes",
+      "value": "Side+Dishes"
+    },
+    {
+      "id": 4,
+      "text": "Lunch and Snacks",
+      "value": "Lunch+and+Snacks"
+    },
+    {
+      "id": 5,
+      "text": "Appetizers",
+      "value": "Appetizers"
+    },
+    {
+      "id": 6,
+      "text": "Salads",
+      "value": "Salads"
+    },
+    {
+      "id": 7,
+      "text": "Breads",
+      "value": "Breads"
+    },
+    {
+      "id": 8,
+      "text": "Breakfast and Brunch",
+      "value": "Breakfast+and+Brunch"
+    },
+    {
+      "id": 9,
+      "text": "Soups",
+      "value": "Soups"
+    },
+    {
+      "id": 10,
+      "text": "Beverages",
+      "value": "Beverages"
+    },
+    {
+      "id": 11,
+      "text": "Condiments and Sauces",
+      "value": "Condiments+and+Sauces"
+    },
+    {
+      "id": 12,
+      "text": "Cocktails",
+      "value": "Cocktails"
+    }
+  ],
+  "cuisines": [
+    {
+      "id": 1,
+      "text": "American",
+      "value": "american"
+    },
+    {
+      "id": 2,
+      "text": "Italian",
+      "value": "italian"
+    },
+    {
+      "id": 3,
+      "text": "Asian",
+      "value": "asian"
+    },
+    {
+      "id": 4,
+      "text": "Mexican",
+      "value": "mexican"
+    },
+    {
+      "id": 5,
+      "text": "Southern & Soul Food",
+      "value": "southern"
+    },
+    {
+      "id": 6,
+      "text": "French",
+      "value": "french"
+    },
+    {
+      "id": 7,
+      "text": "Southwestern",
+      "value": "southwestern"
+    },
+    {
+      "id": 8,
+      "text": "Barbecue",
+      "value": "barbecue-bbq"
+    },
+    {
+      "id": 9,
+      "text": "Indian",
+      "value": "indian"
+    },
+    {
+      "id": 10,
+      "text": "Chinese",
+      "value": "chinese"
+    },
+    {
+      "id": 11,
+      "text": "Cajun & Cerole",
+      "value": "cajun"
+    },
+    {
+      "id": 12,
+      "text": "English",
+      "value": "english"
+    },
+    {
+      "id": 13,
+      "text": "Mediterranean",
+      "value": "mediterranean"
+    },
+    {
+      "id": 14,
+      "text": "Greek",
+      "value": "greek"
+    },
+    {
+      "id": 15,
+      "text": "Spanish",
+      "value": "spanish"
+    },
+    {
+      "id": 16,
+      "text": "German",
+      "value": "german"
+    },
+    {
+      "id": 17,
+      "text": "Thai",
+      "value": "thai"
+    },
+    {
+      "id": 18,
+      "text": "Moroccan",
+      "value": "moroccan"
+    },
+    {
+      "id": 19,
+      "text": "Irish",
+      "value": "irish"
+    },
+    {
+      "id": 20,
+      "text": "Japanese",
+      "value": "japanese"
+    },
+    {
+      "id": 21,
+      "text": "Cuban",
+      "value": "cuban"
+    },
+    {
+      "id": 22,
+      "text": "Hawaiin",
+      "value": "hawaiian"
+    },
+    {
+      "id": 23,
+      "text": "Swedish",
+      "value": "swedish"
+    },
+    {
+      "id": 24,
+      "text": "Hungarian",
+      "value": "hungarian"
+    },
+    {
+      "id": 25,
+      "text": "Portugese",
+      "value": "portugese"
+    }
+  ],
+  "recipes": [
+
+  ]
+}
