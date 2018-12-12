@@ -1,8 +1,0 @@
-/*
-Given an active user has selected at least one meal during the week
-When the user is viewing the calendar
-Then a recipe suggestion engine will display recipes with the highest percentage of similar ingredients to the recipe already in their calendar along with a percentage of similar ingredients
-
-When the user adds a new recipe to their calendar
-Then the recipe suggestion engine will update with new recipes based on the combined ingredients of all selected recipes
-*/
