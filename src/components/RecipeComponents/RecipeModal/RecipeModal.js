@@ -31,7 +31,7 @@ export default class RecipeCard extends Component{
   makeButtons=(getStarted)=>{
     if(getStarted === true){
      return <React.Fragment>
-        <Input type="date" className={`${this.state.addToCalendar === false ? "isHidden" : ""}`} onChange={(evt)=> this.handleCalendarChange("date", moment(evt.target.value))}></Input>
+        <Input type="date" className={`${this.state.addToCalendar === false ? "isHidden" : ""}`} onChange={(evt)=> this.handleCalendarChange("date", moment(evt.target.value))} required></Input>
         <Button primary className={`${this.state.addToCalendar === true ? "isHidden" : ""}`} onClick={()=>this.handleButtonClick()}>Add to Calendar</Button>
         <Button primary className={`${this.state.addToCalendar === false ? "isHidden" : ""}`} onClick={()=> this.props.handleCalendarChange("newRecipe", this.props.recipeDetails.id, this.state.date)}>Save Recipe</Button>
       </React.Fragment>
@@ -76,8 +76,6 @@ export default class RecipeCard extends Component{
                             <Statistic.Value>{item.value}</Statistic.Value>
                             <Statistic.Label>Calories</Statistic.Label>
                             </Statistic>
-                          } else{
-                            return
                           }
                         })
                       }

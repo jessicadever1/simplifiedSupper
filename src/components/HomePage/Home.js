@@ -68,7 +68,7 @@ export default class Home extends Component{
 
   createIngredientList=()=>{
     let selectedIngredients = []
-    let thisWeek = moment(). week()
+    let thisWeek = moment().week()
     this.state.events.forEach(event =>{
       //Check to see if recipe is scheduled for this week
       if(moment(event.start).week() === thisWeek){

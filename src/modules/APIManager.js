@@ -1,5 +1,4 @@
 const URL = "http://localhost:8088/"
-const YummlySearch ="http://api.yummly.com/v1/api/recipes"
 const YummlyDetails="http://api.yummly.com/v1/api/recipe/"
 const YummlyAuth = "?_app_id=cd5fb393&_app_key=fe16ea520b72c15ff39525eed9947f8f"
 
