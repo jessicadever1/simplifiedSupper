@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
 import {Route, Redirect} from 'react-router-dom'
-// import Login from './authentication/LogIn'
-// import Register from './authentication/Register';
 import LogInRegister from './authentication/LogInRegister'
 import Logout from './authentication/Logout'
 import GetStarted from './getstarted/GetStarted';

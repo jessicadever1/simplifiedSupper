@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-// import {Route, Redirect} from 'react-router-dom'
 import NavBar from './nav/NavBar'
 import ApplicationViews from './ApplicationViews'
 import APIManager from '../modules/APIManager'

@@ -8,14 +8,16 @@ export default class SuggestedRecipes extends Component{
     showRecipe: false,
     getStarted: true,
     open: false,
+    recipeId: "",
     recipeDetails: []
   }
 
-  seeRecipeDetails=(id)=>{
+  seeRecipeDetails=(id, num)=>{
     APIManager.getRecipeDetails(id)
     .then((response)=>
     this.setState({
       recipeDetails: response,
+      recipeId: num,
       showRecipe: true,
       open: true,
     })
@@ -30,7 +32,7 @@ export default class SuggestedRecipes extends Component{
     let showRecpie = ""
     if(this.state.showRecipe === true){
       showRecpie = <RecipeModal getStarted={this.state.getStarted}
-      handleCalendarChange={this.props.handleCalendarChange} closeRecipeDetails={this.closeRecipeDetails} recipeDetails={this.state.recipeDetails} open={this.state.open}/>
+      handleCalendarChange={this.props.handleCalendarChange} closeRecipeDetails={this.closeRecipeDetails} recipeDetails={this.state.recipeDetails} open={this.state.open} recipeId={this.state.recipeId}/>
     } else if(this.props.matches.length === 0){
       return <Segment>
         <Header>
@@ -62,10 +64,10 @@ export default class SuggestedRecipes extends Component{
               <Card.Group itemsPerRow={4}>
                 {
                   this.props.matches.map((match, index) => {
-                    return <Card key={index} onClick={()=>this.seeRecipeDetails()}>
+                    return <Card key={index} onClick={()=>this.seeRecipeDetails( match.recipe_Id, match.id)}>
                       <Image src={match.imageUrlsBySize[90]} />
                       <Card.Content>
-                        <Card.Header>{match.recipe_Id}</Card.Header>
+                        <Card.Header>{match.recipeName}</Card.Header>
                         <Card.Meta>{match.sourceDisplayName}</Card.Meta>
                         <Card.Description></Card.Description>
                       </Card.Content>

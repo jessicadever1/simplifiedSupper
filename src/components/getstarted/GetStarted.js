@@ -1,13 +1,6 @@
-/*
-
-When the user clicks any of the recipe cards, they will be taken to the appropriate recipe details (see #6 )
-And be given the affordance to select the date they would like to make that recipe
-*/
-
 import React, {Component} from 'react'
 import GetStartedCategory from './GetStartedCategory'
 import GetStartedDish from './GetStartedDish'
-// import GetStartedProtein from './GetStartedProtein'
 import SuggestedRecipes from '../RecipeComponents/RecipeSuggestionEngine/GetStartedSuggestions/SuggestedRecipes';
 import APIManager from '../../modules/APIManager';
 import moment from 'moment'
@@ -83,10 +76,11 @@ export default class GetStarted extends Component{
     }
   }
 
-  handleCalendarChange=(evt, id)=>{
+  handleCalendarChange=(evt, id, num)=>{
     let newRecipe ={
-      userId: parseInt(sessionStorage.getItem("id")),
-      recipeId: id,
+      user_Id: parseInt(sessionStorage.getItem("id")),
+      recipe_Id: id,
+      recipe_Num: num,
       date: moment(evt.target.value)
     }
     APIManager.saveItem("usersRecipes", newRecipe)
