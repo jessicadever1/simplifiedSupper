@@ -26,6 +26,7 @@ const YummlyAuth = "?_app_id=cd5fb393&_app_key=fe16ea520b72c15ff39525eed9947f8f"
   }
 
   deleteItem(category, id) {
+    // console.log(URL, category, id)
     return fetch(`${URL}${category}/${id}`, {
       method: "DELETE",
       headers: {
@@ -46,10 +47,26 @@ const YummlyAuth = "?_app_id=cd5fb393&_app_key=fe16ea520b72c15ff39525eed9947f8f"
   }
 
   newUserSuggestedRecipes(cuisine, course){
-
-      return fetch(`${YummlySearch}${YummlyAuth}&requirePictures=true&allowedCuisine[]=cuisine^cuisine-${cuisine}&allowedCourse[]=course^course-${course}`)
+    // console.log(`${YummlySearch}${YummlyAuth}&requirePictures=true&allowedCuisine[]=cuisine^cuisine-${cuisine}&allowedCourse[]=course^course-${course}&facetField[]=diet`)
+      return fetch(`${YummlySearch}${YummlyAuth}&requirePictures=true&allowedCuisine[]=cuisine^cuisine-${cuisine}&allowedCourse[]=course^course-${course}&facetField[]=diet&facetField[]=ingredient`)
     .then(results => results.json())
     // .then(recipes => console.log(recipes))
+  }
+
+  existingUsersSuggestedRecipes(ingredients){
+    let recipeString=[]
+    ingredients.forEach(ingredient=>{
+      let splitIngredient=ingredient.split(" ")
+      if(splitIngredient.length > 1){
+        let newIngredient = splitIngredient.join("+")
+        recipeString.push(`&allowedIngredient[]=${newIngredient}`)
+      } else{
+        recipeString.push(`&allowedIngredient[]=${ingredient}`)
+      }
+    })
+    let finalIngredientList = recipeString.join("")
+    return fetch(`${YummlySearch}${YummlyAuth}&requirePictures=true${finalIngredientList}`)
+    .then(results => results.json())
   }
 
   getRecipeDetails(id){

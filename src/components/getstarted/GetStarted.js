@@ -1,14 +1,7 @@
-/*
-
-When the user clicks any of the recipe cards, they will be taken to the appropriate recipe details (see #6 )
-And be given the affordance to select the date they would like to make that recipe
-*/
-
 import React, {Component} from 'react'
 import GetStartedCategory from './GetStartedCategory'
 import GetStartedDish from './GetStartedDish'
-// import GetStartedProtein from './GetStartedProtein'
-import SuggestedRecipes from './SuggestedRecipes';
+import SuggestedRecipes from '../RecipeComponents/RecipeSuggestionEngine/GetStartedSuggestions/SuggestedRecipes';
 import APIManager from '../../modules/APIManager';
 import moment from 'moment'
 
@@ -17,10 +10,8 @@ export default class GetStarted extends Component{
   state={
     category: "",
     dish: "",
-    protein: "",
     selectedCategory: false,
     selectedDish: false,
-    selectedProtein: false,
     open: false,
     matches: []
   }
@@ -31,10 +22,46 @@ export default class GetStarted extends Component{
       this.setState({selectedCategory: true})
       return
     } else if(evt.target.id === "dish"){
-      APIManager.newUserSuggestedRecipes(this.state.category, this.state.dish)
-      .then((response)=>{
+      let matchedRecipes = []
+      let courseMatch=[]
+      let AssignedCourse = ""
+      if(this.state.dish === "Main+Dishes" || this.state.dish === "Side+Dishes" || this.state.dish === "Lunch+and+Snacks"){
+        if(this.state.dish === "Main+Dishes"){
+          AssignedCourse = "Main Dishes"
+        } else if(this.state.dish === "Side+Dishes"){
+          AssignedCourse = "Side Dishes"
+        } else if(this.state.dish === "Lunch+and+Snacks"){
+          AssignedCourse = "Lunch and Snacks"
+        }
+      } else{
+        AssignedCourse = this.state.dish
+      }
+      APIManager.getAllCategory("recipes")
+      .then(recipes => {
+        recipes.forEach(recipe =>{
+          recipe.attributes.course.forEach(course=>{
+            if(course === AssignedCourse){
+              courseMatch.push(recipe)
+            }
+          })
+        })
+        courseMatch.forEach(course =>{
+          if(course.attributes.cuisine){
+            course.attributes.cuisine.forEach(cuisine =>{
+              if(cuisine.toLowerCase() === this.state.category){
+                if(matchedRecipes.length === 0){
+                  matchedRecipes.push(course)
+                } else{
+                  if(!matchedRecipes.find(recipe => recipe.id === course.id)){
+                    matchedRecipes.push(course)
+                  }
+                }
+              }
+            })
+          }
+        })
         this.setState({
-          matches: response,
+          matches: matchedRecipes,
           selectedDish: true
         })
       })
@@ -47,16 +74,13 @@ export default class GetStarted extends Component{
         dish: ""
       })
     }
-    // else if(evt.target.id === "protein"){
-    //   this.setState({selectedProtein: true})
-    //   return
-    // }
   }
 
-  handleCalendarChange=(evt, id)=>{
+  handleCalendarChange=(evt, id, num)=>{
     let newRecipe ={
-      userId: parseInt(sessionStorage.getItem("id")),
-      recipeId: id,
+      user_Id: parseInt(sessionStorage.getItem("id")),
+      recipe_Id: id,
+      recipe_Num: num,
       date: moment(evt.target.value)
     }
     APIManager.saveItem("usersRecipes", newRecipe)
@@ -71,10 +95,5 @@ export default class GetStarted extends Component{
     } else if(this.state.selectedCategory === true && this.state.selectedDish === true){
       return <SuggestedRecipes handleCalendarChange={this.handleCalendarChange} matches={this.state.matches} category={this.state.category} dish={this.state.dish} handleButtonClick={this.handleButtonClick}/>
     }
-    // else if(this.state.selectedCategory === true && this.state.selectedDish === true && this.state.selectedProtein === false){
-    //   getStarted = <GetStartedProtein handleButtonClick={this.handleButtonClick} handleDropdownChange={this.handleDropdownChange}/>
-    // } else if(this.state.selectedCategory === true && this.state.selectedDish === true && this.state.selectedProtein === true){
-    //   getStarted = <SuggestedRecipes />
-    // }
   }
 }
