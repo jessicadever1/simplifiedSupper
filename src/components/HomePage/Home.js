@@ -111,7 +111,15 @@ export default class Home extends Component{
           let percentageMatch = (counter/recipe.ingredients.length)*100
           if(percentageMatch > 50){
             let newObj = Object.assign({}, recipe, {percentageMatch: percentageMatch})
-            filteredRecipes.push(newObj)
+            if(filteredRecipes.length === 0){
+              filteredRecipes.push(newObj)
+            } else{
+              if(filteredRecipes.find(filRecipe => filRecipe.id === recipe.id) === undefined){
+                filteredRecipes.push(newObj)
+              } else{
+                return
+              }
+            }
           }
         }
       })
@@ -201,19 +209,19 @@ export default class Home extends Component{
               height: 100%
             }`}</style>
           <Grid textAlign="center" style={{height: '100%'}} verticalAlign="middle">
-            <Grid.Row color="blue">
-              <Grid.Column style={{maxWidth: 700}} color="violet">
-                <Header as="h2" color="teal" textAlign="center">
+            <Grid.Row>
+              <Grid.Column style={{maxWidth: '80vw', height: '5vh'}}>
+                <Header as="h2" textAlign="center">
                 </Header>
               </Grid.Column>
             </Grid.Row>
-            <Grid.Row color="orange">
-              <Grid.Column style={{maxWidth: 700, height: '60vh'}} color="grey" className="displayRecipes">
+            <Grid.Row>
+              <Grid.Column style={{maxWidth: '80vw', height: '58vh'}} className="displayRecipes">
                 <RecipeSuggestionEngine  matchedRecipes = {this.state.matchedRecipes}showRecipeDetails={this.showRecipeDetails} closeRecipeDetails={this.closeRecipeDetails}/>
               </Grid.Column>
             </Grid.Row>
-            <Grid.Row verticalAlign="bottom" style={{maxHeight: '80%'}} color="teal">
-              <Grid.Column verticalAlign="bottom" style={{maxWidth: 800, height: '100%'}} color="pink" className="calendar">
+            <Grid.Row verticalAlign="bottom">
+              <Grid.Column verticalAlign="bottom" style={{maxWidth: '80vw', height: '30vh'}} className="calendar">
                 <RecipeCalendar activeUser={this.props.activeUser} events= {this.state.events} showRecipeDetails={this.showRecipeDetails} closeRecipeDetails={this.closeRecipeDetails}/>
               </Grid.Column>
             </Grid.Row>

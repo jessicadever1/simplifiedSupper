@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Image, Card} from 'semantic-ui-react'
+import '../../RecipeComponents/Recipe.css'
 
 export default class BuildSuggestions extends Component{
   state={
@@ -11,7 +12,6 @@ export default class BuildSuggestions extends Component{
   }
 
   //TODO: Update percentage match to appear in the color code assigned below, bold font
-  //TODO: Sort cards from highest to lowest percentage match
 
   createCardColor=(recipe)=>{
       if(recipe.percentageMatch < 50){
@@ -25,9 +25,12 @@ export default class BuildSuggestions extends Component{
 
 
   render(){
+    this.props.matchedRecipes.sort(function(a,b){
+      return b.percentageMatch-a.percentageMatch
+    })
     return(
       <React.Fragment>
-        <Card.Group itemsPerRow={4}>
+        <Card.Group itemsPerRow={5}>
         {
           this.props.matchedRecipes.map((match, index)=>{
             return <Card
@@ -39,7 +42,7 @@ export default class BuildSuggestions extends Component{
             <Card.Content>
               <Card.Header>{match.recipeName}</Card.Header>
               <Card.Meta>{match.sourceDisplayName}</Card.Meta>
-              <Card.Description color={this.createCardColor(match)}>{Math.floor(match.percentageMatch)}% Match</Card.Description>
+              <Card.Description textAlign="center" className={this.createCardColor(match)}>{Math.floor(match.percentageMatch)}% Match</Card.Description>
             </Card.Content>
             </Card>
           })

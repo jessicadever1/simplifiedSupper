@@ -13,3 +13,15 @@
 .displayRecipes{
   overflow-y: auto;
 }
+
+.yellow{
+  color: yellow;
+}
+
+.red{
+  color: red;
+}
+
+.green{
+  color: green
+}

@@ -3,9 +3,6 @@ import {Modal, Header, Statistic, Image, Button, Input, Confirm} from 'semantic-
 import '../Recipe.css'
 import moment from 'moment'
 
-
-//FIXME: Add Instructions to app
-
 export default class RecipeCard extends Component{
 
   state={
