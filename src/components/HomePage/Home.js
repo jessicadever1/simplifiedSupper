@@ -20,39 +20,43 @@ export default class Home extends Component{
     events: [],
     cuisines: [],
     courses: [],
-    query: []
   }
 
   componentDidMount=()=>{
-    // this.updateData()
-    this.cleanUpData()
+    this.updateData()
   }
-
 
   updateData=()=>{
     APIManager.getAllCategory("usersRecipes?_expand=user")
     .then((usersRecipes)=>{
       let recipeEvents = []
       usersRecipes.forEach(recipe => {
+        console.log(recipe)
         if(recipe.userId === parseInt(sessionStorage.getItem("id"))){
-          recipeEvents.push(APIManager.getRecipeDetails(recipe.recipeId)
-            .then((recipeDetails)=> {
-              let expandedRecipe = {
-                id: recipe.recipeId,
-                eventId: recipe.id,
-                title: recipeDetails.name,
-                allDay: true,
-                start: recipe.date,
-                end: recipe.date,
-                recipeDetails: recipeDetails
-              }
-              return expandedRecipe
-            })
-          )
-        } else{
-          return
-        }
-      })
+          recipeEvents.push(APIManager.getAllCategory("recipes")
+          .then(recipeDetails => recipeDetails.forEach(recipeDetail =>{
+            if(recipeDetail.recipe_Id === recipe.recipe_Id){
+              console.log(recipeDetail)
+            }
+          }))
+            // .then((recipeDetails)=> {
+            //   console.log(recipeDetails)
+            //   let expandedRecipe = {
+            //     id: recipe.recipe_Id,
+            //     eventId: recipe.id,
+            //     title: recipeDetails.name,
+            //     allDay: true,
+            //     start: recipe.date,
+            //     end: recipe.date,
+            //     recipeDetails: recipeDetails
+            //   }
+            //   return expandedRecipe
+            // })
+        //   )
+        // } else{
+        //   return
+        // }
+          )}
       return Promise.all(recipeEvents)
     })
     .then(data => {
@@ -64,66 +68,66 @@ export default class Home extends Component{
     .then((response)=> this.setState({cuisines: response}))
     .then(()=> APIManager.getAllCategory("courses"))
     .then((response)=> this.setState({courses: response}))
-  }
+  })}
 
-  showRecipeDetails=(details, key)=>{
-    console.log(details, key)
-    if(key === "calendar"){
-      // console.log(details)
-      APIManager.getRecipeDetails(details.id)
-      .then((response)=>{
-        this.setState({
-          recipeDetails: response,
-          date: moment(details.start).format("YYYY-MM-DD"),
-          activeRecipeKey: details.eventId,
-          viewRecipeDetails: true,
-          open: true,
-        })
-      })
-    }
-     else if(key === "suggestionEngine"){
-      APIManager.getRecipeDetails(details.recipeId)
-      .then((response)=>{
-        this.setState({
-          recipeDetails: response,
-          activeRecipeKey: details.id,
-          viewRecipeDetails: true,
-          open: true,
-          getStarted: true,
-        })
-      })
-    }
-  }
+  // showRecipeDetails=(details, key)=>{
+  //   console.log(details, key)
+  //   if(key === "calendar"){
+  //     // console.log(details)
+  //     APIManager.getRecipeDetails(details.id)
+  //     .then((response)=>{
+  //       this.setState({
+  //         recipeDetails: response,
+  //         date: moment(details.start).format("YYYY-MM-DD"),
+  //         activeRecipeKey: details.eventId,
+  //         viewRecipeDetails: true,
+  //         open: true,
+  //       })
+  //     })
+  //   }
+  //    else if(key === "suggestionEngine"){
+  //     APIManager.getRecipeDetails(details.recipeId)
+  //     .then((response)=>{
+  //       this.setState({
+  //         recipeDetails: response,
+  //         activeRecipeKey: details.id,
+  //         viewRecipeDetails: true,
+  //         open: true,
+  //         getStarted: true,
+  //       })
+  //     })
+  //   }
+  // }
 
-  closeRecipeDetails=()=>{
-    this.setState({viewRecipeDetails: false, open: false, getStarted: false})
-  }
+  // closeRecipeDetails=()=>{
+  //   this.setState({viewRecipeDetails: false, open: false, getStarted: false})
+  // }
 
-  deleteRecipe=()=>{
-    APIManager.deleteItem("usersRecipes", this.state.activeRecipeKey)
-    .then(()=>{
-      this.updateData()
-      this.closeRecipeDetails()
-    })
-  }
+  // deleteRecipe=()=>{
+  //   APIManager.deleteItem("usersRecipes", this.state.activeRecipeKey)
+  //   .then(()=>{
+  //     this.updateData()
+  //     this.closeRecipeDetails()
+  //   })
+  // }
 
-  handleCalendarChange=(id, date)=>{
-    let updatedRecipe ={
-      userId: parseInt(sessionStorage.getItem("id")),
-      recipeId: id,
-      date: date,
-    }
-    APIManager.updateItem("usersRecipes", this.state.activeRecipeKey, updatedRecipe)
-    .then(()=> {
-      this.updateData()
-      this.closeRecipeDetails()
-    })
-  }
+  // handleCalendarChange=(id, date)=>{
+  //   let updatedRecipe ={
+  //     userId: parseInt(sessionStorage.getItem("id")),
+  //     recipeId: id,
+  //     date: date,
+  //   }
+  //   APIManager.updateItem("usersRecipes", this.state.activeRecipeKey, updatedRecipe)
+  //   .then(()=> {
+  //     this.updateData()
+  //     this.closeRecipeDetails()
+  //   })
+  // }
 
-  handleSidebarClick=()=>{
-    console.log("you want to filter")
-    this.setState({visible: true})
-  }
+  // handleSidebarClick=()=>{
+  //   console.log("you want to filter")
+  //   this.setState({visible: true})
+  // }
 
   render(){
     if(this.state.viewRecipeDetails === true){

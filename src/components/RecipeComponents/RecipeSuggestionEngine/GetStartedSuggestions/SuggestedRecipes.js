@@ -61,11 +61,11 @@ export default class SuggestedRecipes extends Component{
                 <Grid.Column verticalAlign="bottom" style={{maxWidth: 700, height: '100%'}} color="pink" className="displayRecipes">
               <Card.Group itemsPerRow={4}>
                 {
-                  this.props.matches.matches.map((match, index) => {
-                    return <Card key={index} onClick={()=>this.seeRecipeDetails(match, "getStarted")}>
+                  this.props.matches.map((match, index) => {
+                    return <Card key={index} onClick={()=>this.seeRecipeDetails()}>
                       <Image src={match.imageUrlsBySize[90]} />
                       <Card.Content>
-                        <Card.Header>{match.recipeName}</Card.Header>
+                        <Card.Header>{match.recipe_Id}</Card.Header>
                         <Card.Meta>{match.sourceDisplayName}</Card.Meta>
                         <Card.Description></Card.Description>
                       </Card.Content>

@@ -26,6 +26,7 @@ const YummlyAuth = "?_app_id=cd5fb393&_app_key=fe16ea520b72c15ff39525eed9947f8f"
   }
 
   deleteItem(category, id) {
+    // console.log(URL, category, id)
     return fetch(`${URL}${category}/${id}`, {
       method: "DELETE",
       headers: {

@@ -65,7 +65,7 @@ export default class RecipeCalendar extends Component{
       <Card.Content>
         {/* <Card.Header>{event.title}</Card.Header> */}
         <Card.Description>{event.title}</Card.Description>
-        <Card.Meta>{event.recipeDetails.source.sourceDisplayName}</Card.Meta>
+        <Card.Meta>{event.recipeDetails.sourceDisplayName}</Card.Meta>
       </Card.Content>
     </Card>
   }

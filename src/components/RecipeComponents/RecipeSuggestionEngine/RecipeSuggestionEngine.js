@@ -20,7 +20,7 @@ export default class RecipeSuggestionEngine extends Component{
   }
 
   componentDidMount=()=>{
-    this.updateData()
+    // this.updateData()
   }
 
   // updateData=()=>{
