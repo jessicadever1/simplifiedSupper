@@ -1,0 +1,332 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Kelly",
+      "lastName": "Morin",
+      "username": "kmorin06",
+      "email": "kmorin06@gmail.com",
+      "password": "1234",
+      "terms": true,
+      "securityQuestionId": 2,
+      "securityQuestionResponse": "Pink"
+    },
+    {
+      "firstName": "Test",
+      "lastName": "Account",
+      "username": "testAccount",
+      "email": "test@test.com",
+      "password": "1234",
+      "id": 2
+    },
+    {
+      "firstName": "Testing",
+      "lastName": "Validation",
+      "username": "test",
+      "email": "testing@test.com",
+      "password": "123",
+      "id": 3
+    },
+    {
+      "firstName": "testing",
+      "lastName": "terms",
+      "username": "termstest",
+      "email": "terms@test.com",
+      "password": "123",
+      "terms": true,
+      "id": 4
+    },
+    {
+      "firstName": "kelly",
+      "lastName": "morin",
+      "username": "km",
+      "email": "km",
+      "password": "123",
+      "terms": true,
+      "id": 5
+    },
+    {
+      "firstName": "testing",
+      "lastName": "checkbox",
+      "username": "checkbox",
+      "email": "w",
+      "password": "w",
+      "terms": true,
+      "id": 6
+    },
+    {
+      "firstName": "Kelly",
+      "lastName": "Morin",
+      "username": "newusertest",
+      "email": "newuser@test.com",
+      "password": "12",
+      "terms": true,
+      "id": 7
+    },
+    {
+      "firstName": "Trying",
+      "lastName": "Something",
+      "username": "hopefully",
+      "email": "k@K",
+      "password": "12",
+      "terms": true,
+      "id": 8
+    },
+    {
+      "firstName": "Get",
+      "lastName": "Started",
+      "username": "GetStarted",
+      "email": "GSUser@test.com",
+      "password": "12",
+      "terms": true,
+      "id": 9
+    },
+    {
+      "firstName": "Trying",
+      "lastName": "Routing",
+      "username": "1234",
+      "email": "1234",
+      "password": "12",
+      "terms": true,
+      "id": 10
+    }
+  ],
+  "securityQuestions": [
+    {
+      "id": 1,
+      "text": "What was the make of your first car?",
+      "value": "What was the make of your first car?"
+    },
+    {
+      "id": 2,
+      "text": "What is your favorite color?",
+      "value": "What is your favorite color?"
+    },
+    {
+      "id": 3,
+      "text": "What is your father's middle name?",
+      "value": "What is your father's middle name?"
+    },
+    {
+      "id": 4,
+      "text": "What high school did you attend?",
+      "value": "What high school did you attend?"
+    },
+    {
+      "id": 5,
+      "text": "In what city were you born?",
+      "value": "In what city were you born?"
+    },
+    {
+      "id": 6,
+      "text": "What is the name of your first pet?",
+      "value": "What is the name of your first pet?"
+    }
+  ],
+  "cuisines": [
+    {
+      "id": 1,
+      "text": "American",
+      "value": "american"
+    },
+    {
+      "id": 2,
+      "text": "Italian",
+      "value": "italian"
+    },
+    {
+      "id": 3,
+      "text": "Asian",
+      "value": "asian"
+    },
+    {
+      "id": 4,
+      "text": "Mexican",
+      "value": "mexican"
+    },
+    {
+      "id": 5,
+      "text": "Southern & Soul Food",
+      "value": "southern"
+    },
+    {
+      "id": 6,
+      "text": "French",
+      "value": "french"
+    },
+    {
+      "id": 7,
+      "text": "Southwestern",
+      "value": "southwestern"
+    },
+    {
+      "id": 8,
+      "text": "Barbecue",
+      "value": "barbecue-bbq"
+    },
+    {
+      "id": 9,
+      "text": "Indian",
+      "value": "indian"
+    },
+    {
+      "id": 10,
+      "text": "Chinese",
+      "value": "chinese"
+    },
+    {
+      "id": 11,
+      "text": "Cajun & Cerole",
+      "value": "cajun"
+    },
+    {
+      "id": 12,
+      "text": "English",
+      "value": "english"
+    },
+    {
+      "id": 13,
+      "text": "Mediterranean",
+      "value": "mediterranean"
+    },
+    {
+      "id": 14,
+      "text": "Greek",
+      "value": "greek"
+    },
+    {
+      "id": 15,
+      "text": "Spanish",
+      "value": "spanish"
+    },
+    {
+      "id": 16,
+      "text": "German",
+      "value": "german"
+    },
+    {
+      "id": 17,
+      "text": "Thai",
+      "value": "thai"
+    },
+    {
+      "id": 18,
+      "text": "Moroccan",
+      "value": "moroccan"
+    },
+    {
+      "id": 19,
+      "text": "Irish",
+      "value": "irish"
+    },
+    {
+      "id": 20,
+      "text": "Japanese",
+      "value": "japanese"
+    },
+    {
+      "id": 21,
+      "text": "Cuban",
+      "value": "cuban"
+    },
+    {
+      "id": 22,
+      "text": "Hawaiin",
+      "value": "hawaiian"
+    },
+    {
+      "id": 23,
+      "text": "Swedish",
+      "value": "swedish"
+    },
+    {
+      "id": 24,
+      "text": "Hungarian",
+      "value": "hungarian"
+    },
+    {
+      "id": 25,
+      "text": "Portugese",
+      "value": "portugese"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "text": "Main Dishes",
+      "value": "Main+Dishes"
+    },
+    {
+      "id": 2,
+      "text": "Side Dishes",
+      "value": "Side+Dishes"
+    },
+    {
+      "id": 3,
+      "text": "Lunch and Snacks",
+      "value": "Lunch+and+Snacks"
+    },
+    {
+      "id": 4,
+      "text": "Appetizers",
+      "value": "Appetizers"
+    },
+    {
+      "id": 5,
+      "text": "Salads",
+      "value": "Salads"
+    },
+    {
+      "id": 6,
+      "text": "Soups",
+      "value": "Soups"
+    }
+  ],
+  "usersRecipes": [
+    {
+      "userId": 1,
+      "recipeId": "Brown-Rice-Stir-fry-With-Vegetables-2607012",
+      "date": "2018-12-10T06:00:00.000Z",
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "recipeId": "Quick-Roasted-Broccoli-with-Soy-Sauce-and-Sesame-Seeds-2221343",
+      "date": "2018-12-13T06:00:00.000Z",
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "recipeId": "Japanese-Quick-Pickled-Cucumbers-2283517",
+      "date": "2018-12-14T06:00:00.000Z",
+      "id": 4
+    },
+    {
+      "userId": 2,
+      "recipeId": "Weeknight-Minestrone-1387406",
+      "date": "2018-12-11T06:00:00.000Z",
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "recipeId": "French-Toast-Souffle-2013932",
+      "date": "2018-12-12T06:00:00.000Z",
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "recipeId": "Spiced-rice-303409",
+      "date": "2018-12-11T06:00:00.000Z",
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "recipeId": "Indian-Mulligatawny-Soup-I-Adore-Food_-200817",
+      "date": "2018-12-15T06:00:00.000Z",
+      "id": 8
+    }
+  ],
+  "recipes": [
+
+  ]
+}

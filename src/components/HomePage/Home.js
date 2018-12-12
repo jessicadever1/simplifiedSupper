@@ -19,12 +19,15 @@ export default class Home extends Component{
     recipeDetails: [],
     events: [],
     cuisines: [],
-    courses: []
+    courses: [],
+    query: []
   }
 
   componentDidMount=()=>{
-    this.updateData()
+    // this.updateData()
+    this.cleanUpData()
   }
+
 
   updateData=()=>{
     APIManager.getAllCategory("usersRecipes?_expand=user")
