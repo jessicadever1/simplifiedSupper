@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Image, Card} from 'semantic-ui-react'
+import {Image, Card, Statistic} from 'semantic-ui-react'
 import '../../RecipeComponents/Recipe.css'
 
 export default class BuildSuggestions extends Component{
@@ -10,8 +10,6 @@ export default class BuildSuggestions extends Component{
     open: false,
     recipeDetails: []
   }
-
-  //TODO: Update percentage match to appear in the color code assigned below, bold font
 
   createCardColor=(recipe)=>{
       if(recipe.percentageMatch < 50){
@@ -42,7 +40,12 @@ export default class BuildSuggestions extends Component{
             <Card.Content>
               <Card.Header>{match.recipeName}</Card.Header>
               <Card.Meta>{match.sourceDisplayName}</Card.Meta>
-              <Card.Description textAlign="center" className={this.createCardColor(match)}>{Math.floor(match.percentageMatch)}% Match</Card.Description>
+              <Card.Content extra>
+                <Statistic horizontal color={this.createCardColor(match)} size='mini'>
+                  <Statistic.Value>{Math.floor(match.percentageMatch)}%</Statistic.Value>
+                  <Statistic.Label>Match</Statistic.Label>
+                </Statistic>
+              </Card.Content>
             </Card.Content>
             </Card>
           })

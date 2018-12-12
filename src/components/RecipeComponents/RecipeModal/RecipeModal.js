@@ -3,7 +3,7 @@ import {Modal, Header, Statistic, Image, Button, Input, Confirm} from 'semantic-
 import '../Recipe.css'
 import moment from 'moment'
 
-export default class RecipeCard extends Component{
+export default class RecipeModal extends Component{
 
   state={
     open: false,
@@ -69,16 +69,10 @@ export default class RecipeCard extends Component{
                       <Statistic.Value>{this.props.recipeDetails.ingredientLines.length}</Statistic.Value>
                       <Statistic.Label>Ingredients</Statistic.Label>
                     </Statistic>
-                      {
-                        this.props.recipeDetails.nutritionEstimates.map(item =>{
-                          if(item.attribute === "FAT_KCAL"){
-                            return<Statistic key={item.id}>
-                            <Statistic.Value>{item.value}</Statistic.Value>
-                            <Statistic.Label>Calories</Statistic.Label>
-                            </Statistic>
-                          }
-                        })
-                      }
+                    <Statistic>
+                      <Statistic.Value>{this.props.recipeDetails.nutritionEstimates[0].value}</Statistic.Value>
+                      <Statistic.Label>Calories</Statistic.Label>
+                    </Statistic>
                     <Statistic>
                       <Statistic.Value>
                       {this.props.recipeDetails.totalTime}
