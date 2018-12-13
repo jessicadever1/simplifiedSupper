@@ -14,7 +14,7 @@ export default class BuildSuggestions extends Component{
   createCardColor=(recipe)=>{
       if(recipe.percentageMatch < 50){
         return "red"
-    } else if(recipe.percentageMatch >= 80){
+    } else if(recipe.percentageMatch >= 75){
       return "green"
     }else{
       return "yellow"
@@ -28,25 +28,21 @@ export default class BuildSuggestions extends Component{
     })
     return(
       <React.Fragment>
-        <Card.Group itemsPerRow={5}>
+        <Card.Group itemsPerRow={7}>
         {
           this.props.matchedRecipes.map((match, index)=>{
             return <Card
             key={index}
             color={this.createCardColor(match)}
-            onClick={()=> this.props.showRecipeDetails(match, "suggestionEngine")}
-            >
-            <Image src={match.imageUrlsBySize[90]} />
-            <Card.Content>
-              <Card.Header>{match.recipeName}</Card.Header>
-              <Card.Meta>{match.sourceDisplayName}</Card.Meta>
-              <Card.Content extra>
-                <Statistic horizontal color={this.createCardColor(match)} size='mini'>
-                  <Statistic.Value>{Math.floor(match.percentageMatch)}%</Statistic.Value>
-                  <Statistic.Label>Match</Statistic.Label>
-                </Statistic>
+            onClick={()=> this.props.showRecipeDetails(match, "suggestionEngine")}>
+              <Card.Content>
+                <Image src={match.imageUrlsBySize[90]} />
+                <Card.Header content={match.recipeName} />
+                <Card.Meta content={match.sourceDisplayName} />
+                <Card.Content extra>
+                  <Statistic horizontal color={this.createCardColor(match)} value={Math.floor(match.percentageMatch)} label="Match"/>
+                </Card.Content>
               </Card.Content>
-            </Card.Content>
             </Card>
           })
         }

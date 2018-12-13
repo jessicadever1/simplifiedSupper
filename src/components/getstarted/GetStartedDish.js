@@ -23,8 +23,7 @@ export default class GetStartedDish extends Component{
           }`}</style>
       <Grid textAlign="center" style={{height: '100%'}} verticalAlign="middle">
         <Grid.Row>
-          <Grid.Column style={{maxWidth: '80vw', height: '25vh'}}>
-          </Grid.Column>
+          <Grid.Column style={{maxWidth: '80vw', height: '25vh'}}/>
         </Grid.Row>
           <Grid.Row>
             <Grid.Column style={{maxWidth: '80vw', height: '15vh'}} verticalAlign="bottom">
@@ -42,7 +41,7 @@ export default class GetStartedDish extends Component{
           </Grid.Row>
           <Grid.Row>
             <Grid.Column style={{maxWidth: '80vw', height: '40vh'}}>
-              <Button primary id="dish" onClick={this.props.handleButtonClick}>Next Page</Button>
+              <Button primary id="dish" onClick={this.props.handleButtonClick} content="Next Page"/>
             </Grid.Column>
           </Grid.Row>
       </Grid>

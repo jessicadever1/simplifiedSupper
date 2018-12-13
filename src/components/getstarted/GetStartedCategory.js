@@ -43,7 +43,7 @@ export default class GetStartedCategory extends Component{
             </Grid.Row>
             <Grid.Row>
               <Grid.Column style={{maxWidth: '80vw', height: '40vh'}}>
-                <Button primary id="category" onClick={this.props.handleButtonClick}>Next Page</Button>
+                <Button primary id="category" onClick={this.props.handleButtonClick} content="Next Page"/>
               </Grid.Column>
             </Grid.Row>
         </Grid>

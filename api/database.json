@@ -303,6 +303,27 @@
       "recipe_Num": 2084,
       "date": "2018-12-15T06:00:00.000Z",
       "id": 3
+    },
+    {
+      "user_Id": 1,
+      "recipe_Id": "SWEET-AND-SOUR-BROCCOLI-SALAD-546065",
+      "recipe_Num": 2329,
+      "date": "2018-12-14T06:00:00.000Z",
+      "id": 4
+    },
+    {
+      "user_Id": 1,
+      "recipe_Id": "English-Style-Roast-Potatoes-1469430",
+      "recipe_Num": 3137,
+      "date": "2018-12-12T06:00:00.000Z",
+      "id": 5
+    },
+    {
+      "user_Id": 1,
+      "recipe_Id": "Avgolemono-Soup-_aka-Greek-Lemon-Chicken-Soup_-1992525",
+      "recipe_Num": 3355,
+      "date": "2018-12-13T06:00:00.000Z",
+      "id": 6
     }
   ],
   "recipes": [

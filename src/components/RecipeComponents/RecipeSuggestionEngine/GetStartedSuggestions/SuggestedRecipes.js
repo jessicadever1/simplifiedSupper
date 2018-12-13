@@ -15,7 +15,7 @@ export default class SuggestedRecipes extends Component{
           <Icon name="thumbs down icon"/>
           Bummer, we dont have any recipes suggestions for {this.props.category} {this.props.dish}
         </Header>
-        <Button id="startOver" primary onClick={this.props.handleButtonClick}>Try Again</Button>
+        <Button id="startOver" primary onClick={this.props.handleButtonClick} content="Try Again"/>
       </Segment>
     }
     return(
@@ -27,34 +27,30 @@ export default class SuggestedRecipes extends Component{
             body > div > div > div.suggested-recipes{
               height: 100%
             }`}</style>
-          <Grid textAlign="center" style={{ height:'100%'}} verticalAlign="middle">
-              <Grid.Row>
-                <Grid.Column style={{maxWidth: '80vw', height: '10vh'}}>
-                  <Header as="h1" color="teal" textAlign="center" verticalAlign="middle">
-                    How About One of These?
-                  </Header>
-                </Grid.Column>
-              </Grid.Row>
-              <Grid.Row verticalAlign="bottom" style={{maxHeight: '60%'}}>
-                <Grid.Column verticalAlign="bottom" style={{maxWidth: '80vw', height: '85vh'}} className="displayRecipes">
-              <Card.Group itemsPerRow={5}>
+        <Grid textAlign="center" style={{ height:'100%'}} verticalAlign="middle">
+          <Grid.Row>
+            <Grid.Column style={{maxWidth: '80vw', height: '10vh'}}>
+              <Header as="h1" color="teal" textAlign="center" verticalAlign="middle" content="How About One of These?"/>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row verticalAlign="bottom" style={{maxHeight: '60%'}}>
+            <Grid.Column verticalAlign="bottom" style={{maxWidth: '80vw', height: '85vh'}} className="displayRecipes">
+              <Card.Group itemsPerRow={6}>
                 {
                   this.props.matches.map((match, index) => {
-                    return <Card key={index} onClick={()=>this.props.seeRecipeDetails( match.recipe_Id, match.id)}>
-                      <Image src={match.imageUrlsBySize[90]} />
-                      <Card.Content>
-                        <Card.Header>{match.recipeName}</Card.Header>
-                        <Card.Meta>{match.sourceDisplayName}</Card.Meta>
-                        <Card.Description></Card.Description>
-                      </Card.Content>
-                    </Card>
+                    return <Card
+                    key={index}
+                    onClick={()=>this.props.seeRecipeDetails( match.recipe_Id, match.id)}
+                    image={match.imageUrlsBySize[90]}
+                    header={match.recipeName}
+                    meta={match.sourceDisplayName}
+                    />
                   })
                 }
-
               </Card.Group>
-                </Grid.Column>
-              </Grid.Row>
-          </Grid>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
         </div>
         {showRecpie}
       </React.Fragment>

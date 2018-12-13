@@ -109,7 +109,7 @@ export default class Home extends Component{
             }
           })
           let percentageMatch = (counter/recipe.ingredients.length)*100
-          if(percentageMatch > 50){
+          if(percentageMatch > 25){
             let newObj = Object.assign({}, recipe, {percentageMatch: percentageMatch})
             if(filteredRecipes.length === 0){
               filteredRecipes.push(newObj)
@@ -208,24 +208,23 @@ export default class Home extends Component{
             body > div > div > div.home{
               height: 100%
             }`}</style>
-          <Grid textAlign="center" style={{height: '100%'}} verticalAlign="middle">
-            <Grid.Row>
-              <Grid.Column style={{maxWidth: '80vw', height: '5vh'}}>
-                <Header as="h2" textAlign="center">
-                </Header>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-              <Grid.Column style={{maxWidth: '80vw', height: '58vh'}} className="displayRecipes">
-                <RecipeSuggestionEngine  matchedRecipes = {this.state.matchedRecipes}showRecipeDetails={this.showRecipeDetails} closeRecipeDetails={this.closeRecipeDetails}/>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row verticalAlign="bottom">
-              <Grid.Column verticalAlign="bottom" style={{maxWidth: '80vw', height: '30vh'}} className="calendar">
-                <RecipeCalendar activeUser={this.props.activeUser} events= {this.state.events} showRecipeDetails={this.showRecipeDetails} closeRecipeDetails={this.closeRecipeDetails}/>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+        <Grid textAlign="center" style={{height: '100%'}} verticalAlign="middle">
+          <Grid.Row>
+            <Grid.Column style={{maxWidth: '80vw', height: '2vh'}}>
+              <Header as="h2" textAlign="center" />
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column style={{maxWidth: '80vw', height: '50vh'}} className="displayRecipes">
+              <RecipeSuggestionEngine  matchedRecipes = {this.state.matchedRecipes}showRecipeDetails={this.showRecipeDetails} closeRecipeDetails={this.closeRecipeDetails}/>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row verticalAlign="bottom">
+            <Grid.Column verticalAlign="bottom" style={{maxWidth: '80vw', height: '35vh'}} className="calendar">
+              <RecipeCalendar activeUser={this.props.activeUser} events= {this.state.events} showRecipeDetails={this.showRecipeDetails} closeRecipeDetails={this.closeRecipeDetails}/>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
         </div>
       </React.Fragment>
     )

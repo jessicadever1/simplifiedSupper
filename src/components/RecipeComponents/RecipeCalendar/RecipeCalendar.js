@@ -12,14 +12,12 @@ export default class RecipeCalendar extends Component{
   }
 
   Event=({event})=>{
-    return <Card key={event.id} className="">
-      {/* <Image src={event.imageUrlsBySize[90]} /> */}
-      <Card.Content>
-        {/* <Card.Header>{event.title}</Card.Header> */}
-        <Card.Description>{event.title}</Card.Description>
-        <Card.Meta>{event.recipeDetails.sourceDisplayName}</Card.Meta>
-      </Card.Content>
-    </Card>
+    return <Card
+            key={event.id}
+            className=""
+            image={event.recipeDetails.imageUrlsBySize[90]}
+            header={event.title}
+            meta={event.recipeDetails.sourceDisplayName}/>
   }
 
   render(){
