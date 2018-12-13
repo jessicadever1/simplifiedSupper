@@ -44,9 +44,9 @@ export default class LogIn extends Component{
     return(
       <React.Fragment>
       <Form onSubmit={this.handleFormSubmit}>
-          <Form.Input id="username" label="Username" placeholder="Username"  onChange={this.handleFieldChange} value={username} required></Form.Input>
-          <Form.Input id="password" label="Password" placeholder="Password" type="password" value={password} onChange={this.handleFieldChange} required></Form.Input>
-          <Form.Button>Submit</Form.Button>
+          <Form.Input id="username" label="Username" placeholder="Username"  onChange={this.handleFieldChange} value={username} required/>
+          <Form.Input id="password" label="Password" placeholder="Password" type="password" value={password} onChange={this.handleFieldChange} required/>
+          <Form.Button content="Log In" color="teal"/>
       </Form>
       </React.Fragment>
     )

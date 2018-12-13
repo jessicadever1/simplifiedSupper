@@ -3,8 +3,6 @@ import NavBar from './nav/NavBar'
 import ApplicationViews from './ApplicationViews'
 import APIManager from '../modules/APIManager'
 
-//TODO: Update navbar function to display dynamically based on if the user is logged in or not
-
 export default class ReactManager extends Component{
   state={
     securityQuestions: [],

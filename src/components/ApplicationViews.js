@@ -34,16 +34,32 @@ export default class ApplicationViews extends Component{
           return <GetStarted  {...props} activeUser={this.props.activeUser}/>
         }} />
         <Route exact path="/ViewProfile" render={(props)=>{
-          return <ViewProfile activeUser={this.props.activeUser}/>
+          if(this.isAuthenticated()){
+            return <ViewProfile activeUser={this.props.activeUser}/>
+          } else{
+            return <LogInRegister securityQuestions={this.props.securityQuestions} loginFunction={this.props.loginFunction} createNewUser={this.props.createNewUser}/>
+          }
         }} />
         <Route exact path="/EditProfile" render={(props)=>{
-          return <EditUser activeUser={this.props.activeUser} updateUserInfo ={this.props.updateUserInfo}/>
+          if(this.isAuthenticated()){
+            return <EditUser activeUser={this.props.activeUser} updateUserInfo ={this.props.updateUserInfo}/>
+          } else{
+            return <LogInRegister securityQuestions={this.props.securityQuestions} loginFunction={this.props.loginFunction} createNewUser={this.props.createNewUser}/>
+          }
         }} />
         <Route exact path="/SuggestedRecipes" render={(props)=> {
-          return <SuggestedRecipes {...props}/>
+          if(this.isAuthenticated()){
+            return <SuggestedRecipes {...props}/>
+          } else{
+            return <LogInRegister securityQuestions={this.props.securityQuestions} loginFunction={this.props.loginFunction} createNewUser={this.props.createNewUser} />
+          }
           }} />
         <Route exact path="/RecipeCard" render={(props)=> {
-          return <RecipeModal {...props} />
+          if(this.isAuthenticated()){
+            return <RecipeModal {...props} />
+          } else{
+            return <LogInRegister securityQuestions={this.props.securityQuestions} loginFunction={this.props.loginFunction} createNewUser={this.props.createNewUser} />
+          }
           }} />
       </React.Fragment>
     )

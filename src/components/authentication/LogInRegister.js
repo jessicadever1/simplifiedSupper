@@ -30,11 +30,13 @@ export default class LogInOrRegister extends Component {
           }`}</style>
         <Grid textAlign="center" style={{height: '100%'}} verticalAlign='middle'>
           <Grid.Column style={{maxWidth: 450}}>
-            <Header as="h2" color="teal" textAlign="center">
-              Simplified Supper
-            </Header>
+            <Header as="h2" color="teal" textAlign="center" content="Simplified Supper"/>
             <Menu pointing secondary>
-              <Menu.Item name='LogIn' active={activeItem === 'LogIn'} onClick={this.handleItemClick} />
+              <Menu.Item
+                name='LogIn'
+                active={activeItem === 'LogIn'}
+                onClick={this.handleItemClick}
+              />
               <Menu.Item
                 name='Register'
                 active={activeItem === 'Register'}

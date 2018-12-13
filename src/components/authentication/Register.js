@@ -1,17 +1,13 @@
 import React, {Component} from 'react'
-// import {Redirect} from 'react-router-dom'
 import {Form} from 'semantic-ui-react'
 import APIManager from '../../modules/APIManager';
 
 //TODO: Add the ability to upload profile pic
 //TODO: Insert placeholder profile pic if user does not want to upload their own
-//FIXME: Update field validation to display error or success on change (Look at username validation for example. this is working code. EOD Friday 12/7)
 //TODO: Capture security question id before post
 //TODO: Password should be at least 7 characters
-//TODO: Email must include an @ symbol
 //TODO: Need to make sure that the submit button becomes active from anywhere as soon as the form is filled out and does not contain errors.
 //TODO: Update focus functionality using refs instead of individual states
-//TODO: Consider updating format to not include labels?
 /*
 Then the system should check if the username is unique
 And it should check if the email address is unique
@@ -59,6 +55,10 @@ export default class Register extends Component{
      if(evt.target.id === "email"){
       let email = evt.target.value
       this.setState({emailFocus: true, emailError: false})
+      if(!email.includes("@")){
+        stateToChange["emailError"]= true
+        this.setState(stateToChange)
+      }
       APIManager.getAllCategory("users").then(users => {
         users.forEach(user => {
           if(user.email === email){
@@ -98,11 +98,8 @@ export default class Register extends Component{
       let checkbox = evt.target
       if(checkbox.checked){
         stateToChange["terms"] = true
+        stateToChange["disabled"] = false
         this.setState(stateToChange)
-        if(this.state.firstName !== "" && this.state.lastName !== "" && this.state.gender !== "" && this.state.username !== "" && this.state.email !== "" && this.state.password !== "" && this.state.confirmPassword !== "" && this.state.securityQuestion !== "" && this.state.terms === true && this.state.sqAnswer  !== "" && this.state.firstNameError === false && this.state.lastNameError === false && this.state.usernameError === false && this.state.emailError === false && this.state.passwordError === false){
-          stateToChange["disabled"] = false
-          this.setState(stateToChange)
-        }
       } else{
         stateToChange["terms"] = false
         this.setState(stateToChange)
@@ -165,7 +162,6 @@ export default class Register extends Component{
           <Form.Group widths="equal">
             <Form.Input
               fluid
-              label="First Name"
               placeholder="First Name"
               id="firstName"
               value={firstName}
@@ -176,7 +172,6 @@ export default class Register extends Component{
             />
             <Form.Input
               fluid
-              label="Last Name"
               placeholder="Last Name"
               id="lastName"
               value={lastName}
@@ -187,7 +182,6 @@ export default class Register extends Component{
             />
             <Form.Select
               fluid
-              label="Gender"
               name="gender"
               options={options}
               placeholder="Gender"
@@ -196,7 +190,6 @@ export default class Register extends Component{
             />
           </Form.Group>
           <Form.Input
-            label="Username"
             placeholder="Username"
             id="username"
             value={username}
@@ -206,7 +199,6 @@ export default class Register extends Component{
             focus={this.state.usernameFocus}
           />
           <Form.Input
-            label="Email Address"
             placeholder="Email Address"
             id="email"
             value={email}
@@ -216,7 +208,6 @@ export default class Register extends Component{
             focus={this.state.emailFocus}
           />
           <Form.Input
-            label="Password"
             type="password"
             placeholder="Password"
             id="password"
@@ -226,7 +217,6 @@ export default class Register extends Component{
             focus={this.state.passwordFocus}
           />
           <Form.Input
-            label="Confirm Password"
             type="password"
             placeholder="Confirm Password"
             id="confirmPassword"
@@ -236,7 +226,6 @@ export default class Register extends Component{
             focus={this.state.passwordFocus}
           />
           <Form.Select
-            label="Please Select a Security Question"
             name="securityQuestion"
             options={this.props.securityQuestions}
             placeholder="Please Select a Security Question"
@@ -244,7 +233,6 @@ export default class Register extends Component{
             onChange={this.handleDropdownChange}
           />
           <Form.Input
-            label="Your Answer to the Security Question"
             placeholder="Your Answer Here"
             id="sqAnswer"
             value={sqAnswer}
@@ -258,7 +246,11 @@ export default class Register extends Component{
             checked={terms}
             onChange={this.handleFieldChange}
           />
-          <Form.Button disabled={this.state.disabled}>Submit</Form.Button>
+          <Form.Button
+            disabled={this.state.disabled}
+            color="teal"
+            content="Submit"
+          />
         </Form>
       </React.Fragment>
     )

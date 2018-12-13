@@ -6,7 +6,7 @@ Then the user should see an error message that prompts them to update the inform
 If there is not a conflict the form should close and the database should be updated
 */
 import React, {Component} from 'react'
-import {Placeholder, Grid, Header, Form} from 'semantic-ui-react'
+import {Placeholder, Grid, Header, Form, Segment, Button} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import APIManager from '../../modules/APIManager';
 
@@ -21,7 +21,19 @@ export default class EditUser extends Component{
     email: "",
     oldPassword: "",
     nPassword: "",
-    cnPassword: ""
+    cnPassword: "",
+    firstNameError: false,
+    lastNameError: false,
+    usernameError: false,
+    emailError: false,
+    passwordError: false,
+    newPasswordError: false,
+    firstNameFocus: false,
+    lastNameFocus: false,
+    usernameFocus: false,
+    emailFocus: false,
+    passwordFocus: false,
+    newPasswordFocus: false,
   }
 
   componentDidMount=()=>{
@@ -39,13 +51,17 @@ export default class EditUser extends Component{
     const stateToChange={}
     if(evt.target.id === 'email'){
       let email = evt.target.value
+      this.setState({emailFocus: true, emailError: false})
       if(email !== ""){
+        if(!email.includes("@")){
+          stateToChange["emailError"]= true
+          this.setState(stateToChange)
+        }
         APIManager.getAllCategory("users").then(users => {
           users.forEach(user =>{
             if(user.email === email){
-              console.log("Another user already has that email")
-              // stateToChange["email"] = ""
-              // this.setState(stateToChange)
+              stateToChange["emailError"] = true
+              this.setState(stateToChange)
             } else{
               stateToChange["email"] = email
               this.setState(stateToChange)
@@ -58,13 +74,13 @@ export default class EditUser extends Component{
       }
     } else if(evt.target.id === "username"){
       let username = evt.target.value
+      this.setState({usernameError: false, usernameFocus: true})
       if(username !== ""){
         APIManager.getAllCategory("users").then(users => {
           users.forEach(user => {
             if(user.username === username){
-              console.log("that username is already in use")
-              // stateToChange["username"] = ""
-              // this.setState(stateToChange)
+              stateToChange["usernameError"] = true
+              this.setState(stateToChange)
             } else{
               stateToChange["username"]= username
               this.setState(stateToChange)
@@ -75,26 +91,38 @@ export default class EditUser extends Component{
         stateToChange["username"] = this.props.activeUser.username
         this.setState(stateToChange)
       }
-    } else if(evt.target.id === "cnPassword"){
-      let password=evt.target.value
-      if(password !== "" && this.state.oldPassword !== "" && this.state.nPassword !== ""){
-        if(this.state.oldPassword === this.props.activeUser.password){
-          if(this.state.nPassword === password){
-            stateToChange["cnPassword"] = password
-            this.setState(stateToChange)
-          }else{
-            console.log("your passwords do not match")
-            stateToChange["cnPassword"] = password
-            this.setState(stateToChange)
-          }
-        } else{
-          console.log("Your old password does not match what we have on file")
-        }
+    } else if(evt.target.id === "oldPassword"){
+      let oldPassword = evt.target.value
+      this.setState({passwordError: false, passwordFocus: true})
+      if(oldPassword !== this.props.activeUser.password){
+        stateToChange["passwordError"] = true
+        stateToChange["oldPassword"] = oldPassword
+        this.setState(stateToChange)
       } else{
-        console.log("you must fill out all fields")
+        stateToChange["oldPassword"] = oldPassword
       }
-    } else{
+    } else if(evt.target.id === "nPassword"){
       stateToChange[evt.target.id] = evt.target.value
+      this.setState(stateToChange)
+    }
+    else if(evt.target.id === "cnPassword"){
+      let cnPassword = evt.target.value
+      this.setState({newPasswordError: false, newPasswordFocus: true})
+      if(this.state.nPassword === cnPassword){
+        stateToChange["cnPassword"] = cnPassword
+        this.setState(stateToChange)
+      } else{
+        stateToChange["newPasswordError"] = true
+        stateToChange["cnPassword"] = cnPassword
+        this.setState(stateToChange)
+      }
+    } else if(evt.target.id === "firstName"){
+      stateToChange[evt.target.id] = evt.target.value
+      stateToChange["firstNameFocus"] = true
+      this.setState(stateToChange)
+    } else if(evt.target.id === "lastName"){
+      stateToChange[evt.target.id] = evt.target.value
+      stateToChange["lastNameFocus"] = true
       this.setState(stateToChange)
     }
   }
@@ -142,24 +170,85 @@ export default class EditUser extends Component{
             }`}</style>
         <Grid textAlign="center" style={{height: '100%'}} verticalAlign="middle">
             <Grid.Column style={{maxWidth: 450}}>
-              <Header as="h2" color="teal" textAlign="center">
-                Simplified Supper
-              </Header>
-              <Placeholder style={{height:150, width: 150}}>
-                <Placeholder.Image />
-              </Placeholder>
-              <Form onSubmit={this.handleFormSubmit}>
-                <Form.Group widths="equal">
-                  <Form.Input fluid label="First Name" id="firstName" value={firstName} onChange={this.handleFieldChange}/>
-                  <Form.Input fluid label="Last Name" id="lastName" value={lastName} onChange={this.handleFieldChange}/>
-                </Form.Group>
-                <Form.Input label="Username" id="username" value={username} onChange={this.handleFieldChange} />
-                <Form.Input label="Email" id="email" value={email} onChange={this.handleFieldChange}/>
-                <Form.Input label="Old Password" id="oldPassword" value={oldPassword} onChange={this.handleFieldChange}/>
-                <Form.Input label="New Password" id="nPassword" value={nPassword} onChange={this.handleFieldChange}/>
-                <Form.Input label="Confirm New Password" id="cnPassword" value={cnPassword} onChange={this.handleFieldChange}/>
-                <Form.Button as={Link} to="/ViewProfile">Save Changes</Form.Button>
-              </Form>
+              <Segment raised>
+                <Header
+                  as="h2"
+                  color="teal"
+                  textAlign="center"
+                  content="Simplified Supper"
+                  attached="top"/>
+                <Segment attached size="huge">
+                  <Placeholder style={{height:150, width: 150}}>
+                    <Placeholder.Image />
+                  </Placeholder>
+                  <Form onSubmit={this.handleFormSubmit}>
+                    <Form.Group widths="equal">
+                      <Form.Input
+                        fluid
+                        label="First Name"
+                        id="firstName"
+                        value={firstName}
+                        onChange={this.handleFieldChange}
+                        error={this.state.firstNameError}
+                        focus={this.state.firstNameFocus}
+                      />
+                      <Form.Input
+                        fluid
+                        label="Last Name"
+                        id="lastName"
+                        value={lastName}
+                        onChange={this.handleFieldChange}
+                        error={this.state.lastNameError}
+                        focus={this.state.lastNameFocus}
+                        />
+                    </Form.Group>
+                    <Form.Input
+                      label="Username"
+                      id="username"
+                      value={username}
+                      onChange={this.handleFieldChange}
+                      error={this.state.usernameError}
+                      focus={this.state.usernameFocus}
+                    />
+                    <Form.Input
+                      label="Email"
+                      id="email"
+                      value={email}
+                      onChange={this.handleFieldChange}
+                      error={this.state.emailError}
+                      focus={this.state.emailFocus}
+                    />
+                    <Form.Input
+                      label="Old Password"
+                      id="oldPassword"
+                      value={oldPassword}
+                      onChange={this.handleFieldChange}
+                      error={this.state.passwordError}
+                      focus={this.state.passwordFocus}
+                    />
+                    <Form.Input
+                      label="New Password"
+                      id="nPassword"
+                      value={nPassword}
+                      onChange={this.handleFieldChange}
+                    />
+                    <Form.Input
+                      label="Confirm New Password"
+                      id="cnPassword"
+                      value={cnPassword}
+                      onChange={this.handleFieldChange}
+                      error={this.state.newPasswordError}
+                      focus={this.state.newPasswordFocus}
+                    />
+                    <Button
+                      as={Link}
+                      to="/ViewProfile"
+                      color="teal"
+                      content="Save Changes"
+                    />
+                  </Form>
+                </Segment>
+              </Segment>
             </Grid.Column>
         </Grid>
         </div>

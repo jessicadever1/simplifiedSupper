@@ -37,11 +37,11 @@ export default class RecipeModal extends Component{
           onChange={(evt)=> this.handleCalendarChange("date", moment(evt.target.value))}
           required/>
         <Button
-          primary
+          color="teal"
           className={`${this.state.addToCalendar === true ? "isHidden" : ""}`}
           onClick={()=>this.handleButtonClick()} content="Add to Calendar"/>
         <Button
-          primary
+          color="teal"
           className={`${this.state.addToCalendar === false ? "isHidden" : ""}`}
           onClick={()=> this.props.handleCalendarChange("newRecipe", this.props.recipeDetails.id, this.state.date)}
           content="Save Recipe"/>
@@ -53,11 +53,11 @@ export default class RecipeModal extends Component{
           defaultValue={moment(this.props.date).format("YYYY-MM-DD")}
           onChange={(evt)=> this.handleCalendarChange("date", moment(evt.target.value))}/>
         <Button
-          primary
+          color="teal"
           onClick={()=>this.props.handleCalendarChange( "existingRecipe",this.props.recipeDetails.id, this.state.date)}
           content="Save Changes"/>
         <Button
-          primary
+          color="teal"
           onClick={()=>this.confirmDelete()} content="Delete Recipe"/>
       </React.Fragment>
     }
