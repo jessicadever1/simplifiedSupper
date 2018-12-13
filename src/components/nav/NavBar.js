@@ -54,7 +54,7 @@ export default class NavBar extends Component{
   else{
     return <React.Fragment>
       <Menu pointing secondary>
-        <Menu.Item></Menu.Item>
+        <Menu.Item />
         <Menu.Item position="right" content="Please Log In"/>
       </Menu>
     </React.Fragment>

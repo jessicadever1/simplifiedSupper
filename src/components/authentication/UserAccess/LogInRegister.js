@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { Menu, Header, Icon, Grid } from 'semantic-ui-react'
+import { Menu} from 'semantic-ui-react'
 import LogIn from './LogIn';
 import Register from './Register';
-
-//TODO: Insert Simplified Supper Logo in Header
 
 export default class LogInOrRegister extends Component {
   state = { activeItem: 'LogIn' }
@@ -14,23 +12,13 @@ export default class LogInOrRegister extends Component {
     const { activeItem } = this.state
     let LogInOrRegister = ""
     if (activeItem === "LogIn"){
-      LogInOrRegister = <LogIn loginFunction={this.props.loginFunction}/>
+      LogInOrRegister = <LogIn loginFunction={this.props.loginFunction} handleFieldChange={this.props.handleFieldChange} handleFormSubmit={this.props.handleFormSubmit} state={this.props.state}/>
     } else if (activeItem === "Register"){
-      LogInOrRegister = <Register securityQuestions={this.props.securityQuestions} createNewUser={this.props.createNewUser}/>
+      LogInOrRegister = <Register securityQuestions={this.props.securityQuestions} createNewUser={this.props.createNewUser} handleFieldChange={this.props.handleFieldChange} handleFormSubmit={this.props.handleFormSubmit}activeUser={this.props.activeUser}/>
     }
 
     return (
       <React.Fragment>
-        <div className="login-form">
-          <style>{`
-            body > div,
-            body > div > div
-            body > div > div > div.login-form{
-              height: 100%;
-          }`}</style>
-        <Grid textAlign="center" style={{height: '100%'}} verticalAlign='middle'>
-          <Grid.Column style={{maxWidth: 450}}>
-            <Header as="h2" color="teal" textAlign="center" content="Simplified Supper"/>
             <Menu pointing secondary>
               <Menu.Item
                 name='LogIn'
@@ -44,9 +32,6 @@ export default class LogInOrRegister extends Component {
               />
             </Menu>
             {LogInOrRegister}
-          </Grid.Column>
-        </Grid>
-      </div>
       </React.Fragment>
     )
   }

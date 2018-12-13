@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Grid, Card, Image, Header, Segment, Icon, Button} from 'semantic-ui-react'
+import {Grid, Card, Header, Segment, Icon, Button} from 'semantic-ui-react'
 import '../../../getstarted/GetStarted.css'
 import RecipeModal from '../../RecipeModal/RecipeModal';
 export default class SuggestedRecipes extends Component{
