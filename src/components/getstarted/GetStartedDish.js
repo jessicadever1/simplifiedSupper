@@ -21,13 +21,13 @@ export default class GetStartedDish extends Component{
           body > div > div > div.getStarted-dish{
             height: 100%
           }`}</style>
-      <Grid textAlign="center" style={{height: '100%'}} verticalAlign="middle">
+      <Grid textAlign="center" style={{height: '100%'}}>
         <Grid.Row>
           <Grid.Column style={{maxWidth: '80vw', height: '25vh'}}/>
         </Grid.Row>
           <Grid.Row>
-            <Grid.Column style={{maxWidth: '80vw', height: '15vh'}} verticalAlign="bottom">
-              <Header as="h1" color="teal" textAlign="center" verticalAlign="bottom">
+            <Grid.Column style={{maxWidth: '80vw', height: '15vh'}}>
+              <Header as="h1" color="teal" textAlign="center">
                 Mmmm...{this.props.category} food sounds delicious. Let's get a little bit more selective.
               </Header>
             </Grid.Column>

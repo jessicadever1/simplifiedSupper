@@ -21,14 +21,14 @@ export default class GetStartedCategory extends Component{
             body > div > div > div.getStarted-category{
               height: 100%
             }`}</style>
-        <Grid textAlign="center" style={{height: '100%'}} verticalAlign="middle">
+        <Grid textAlign="center" style={{height: '100%'}}>
           <Grid.Row>
             <Grid.Column style={{maxWidth: '80vw', height: '25vh'}}>
             </Grid.Column>
           </Grid.Row>
             <Grid.Row>
-              <Grid.Column style={{maxWidth: '80vw', height: '15vh'}} verticalAlign="bottom">
-                <Header as="h1" color="teal" textAlign="center" verticalAlign="bottom">
+              <Grid.Column style={{maxWidth: '80vw', height: '15vh'}}>
+                <Header as="h1" color="teal" textAlign="center">
                   Welcome, {this.props.activeUser.firstName}!
                   Thanks for joining Simplified Supper. Let's get started by selecting your first recipe.
                 </Header>
