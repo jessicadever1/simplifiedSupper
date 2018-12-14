@@ -68,7 +68,7 @@ export default class Home extends Component{
 
   createIngredientList=()=>{
     let selectedIngredients = []
-    let thisWeek = moment(). week()
+    let thisWeek = moment().week()
     this.state.events.forEach(event =>{
       //Check to see if recipe is scheduled for this week
       if(moment(event.start).week() === thisWeek){
@@ -109,9 +109,17 @@ export default class Home extends Component{
             }
           })
           let percentageMatch = (counter/recipe.ingredients.length)*100
-          if(percentageMatch > 50){
+          if(percentageMatch > 25){
             let newObj = Object.assign({}, recipe, {percentageMatch: percentageMatch})
-            filteredRecipes.push(newObj)
+            if(filteredRecipes.length === 0){
+              filteredRecipes.push(newObj)
+            } else{
+              if(filteredRecipes.find(filRecipe => filRecipe.id === recipe.id) === undefined){
+                filteredRecipes.push(newObj)
+              } else{
+                return
+              }
+            }
           }
         }
       })
@@ -121,7 +129,7 @@ export default class Home extends Component{
 
   showRecipeDetails=(details, key)=>{
     if(key === "calendar"){
-      APIManager.getRecipeDetails(details.id)
+      APIManager.getOneFromCategory("fullRecipes", details.recipeDetails.recipe_Id)
       .then((response)=>{
         this.setState({
           recipeDetails: response,
@@ -134,7 +142,7 @@ export default class Home extends Component{
       })
     }
      else if(key === "suggestionEngine"){
-      APIManager.getRecipeDetails(details.recipe_Id)
+      APIManager.getOneFromCategory("fullRecipes",details.recipe_Id)
       .then((response)=>{
         this.setState({
           recipeDetails: response,
@@ -146,6 +154,34 @@ export default class Home extends Component{
       })
     }
   }
+
+  // showRecipeDetails=(details, key)=>{
+  //   if(key === "calendar"){
+  //     APIManager.getRecipeDetails(details.id)
+  //     .then((response)=>{
+  //       this.setState({
+  //         recipeDetails: response,
+  //         recipe_Id: details.id,
+  //         date: moment(details.start).format("YYYY-MM-DD"),
+  //         activeRecipeKey: details.eventId,
+  //         viewRecipeDetails: true,
+  //         open: true,
+  //       })
+  //     })
+  //   }
+  //    else if(key === "suggestionEngine"){
+  //     APIManager.getRecipeDetails(details.recipe_Id)
+  //     .then((response)=>{
+  //       this.setState({
+  //         recipeDetails: response,
+  //         activeRecipeKey: details.id,
+  //         viewRecipeDetails: true,
+  //         open: true,
+  //         getStarted: true,
+  //       })
+  //     })
+  //   }
+  // }
 
   closeRecipeDetails=()=>{
     this.setState({viewRecipeDetails: false, open: false, getStarted: false})
@@ -200,24 +236,23 @@ export default class Home extends Component{
             body > div > div > div.home{
               height: 100%
             }`}</style>
-          <Grid textAlign="center" style={{height: '100%'}} verticalAlign="middle">
-            <Grid.Row color="blue">
-              <Grid.Column style={{maxWidth: 700}} color="violet">
-                <Header as="h2" color="teal" textAlign="center">
-                </Header>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row color="orange">
-              <Grid.Column style={{maxWidth: 700, height: '60vh'}} color="grey" className="displayRecipes">
-                <RecipeSuggestionEngine  matchedRecipes = {this.state.matchedRecipes}showRecipeDetails={this.showRecipeDetails} closeRecipeDetails={this.closeRecipeDetails}/>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row verticalAlign="bottom" style={{maxHeight: '80%'}} color="teal">
-              <Grid.Column verticalAlign="bottom" style={{maxWidth: 800, height: '100%'}} color="pink" className="calendar">
-                <RecipeCalendar activeUser={this.props.activeUser} events= {this.state.events} showRecipeDetails={this.showRecipeDetails} closeRecipeDetails={this.closeRecipeDetails}/>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+        <Grid textAlign="center" style={{height: '100%'}} verticalAlign="middle">
+          <Grid.Row>
+            <Grid.Column style={{maxWidth: '80vw', height: '2vh'}}>
+              <Header as="h2" textAlign="center" />
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column style={{maxWidth: '80vw', height: '50vh'}} className="displayRecipes">
+              <RecipeSuggestionEngine  matchedRecipes = {this.state.matchedRecipes}showRecipeDetails={this.showRecipeDetails} closeRecipeDetails={this.closeRecipeDetails}/>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row verticalAlign="bottom">
+            <Grid.Column verticalAlign="bottom" style={{maxWidth: '80vw', height: '35vh'}} className="calendar">
+              <RecipeCalendar activeUser={this.props.activeUser} events= {this.state.events} showRecipeDetails={this.showRecipeDetails} closeRecipeDetails={this.closeRecipeDetails}/>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
         </div>
       </React.Fragment>
     )

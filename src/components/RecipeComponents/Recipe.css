@@ -1,4 +1,5 @@
 .isHidden{
+  display: none;
   visibility: hidden;
 }
 
@@ -12,4 +13,16 @@
 
 .displayRecipes{
   overflow-y: auto;
+}
+
+.yellow{
+  color: yellow;
+}
+
+.red{
+  color: red;
+}
+
+.green{
+  color: green
 }

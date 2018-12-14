@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
 import {Route, Redirect} from 'react-router-dom'
-import LogInRegister from './authentication/LogInRegister'
-import Logout from './authentication/Logout'
+import Logout from './authentication/UserAccess/Logout'
 import GetStarted from './getstarted/GetStarted';
-import ViewProfile from './authentication/ViewUser'
 import Home from './HomePage/Home'
 import SuggestedRecipes from './RecipeComponents/RecipeSuggestionEngine/GetStartedSuggestions/SuggestedRecipes';
 import RecipeModal from './RecipeComponents/RecipeModal/RecipeModal'
+import UserManagement from './authentication/UserManagement';
 
 export default class ApplicationViews extends Component{
 
@@ -23,7 +22,7 @@ export default class ApplicationViews extends Component{
           } else if(this.isAuthenticated()){
             return <Home activeUser={this.props.activeUser}/>
           }else{
-            return <LogInRegister securityQuestions={this.props.securityQuestions} loginFunction={this.props.loginFunction} createNewUser={this.props.createNewUser}/>
+            return <UserManagement securityQuestions ={this.props.securityQuestions} loginFunction={this.props.loginFunction} createNewUser={this.props.createNewUser} activeUser={this.props.activeUser}/>
           }
         }} />
         <Route exact path="/logout" render={(props)=>{
@@ -33,16 +32,22 @@ export default class ApplicationViews extends Component{
           return <GetStarted  {...props} activeUser={this.props.activeUser}/>
         }} />
         <Route exact path="/ViewProfile" render={(props)=>{
-          return <ViewProfile activeUser={this.props.activeUser}/>
+            return <UserManagement securityQuestions={this.props.securityQuestions} loginFunction={this.props.loginFunction} createNewUser={this.props.createNewUser} activeUser={this.props.activeUser} />
         }} />
         <Route exact path="/SuggestedRecipes" render={(props)=> {
-          return <SuggestedRecipes {...props}/>
-        }} />
+          if(this.isAuthenticated()){
+            return <SuggestedRecipes {...props}/>
+          } else{
+            return <UserManagement securityQuestions={this.props.securityQuestions} loginFunction={this.props.loginFunction} createNewUser={this.props.createNewUser} activeUser={this.props.activeUser}/>
+          }
+          }} />
         <Route exact path="/RecipeCard" render={(props)=> {
-          return <RecipeModal {...props} />
-        }} />
-
-
+          if(this.isAuthenticated()){
+            return <RecipeModal {...props} />
+          } else{
+            return <UserManagement securityQuestions={this.props.securityQuestions} loginFunction={this.props.loginFunction} createNewUser={this.props.createNewUser} activeUser={this.props.activeUser} />
+          }
+          }} />
       </React.Fragment>
     )
   }
