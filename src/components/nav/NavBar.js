@@ -8,12 +8,13 @@ export default class NavBar extends Component{
     activeItem: 'home',
   }
 
+  isAuthenticated = ()=> sessionStorage.getItem("id") !== null
 
   handleItemClick=(e, {name}) => this.setState({activeItem: name})
 
   render(){
   const {activeItem} = this.state
-  if(sessionStorage.getItem("id") !== null){
+  if(this.isAuthenticated()){
     return <React.Fragment>
       <Menu pointing secondary>
         <Menu.Item

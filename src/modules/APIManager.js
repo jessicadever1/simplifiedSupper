@@ -68,10 +68,10 @@ const YummlyAuth = "?_app_id=cd5fb393&_app_key=fe16ea520b72c15ff39525eed9947f8f"
   //   .then(results => results.json())
   // }
 
-  getRecipeDetails(id){
-    return fetch(`${YummlyDetails}${id}${YummlyAuth}`)
-    .then(results => results.json())
-  }
+  // getRecipeDetails(id){
+  //   return fetch(`${YummlyDetails}${id}${YummlyAuth}`)
+  //   .then(results => results.json())
+  // }
 
 }
 

@@ -93,10 +93,10 @@ export default class RecipeModal extends Component{
                   }
               </List>
               <a href={this.props.recipeDetails.source.sourceRecipeUrl} target="_blank" rel="noopener noreferrer"><Button content="Read Instructions"/></a>
-              <div>
+              {/* <div>
                 <a href={this.props.recipeDetails.attribution.link} >{this.props.recipeDetails.attribution.text}</a>
                 <img src={this.props.recipeDetails.attribution.logo} alt="Yummly Logo"/>
-              </div>
+              </div> */}
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>

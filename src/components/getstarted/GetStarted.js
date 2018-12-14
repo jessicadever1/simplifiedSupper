@@ -84,17 +84,39 @@ export default class GetStarted extends Component{
   }
 
   seeRecipeDetails=(id, num)=>{
-    APIManager.getRecipeDetails(id)
+    APIManager.getOneFromCategory("fullRecipes",id)
     .then((response)=>{
-    this.setState({
-      recipeDetails: response,
-      activeRecipeKey: num,
-      showRecipe: true,
-      open: true,
+      this.setState({
+        recipeDetails: response,
+        activeRecipeKey: num,
+        showRecipe: true,
+        open: true,
+      })
     })
   }
-    )
-  }
+
+  //FAKE RECIPES:
+  //After Demo, be sure to update the following recipes in the "recipes" collection back to the correct recipe_Id, remove the full recipes collection, remove any UsersRecipes with substituted recipe info, git rid of see recipe details that call local server found on get started and home files, update api manager file to include yummly api call
+  // 3354
+  // "Avgolemono-Soup-_aka-Greek-Lemon-Chicken-Soup_-1587365"
+  // 3222
+  // "Baba-ganoush-310030"
+  // 2332
+  // "Thai-Coconut-Soup-1045980"
+
+
+  // seeRecipeDetails=(id, num)=>{
+  //   APIManager.getRecipeDetails(id)
+  //   .then((response)=>{
+  //   this.setState({
+  //     recipeDetails: response,
+  //     activeRecipeKey: num,
+  //     showRecipe: true,
+  //     open: true,
+  //   })
+  // }
+  //   )
+  // }
 
   handleCalendarChange=(key, id, date)=>{
     if(key === "newRecipe"){

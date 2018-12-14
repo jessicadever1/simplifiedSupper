@@ -98,6 +98,24 @@
       "password": "1234",
       "terms": true,
       "id": 11
+    },
+    {
+      "firstName": "Kelly",
+      "lastName": "Morin",
+      "username": "kmorin",
+      "email": "k@k.com",
+      "password": "",
+      "terms": true,
+      "id": 12
+    },
+    {
+      "firstName": "Test",
+      "lastName": "Testing",
+      "username": "te",
+      "email": "t@t",
+      "password": "12",
+      "terms": true,
+      "id": 13
     }
   ],
   "securityQuestions": [
@@ -312,27 +330,105 @@
       "recipe_Num": 2084,
       "date": "2018-12-15T06:00:00.000Z",
       "id": 3
+    }
+  ],
+  "fullRecipes": [
+    {
+      "id": 1,
+      "name": "Avgolemono Soup (aka Greek Lemon Chicken Soup)",
+      "images": [
+        {
+          "hostedLargeUrl": "https://lh3.googleusercontent.com/sW4eqLrvYouM2BQjkOHSjqwTEGwfbSxVbbauStKpzsfFqE7YX3DV-nPw7yEoPkzuuag1zSUpN4nSh5LBbpYA=s90-c"
+        }
+      ],
+      "source": {
+        "sourceDisplayName": "Closet Cooking",
+        "sourceRecipeUrl": "https://www.closetcooking.com/avgolemono-soup/?utm_campaign=yummly&utm_medium=yummly&utm_source=yummly"
+      },
+      "ingredientLines": [
+        "1 tablespoon oil",
+        "1 onion (diced)",
+        "6 cups chicken broth (or chicken stock)",
+        "1/2 cup arborio rice",
+        "3 egg (lightly beaten)",
+        "2 cups cooked chicken",
+        "2 lemons juice (and zest)",
+        "salt (to taste)"
+      ],
+      "nutritionEstimates": [
+        {
+          "value": "420"
+        }
+      ],
+      "totalTime": "25 minutes",
+      "attribution": {
+        "link": "",
+        "logo": "",
+        "text": ""
+      }
     },
     {
-      "user_Id": 1,
-      "recipe_Id": "SWEET-AND-SOUR-BROCCOLI-SALAD-546065",
-      "recipe_Num": 2329,
-      "date": "2018-12-14T06:00:00.000Z",
-      "id": 4
+      "id": 2,
+      "name": "Baba Ganoush",
+      "images": [
+        "http://lh6.ggpht.com/2GWsrzKoznniJ8iGaLg1v1UzkJx6bm8TTJhmnBCb860sMbhfJLEx7Knu54drlH1E6WA7tNokCYcCKU_LdPqk2tM=s90-c"
+      ],
+      "source": {
+        "sourceDisplayName": "Big Girls Small Kitchen",
+        "sourceRecipeUrl": "http://www.biggirlssmallkitchen.com/2012/08/baba-ganoush.html?utm_campaign=yummly&utm_medium=yummly&utm_source=yummly"
+      },
+      "ingredientLines": [
+        "3 eggplants (medium)",
+        "1 clove garlic",
+        "1 1/4 teaspoons salt",
+        "6 tablespoons tahini",
+        "4 tablespoons olive oil",
+        "2 lemons"
+      ],
+      "nutritionEstimates": [
+        {
+          "value": "360"
+        }
+      ],
+      "totalTime": "55 Minutes",
+      "attribution": {
+        "link": "",
+        "logo": "",
+        "text": ""
+      }
     },
     {
-      "user_Id": 1,
-      "recipe_Id": "English-Style-Roast-Potatoes-1469430",
-      "recipe_Num": 3137,
-      "date": "2018-12-12T06:00:00.000Z",
-      "id": 5
-    },
-    {
-      "user_Id": 1,
-      "recipe_Id": "Avgolemono-Soup-_aka-Greek-Lemon-Chicken-Soup_-1992525",
-      "recipe_Num": 3355,
-      "date": "2018-12-13T06:00:00.000Z",
-      "id": 6
+      "id": 3,
+      "name": "Thai Coconut Soup",
+      "images": [
+        "http://lh6.ggpht.com/_JMFnIPtLep1LF25LLCR9Ly2b4PlyTLUm8TyaYiTKDisLa_eb3u4iW5d69FIQ-35GcRcczit7aN0vQmkDn459A=s90-c"
+      ],
+      "source": {
+        "sourceDisplayName": "Food Renegade",
+        "sourceRecipeUrl": "https://www.yummly.com/recipe/Thai-Coconut-Soup-1045980#directions"
+      },
+      "ingredientLines": [
+        "1 quart chicken broth (where to buy chicken broth)",
+        "1 1/2 cups coconut milk (where to find BPA-free coconut milk)",
+        "1/4 teaspoon chile flakes (dried)",
+        "1 teaspoon ginger (freshly grated)",
+        "1 lemon",
+        "sea salt (to taste)",
+        "2 cups cooked chicken (pulled or cubed, optional)",
+        "2 green onions (chopped, optional)",
+        "chopped cilantro (optional)"
+      ],
+      "nutritionEstimates": [
+        {
+          "value": "420"
+        }
+      ],
+      "totalTime": "30 Minutes",
+      "attribution": {
+        "link": "",
+        "logo": "",
+        "text": ""
+      }
     }
   ],
   "recipes": [
@@ -5739,7 +5835,7 @@
         "green onions",
         "chopped cilantro"
       ],
-      "recipe_Id": "Thai-Coconut-Soup-1045980",
+      "recipe_Id": 3,
       "smallImageUrls": [
         "http://lh6.ggpht.com/1RnF5iV0HWBP8kmwojospOJk8PbT321EsTQTiPuo1fuVsO3gqWR-c_dINrbp9QobjrGvSWnNpjKplDt_WFPIjA=s90"
       ],
@@ -22376,7 +22472,7 @@
         "olive oil",
         "lemons"
       ],
-      "recipe_Id": "Baba-ganoush-310030",
+      "recipe_Id": 2,
       "smallImageUrls": [
         "http://lh6.ggpht.com/GrdVH_MxdVIRdmJYXCW-wvPvGa96eWDXHbLnfwOI7PyGCI0w4uJGF0Kn6RO8sBUFZ62lF-yQsH9R24rFyVDwqSQ=s90"
       ],
@@ -24693,7 +24789,7 @@
         "lemons juice",
         "salt"
       ],
-      "recipe_Id": "Avgolemono-Soup-_aka-Greek-Lemon-Chicken-Soup_-1587365",
+      "recipe_Id": 1,
       "smallImageUrls": [
         "https://lh3.googleusercontent.com/YKTvfOtqrYnWqAzqOUjXC-tdbdDV0OHvDwViq1dtCF0GhNyWqlpqGfHiLOVhnkT9UgizVauZz1B-6by97503Eg=s90"
       ],
@@ -24717,47 +24813,6 @@
       },
       "rating": 4,
       "id": 3354
-    },
-    {
-      "imageUrlsBySize": {
-        "90": "https://lh3.googleusercontent.com/rF8LgoMBtkdVH4TivHafDl8uKHovk4MlYXV8HJk7BvRGVs2T3NC_E4xqNIZNcnkYVJk5bJFNt9Eay2Mgq5FDkpo=s90-c"
-      },
-      "sourceDisplayName": "Closet Cooking",
-      "ingredients": [
-        "oil",
-        "onion",
-        "chicken broth",
-        "arborio rice",
-        "eggs",
-        "cooked chicken",
-        "lemons juice",
-        "white miso paste",
-        "salt"
-      ],
-      "recipe_Id": "Avgolemono-Soup-_aka-Greek-Lemon-Chicken-Soup_-1992525",
-      "smallImageUrls": [
-        "https://lh3.googleusercontent.com/wPOAlvK5wIy4TsZOKvwSbfhFXz_S9Kc1NiOwzpcOLdIeDldqJ29jwvvcGCb4FPMC0F08HZgPfJEjFOgHbs9PNw=s90"
-      ],
-      "recipeName": "Avgolemono Soup (aka Greek Lemon Chicken Soup)",
-      "totalTimeInSeconds": 1500,
-      "attributes": {
-        "course": [
-          "Soups"
-        ],
-        "cuisine": [
-          "Greek"
-        ]
-      },
-      "flavors": {
-        "piquant": 0,
-        "meaty": 0.16666666666666666,
-        "bitter": 0.16666666666666666,
-        "sweet": 0.16666666666666666,
-        "sour": 0.16666666666666666,
-        "salty": 0.16666666666666666
-      },
-      "rating": 4,
-      "id": 3355
     },
     {
       "imageUrlsBySize": {

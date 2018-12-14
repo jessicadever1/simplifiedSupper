@@ -76,7 +76,7 @@ export default class Register extends Component{
             placeholder="Confirm Password"
             id="confirmPassword"
             value={this.props.confirmPassword}
-            onChange={(evt)=>this.handleFieldChange(evt, "Register")}
+            onChange={(evt)=>this.props.handleFieldChange(evt, "Register")}
             required
             error={this.props.confirmPasswordError}
             focus={this.props.confirmPasswordFocus}
