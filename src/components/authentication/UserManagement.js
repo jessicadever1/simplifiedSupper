@@ -5,11 +5,9 @@ import APIManager from '../../modules/APIManager'
 import UserSettings from './UserSettings/UserSettings';
 
 //TODO: Add Simplified Supper logo to header
-//TODO: Capture security question id before post
 //TODO: Password should be at least 7 characters
 //TODO: Need to make sure that the submit button becomes active from anywhere as soon as the form is filled out and does not contain errors.
-//TODO: Update field validation to be in realtime, and error messages to display inline, not as console logs
-//TODO: Set up validation that happens and displays errors in real time, if any of the conditions are not met, the user is not able to press the save button
+//TODO: Update field validation to be in realtime, and error messages to display inline, not as console logs, if any of the conditions are not met, the user is not able to press the save button
 //TODO: Update focus functionality using refs instead of individual states
 
 export default class UserManagement extends Component{
@@ -167,12 +165,20 @@ export default class UserManagement extends Component{
       })
     } else if(key === "Register"){
       if(this.state.firstName !== "" || this.state.lastName !== "" || this.state.username !== "" || this.state.email !== "" || this.state.password !== "" || this.state.confirmPassword !== ""){
+        let securityQuestion = ""
+        this.props.securityQuestions.forEach(question =>{
+          if(question.value === this.state.securityQuestion){
+            securityQuestion = question.id
+          }
+        })
         let newUser = {
           firstName: this.state.firstName,
           lastName: this.state.lastName,
           username: this.state.username,
           email: this.state.email,
           password: this.state.confirmPassword,
+          securityQuestion_Id: securityQuestion,
+          securityQuestionAnswer: this.state.securityQuestionAnswer,
           terms: this.state.terms
         }
         this.props.createNewUser(newUser)
@@ -229,7 +235,7 @@ export default class UserManagement extends Component{
     if(this.isAuthenticated()){
       displayVariable = <UserSettings activeUser={this.props.activeUser} handleFieldChange={this.handleFieldChange} handleFormSubmit={this.handleFormSubmit} state={this.state}/>
     } else{
-      displayVariable = <LogInRegister handleFieldChange={this.handleFieldChange} handleFormSubmit={this.handleFormSubmit} state={this.state} loginFunction={this.props.loginFunction} securityQuestions={this.props.securityQuestions}/>
+      displayVariable = <LogInRegister handleFieldChange={this.handleFieldChange} handleFormSubmit={this.handleFormSubmit} state={this.state} loginFunction={this.props.loginFunction} securityQuestions={this.props.securityQuestions} handleDropdownChange={this.handleDropdownChange}/>
     }
     return(
       <React.Fragment>

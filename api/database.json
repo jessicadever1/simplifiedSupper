@@ -116,6 +116,17 @@
       "password": "12",
       "terms": true,
       "id": 13
+    },
+    {
+      "firstName": "Test",
+      "lastName": "Security",
+      "username": "testSecurity",
+      "email": "t@security.com",
+      "password": "1234",
+      "securityQuestion_Id": 4,
+      "securityQuestionAnswer": "New Covenant Academy",
+      "terms": true,
+      "id": 14
     }
   ],
   "securityQuestions": [

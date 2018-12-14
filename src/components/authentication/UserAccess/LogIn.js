@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Form} from 'semantic-ui-react'
+import {Form, Button} from 'semantic-ui-react'
 
 
 //TODO: Look at adding a 'remember me' option to the login form
@@ -31,6 +31,7 @@ export default class LogIn extends Component{
           color="teal"
           />
       </Form>
+        <Button color="teal" content="Forgot Password?" />
       </React.Fragment>
     )
   }
