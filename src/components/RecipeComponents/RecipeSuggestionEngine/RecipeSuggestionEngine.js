@@ -12,12 +12,22 @@ export default class BuildSuggestions extends Component{
   }
 
   createCardColor=(recipe)=>{
-      if(recipe.percentageMatch < 50){
+    if(recipe.recipe_Id === "leftovers" || recipe.recipe_Id === "eatOut"){
+      return
+    } else if(recipe.percentageMatch < 50){
         return "red"
     } else if(recipe.percentageMatch >= 75){
       return "green"
-    }else{
+    } else{
       return "yellow"
+    }
+  }
+
+  createCardStat = (recipe)=>{
+    if(recipe.recipe_Id === "leftovers" || recipe.recipe_Id === "eatOut"){
+      return
+    } else{
+      return <Statistic horizontal color={this.createCardColor(recipe)} value={Math.floor(recipe.percentageMatch)} label="Match"/>
     }
   }
 
@@ -40,7 +50,7 @@ export default class BuildSuggestions extends Component{
                 <Card.Header content={match.recipeName} />
                 <Card.Meta content={match.sourceDisplayName} />
                 <Card.Content extra>
-                  <Statistic horizontal color={this.createCardColor(match)} value={Math.floor(match.percentageMatch)} label="Match"/>
+                {this.createCardStat(match)}
                 </Card.Content>
               </Card.Content>
             </Card>
