@@ -6,7 +6,10 @@ import '../RecipeComponents/Recipe.css'
 import APIManager from '../../modules/APIManager'
 import RecipeModal from '../RecipeComponents/RecipeModal/RecipeModal'
 import moment from 'moment'
+import FilterRecipes from '../RecipeComponents/RecipeSuggestionEngine/FilterRecipes';
 
+
+//Current status note: Filter accordion is currently static only, but is operational, next step will be to add functionality to filter the recipes shown based on changes to the filter section, add additional functionality for dietary restrictions and allergies and flavor profiles
 export default class Home extends Component{
   state={
     viewRecipeDetails: false,
@@ -256,8 +259,11 @@ export default class Home extends Component{
               <Header as="h2" textAlign="center" />
             </Grid.Column>
           </Grid.Row>
-          <Grid.Row>
-            <Grid.Column style={{maxWidth: '80vw', height: '50vh'}} className="displayRecipes">
+          <Grid.Row style={{maxWidth: '80vw', height: '50vh'}}>
+            <Grid.Column textAlign="left" color="purple" style={{width: '30%', height: '50vh'}} className="displayRecipes">
+              <FilterRecipes courses={this.state.courses} cuisines={this.state.cuisines}/>
+            </Grid.Column>
+            <Grid.Column color="orange" style={{width: '70%', height: '50vh'}} className="displayRecipes">
               <RecipeSuggestionEngine  matchedRecipes = {this.state.matchedRecipes}showRecipeDetails={this.showRecipeDetails} closeRecipeDetails={this.closeRecipeDetails}/>
             </Grid.Column>
           </Grid.Row>
