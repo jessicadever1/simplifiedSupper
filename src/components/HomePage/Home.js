@@ -25,6 +25,8 @@ export default class Home extends Component{
     courses: [],
     ingredients: [],
     matchedRecipes: [],
+    allMatchedRecipes: [],
+    filterCriteria: [],
   }
 
   componentDidMount=()=>{
@@ -126,7 +128,7 @@ export default class Home extends Component{
           }
         }
       })
-      this.setState({matchedRecipes: filteredRecipes})
+      this.setState({matchedRecipes: filteredRecipes, allMatchedRecipes: filteredRecipes})
     })
   }
 
@@ -239,6 +241,151 @@ export default class Home extends Component{
     }
   }
 
+  handleFilterChange = (evt)=>{
+    let checkbox = evt.target
+    let selectedFilters = []
+    let activeFilter_cuisine = []
+    let activeFilter_course = []
+    selectedFilters = this.state.filterCriteria
+    if(this.state.filterCriteria.length === 0){
+      if(checkbox.checked){
+        selectedFilters.push(checkbox.id)
+        this.setState({filterCriteria: [checkbox.id]})
+      }
+    } else{
+      if(checkbox.checked){
+        if(!selectedFilters.includes(checkbox.id)){
+          selectedFilters.push(checkbox.id)
+          this.setState({filterCriteria: selectedFilters})
+        }
+      } else if(!checkbox.checked){
+        if(selectedFilters.includes(checkbox.id)){
+          let updatedFilters = selectedFilters.filter(item => item !== checkbox.id)
+          selectedFilters = updatedFilters
+          this.setState({filterCriteria: updatedFilters})
+        }
+      }
+    }
+    selectedFilters.forEach(filter =>{
+      let splitDetails = filter.split("-")
+      if(splitDetails[0] === "cuisine"){
+        this.state.cuisines.forEach(cuisine =>{
+          if(cuisine.id === parseInt(splitDetails[1])){
+            activeFilter_cuisine.push(cuisine.text)
+          }
+        })
+      } else if(splitDetails[0] === "course"){
+        this.state.courses.forEach(course =>{
+          if(course.id === parseInt(splitDetails[1])){
+            activeFilter_course.push(course.text)
+          }
+        })
+      }
+    })
+    this.displayFilteredRecipes(activeFilter_cuisine, activeFilter_course)
+  }
+
+  displayFilteredRecipes = (cuisines, courses)=>{
+    let filteredRecipes = []
+    let doubleFilter = []
+    if(cuisines.length){
+      if(!courses.length){
+        cuisines.forEach(cuisine =>{
+          console.log(cuisine)
+          this.state.allMatchedRecipes.forEach(recipe =>{
+            if(recipe.attributes.cuisine){
+              if(recipe.attributes.cuisine.length !== undefined && recipe.attributes.cuisine.length !== 0 && recipe.attributes.cuisine.length !== null){
+                recipe.attributes.cuisine.forEach(item =>{
+                  if(item === cuisine){
+                    filteredRecipes.push(recipe)
+                  }
+                })
+              }
+            }
+          })
+        })
+        this.setState({matchedRecipes: filteredRecipes})
+        console.log(filteredRecipes)
+      } else if(courses.length){
+        cuisines.forEach(cuisine =>{
+          this.state.allMatchedRecipes.forEach(recipe => {
+            if(recipe.attributes.cuisine){
+              if(recipe.attributes.cuisine.length !== undefined){
+                recipe.attributes.cuisine.forEach(item =>{
+                  if(item === cuisine){
+                    filteredRecipes.push(recipe)
+                  }
+                })
+              }
+            }
+          })
+        })
+        courses.forEach(course =>{
+          filteredRecipes.forEach(recipe => {
+            if(recipe.attributes.course){
+              if(recipe.attributes.course.length !== undefined){
+                recipe.attributes.course.forEach(item =>{
+                  if(item === course){
+                    doubleFilter.push(recipe)
+                  }
+                })
+              }
+            }
+          })
+        })
+        this.setState({matchedRecipes: doubleFilter})
+      }
+    } else if(courses.length){
+      if(!cuisines.length){
+        courses.forEach(course =>{
+          this.state.allMatchedRecipes.forEach(recipe =>{
+            if(recipe.attributes.course){
+              if(recipe.attributes.course.length !== undefined){
+                recipe.attributes.course.forEach(item =>{
+                  if(item === course){
+                    filteredRecipes.push(recipe)
+                  }
+                })
+              }
+            }
+          })
+        })
+        this.setState({matchedRecipes: filteredRecipes})
+      } else if(cuisines.length){
+        courses.forEach(course => {
+          this.state.allMatchedRecipes.forEach(recipe =>{
+            if(recipe.attributes.course){
+              if(recipe.attributes.course.length !== undefined){
+                recipe.attributes.course.forEach(item =>{
+                  if(item === course){
+                    filteredRecipes.push(recipe)
+                  }
+                })
+              }
+            }
+          })
+        })
+        cuisines.forEach(cuisine =>{
+          filteredRecipes.forEach(recipe =>{
+            if(recipe.attributes.cuisine){
+              if(recipe.attributes.cuisine.length !== undefined){
+                recipe.attributes.cuisine.forEach(item =>{
+                  if(item === cuisine){
+                    doubleFilter.push(recipe)
+                  }
+                })
+              }
+            }
+          })
+        })
+        this.setState({matchedRecipes: doubleFilter})
+      }
+    }
+    else if(cuisines.length === 0 && courses.length === 0){
+      this.setState({matchedRecipes: this.state.allMatchedRecipes})
+    }
+  }
+
 
   render(){
     if(this.state.viewRecipeDetails === true){
@@ -261,7 +408,7 @@ export default class Home extends Component{
           </Grid.Row>
           <Grid.Row style={{maxWidth: '80vw', height: '50vh'}}>
             <Grid.Column textAlign="left" color="purple" style={{width: '30%', height: '50vh'}} className="displayRecipes">
-              <FilterRecipes courses={this.state.courses} cuisines={this.state.cuisines}/>
+              <FilterRecipes filterRecipes={this.handleFilterChange} courses={this.state.courses} cuisines={this.state.cuisines}/>
             </Grid.Column>
             <Grid.Column color="orange" style={{width: '70%', height: '50vh'}} className="displayRecipes">
               <RecipeSuggestionEngine  matchedRecipes = {this.state.matchedRecipes}showRecipeDetails={this.showRecipeDetails} closeRecipeDetails={this.closeRecipeDetails}/>

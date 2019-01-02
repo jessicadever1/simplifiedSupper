@@ -134,6 +134,7 @@ export default class UserManagement extends Component{
       }
       else if(evt.target.id === "terms"){
         let checkbox = evt.target
+        console.log(checkbox)
         if(checkbox.checked){
           stateToChange["terms"] = true
           // stateToChange["disabled"] = false
