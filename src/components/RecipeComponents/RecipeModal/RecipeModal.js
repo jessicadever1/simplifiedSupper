@@ -63,9 +63,44 @@ export default class RecipeModal extends Component{
     }
   }
 
+  makeModalStats=(recipe)=>{
+    if(recipe.id === "leftovers" || recipe.id === "eatOut"){
+      return
+    } else{
+      return <Statistic.Group size='mini' widths="three">
+    <Statistic value={this.props.recipeDetails.ingredientLines.length} label="Ingredients"/>
+    <Statistic value={this.props.recipeDetails.nutritionEstimates[0].value} label="Calories"/>
+    <Statistic value={this.props.recipeDetails.totalTime} label="Total Time"/>
+  </Statistic.Group>
+    }
+  }
+
+  makeIngredientsList=(recipe)=>{
+    if(recipe.id === "leftovers" || recipe.id === "eatOut"){
+      return
+    } else{
+      return <List>
+      <Header as="h3" dividing content="Ingredients"/>
+      {
+        recipe.ingredientLines.map((ingredient, index)=>{
+          return <List.Item key={index} content={ingredient}/>
+          })
+      }
+    </List>
+    }
+  }
+
+  makeInstructionButton=(recipe)=>{
+    if(recipe.id === "leftovers" || recipe.id === "eatOut"){
+      return
+    } else{
+      return <a href={this.props.recipeDetails.source.sourceRecipeUrl} target="_blank" rel="noopener noreferrer"><Button content="Read Instructions"/></a>
+    }
+  }
+
   render(){
     if(this.state.confirmDelete === true){
-      return <Confirm open={this.state.confirmDelete}onCancel={this.cancelDelete} onConfirm={()=>this.props.deleteRecipe()}/>
+      return <Confirm open={this.state.confirmDelete} onCancel={this.cancelDelete} onConfirm={()=>this.props.deleteRecipe()}/>
     }
     return(
       <React.Fragment>
@@ -79,20 +114,15 @@ export default class RecipeModal extends Component{
                   {this.props.recipeDetails.source.sourceDisplayName}
                   </a>
                 </div>
-              <Statistic.Group size='mini' widths="three">
-                <Statistic value={this.props.recipeDetails.ingredientLines.length} label="Ingredients"/>
-                <Statistic value={this.props.recipeDetails.nutritionEstimates[0].value} label="Calories"/>
-                <Statistic value={this.props.recipeDetails.totalTime} label="Total Time"/>
-              </Statistic.Group>
-              <List>
-                <Header as="h3" dividing content="Ingredients"/>
                 {
-                  this.props.recipeDetails.ingredientLines.map((ingredient, index)=>{
-                    return <List.Item key={index} content={ingredient}/>
-                    })
-                  }
-              </List>
-              <a href={this.props.recipeDetails.source.sourceRecipeUrl} target="_blank" rel="noopener noreferrer"><Button content="Read Instructions"/></a>
+                  this.makeModalStats(this.props.recipeDetails)
+                }
+                {
+                  this.makeIngredientsList(this.props.recipeDetails)
+                }
+                {
+                  this.makeInstructionButton(this.props.recipeDetails)
+                }
               {/* <div>
                 <a href={this.props.recipeDetails.attribution.link} >{this.props.recipeDetails.attribution.text}</a>
                 <img src={this.props.recipeDetails.attribution.logo} alt="Yummly Logo"/>

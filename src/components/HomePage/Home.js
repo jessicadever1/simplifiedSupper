@@ -74,9 +74,9 @@ export default class Home extends Component{
       if(moment(event.start).week() === thisWeek){
         event.recipeDetails.ingredients.forEach(ingredient =>{
           //Check to see if ingredient already exists in array
-          if(selectedIngredients.length === 0){
+          if(selectedIngredients.length === 0 && ingredient !== " "){
             selectedIngredients.push(ingredient)
-          } else{
+          } else if(ingredient !== " "){
             if(!selectedIngredients.includes(ingredient)){
               selectedIngredients.push(ingredient)
             }
@@ -109,7 +109,7 @@ export default class Home extends Component{
             }
           })
           let percentageMatch = (counter/recipe.ingredients.length)*100
-          if(percentageMatch > 25){
+          if(percentageMatch > 25 || recipe.recipe_Id === "leftovers" || recipe.recipe_Id === "eatOut"){
             let newObj = Object.assign({}, recipe, {percentageMatch: percentageMatch})
             if(filteredRecipes.length === 0){
               filteredRecipes.push(newObj)
@@ -142,16 +142,30 @@ export default class Home extends Component{
       })
     }
      else if(key === "suggestionEngine"){
-      APIManager.getOneFromCategory("fullRecipes",details.recipe_Id)
-      .then((response)=>{
-        this.setState({
-          recipeDetails: response,
-          activeRecipeKey: details.id,
-          viewRecipeDetails: true,
-          open: true,
-          getStarted: true,
-        })
-      })
+       if(details.recipe_Id === "leftovers" || details.recipe_Id === "eatOut"){
+         APIManager.getOneFromCategory("fullRecipes", details.recipe_Id)
+         .then((response)=> {
+           this.setState({
+             recipeDetails: response,
+             activeRecipeKey: details.id,
+             viewRecipeDetails: true,
+             open: true,
+             getStarted: true,
+           })
+         })
+       } else{
+        //  Eventually will need to swap this section of code out for Yummly API call
+         APIManager.getOneFromCategory("fullRecipes",details.recipe_Id)
+         .then((response)=>{
+           this.setState({
+             recipeDetails: response,
+             activeRecipeKey: details.id,
+             viewRecipeDetails: true,
+             open: true,
+             getStarted: true,
+           })
+         })
+       }
     }
   }
 
