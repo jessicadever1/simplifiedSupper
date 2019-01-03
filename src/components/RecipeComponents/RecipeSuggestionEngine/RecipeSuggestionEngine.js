@@ -38,7 +38,7 @@ export default class BuildSuggestions extends Component{
     })
     return(
       <React.Fragment>
-        <Card.Group itemsPerRow={4}>
+        <Card.Group itemsPerRow={6}>
         {
           this.props.matchedRecipes.map((match, index)=>{
             return <Card

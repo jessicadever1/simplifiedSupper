@@ -290,8 +290,8 @@ export default class Home extends Component{
     let doubleFilter = []
     if(cuisines.length){
       if(!courses.length){
+        //If there are only cuisine filters selected and nothing else, execute the below function
         cuisines.forEach(cuisine =>{
-          console.log(cuisine)
           this.state.allMatchedRecipes.forEach(recipe =>{
             if(recipe.attributes.cuisine){
               if(recipe.attributes.cuisine.length !== undefined && recipe.attributes.cuisine.length !== 0 && recipe.attributes.cuisine.length !== null){
@@ -305,8 +305,8 @@ export default class Home extends Component{
           })
         })
         this.setState({matchedRecipes: filteredRecipes})
-        console.log(filteredRecipes)
       } else if(courses.length){
+        //If both cuisine and course filters have been selected, execute the below function
         cuisines.forEach(cuisine =>{
           this.state.allMatchedRecipes.forEach(recipe => {
             if(recipe.attributes.cuisine){
@@ -407,10 +407,10 @@ export default class Home extends Component{
             </Grid.Column>
           </Grid.Row>
           <Grid.Row style={{maxWidth: '80vw', height: '50vh'}}>
-            <Grid.Column textAlign="left" color="purple" style={{width: '30%', height: '50vh'}} className="displayRecipes">
+            <Grid.Column textAlign="left" style={{width: '20%', height: '50vh'}} className="displayRecipes">
               <FilterRecipes filterRecipes={this.handleFilterChange} courses={this.state.courses} cuisines={this.state.cuisines}/>
             </Grid.Column>
-            <Grid.Column color="orange" style={{width: '70%', height: '50vh'}} className="displayRecipes">
+            <Grid.Column style={{width: '80%', height: '50vh'}} className="displayRecipes">
               <RecipeSuggestionEngine  matchedRecipes = {this.state.matchedRecipes}showRecipeDetails={this.showRecipeDetails} closeRecipeDetails={this.closeRecipeDetails}/>
             </Grid.Column>
           </Grid.Row>
