@@ -9,7 +9,7 @@ import moment from 'moment'
 import FilterRecipes from '../RecipeComponents/RecipeSuggestionEngine/FilterRecipes';
 
 
-//Current status note: Filter accordion is currently static only, but is operational, next step will be to add functionality to filter the recipes shown based on changes to the filter section, add additional functionality for dietary restrictions and allergies and flavor profiles
+//Current status note: Filter functionality is working for cuisine and course, still need to add for eatout/leftover, add additional functionality for dietary restrictions and allergies and flavor profiles
 export default class Home extends Component{
   state={
     viewRecipeDetails: false,
