@@ -40,7 +40,7 @@ To launch the Simplified Supper app, you will need to have access to command lin
 Clone this repo on you personal machine using the following command
     ```sh
     git clone git@github.com:kellymorin/simplifiedSupper.git
-  ```
+    ```
 
 Install the NPM dependencies for this project using the following commands
   ```sh
@@ -100,20 +100,20 @@ Now that the server is up and running, you can open an internet browser and acce
   Linux/ Windows users, please visit the [Git page](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and follow the instructions for set up
 
   Open your terminal and type
-    ```sh
+   ```sh
     git --version
-    ```
+   ```
 
   You will now need to configure your git account. In the terminal window, type:
     ```sh
-    git config -global user.name "Your Name"
-    git config -global user.email "Your Email"
+      git config -global user.name "Your Name"
+      git config -global user.email "Your Email"
     ```
 
-  If you do not have Node.js installed on your machine, visit the [Node.js Download Page](https://nodejs.org/en/download/) and follow the instructions. To ensure that it is installed correctly, in your terminal window, type
-    ```sh
+  If you do not have Node.js installed on your machine, visit the [Node.js Download Page](https://nodejs.org/en/download/) and  follow the instructions. To ensure that it is installed correctly, in your terminal window, type
+   ```sh
     echo $PATH
-    ```
+   ```
   Ensure that the result has the following in the $PATH
     ```sh
       /usr/local/bin
