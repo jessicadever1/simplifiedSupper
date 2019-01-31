@@ -51,27 +51,8 @@
     npm install
   ```
 
-  Now create a new directory inside the simplified supper directory to store your JSON data
+  From your terminal window, type
   ```sh
-    mkdir api
-    touch api/database.json
-  ```
-
-  open database.json and paste in the following test data
-    <!-- TODO: Insert finalized JSON file -->
-  ```json
-    {INSERT JSON FILE HERE}
-  ```
-
-  Now you're ready to launch the app, in your terminal window, type.
-  ```sh
-    cd simplified-supper/api
-    json-server -p 8088 database.json
-  ```
-
-  From your terminal window, type Command T, then in the new tab type
-  ```sh
-    cd simplified-supper
     npm start
   ```
 
@@ -85,13 +66,12 @@
   ## Appendix 1: Planning Documentation
 
   ### Entity Relationship Diagram
-  <!-- FIXME: Link to ERD currently broken -->
   ![Simplified Supper ERD](/src/images/Simplified_Supper_ERD.png)
 
   ### Wireframes/ Mockups
-  <img src="./src/images/wireframe_1.png" width="40%"></img> <img src="./src/images/wireframe_2.png" width="40%"></img>
-  <img src="./src/images/wireframe_3.png" width="40%"></img> <img src="./src/images/wireframe_4.png" width="40%"></img>
-  <img src="./src/images/wireframe_5.png" width="40%"></img> <img src="./src/images/wireframe_6.png" width="40%"></img>
+  <img src="./src/images/wireframe_1.png" width="45%"></img> <img src="./src/images/wireframe_2.png" width="45%"></img>
+  <img src="./src/images/wireframe_3.png" width="45%"></img> <img src="./src/images/wireframe_4.png" width="45%"></img>
+  <img src="./src/images/wireframe_5.png" width="45%"></img> <img src="./src/images/wireframe_6.png" width="45%"></img>
 
 
   ## Appendix 2: Set Up Instructions
