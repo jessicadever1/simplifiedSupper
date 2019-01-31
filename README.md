@@ -34,7 +34,7 @@
   ### Development Tools
   <!-- Images for github, wireframe tool -->
 
-##Instructions for Installing Simplified Supper
+## Instructions for Installing Simplified Supper
 To launch the Simplified Supper app, you will need to have access to command line tools, node package manager, JSON Server. If you do not have access to any of these tools, you can find instructions for installing them in the [Appendix.](#appendix-2-set-up-instructions)
 
 Clone this repo on you personal machine using the following command
@@ -116,18 +116,18 @@ Now that the server is up and running, you can open an internet browser and acce
     ```
   Ensure that the result has the following in the $PATH
     ```sh
-    /usr/local/bin
-    or
-    /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+      /usr/local/bin
+      or
+      /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
     ```
   You will need to go into the lib folder in your directory and install and build npm modules and also your json-server. In your terminal, type
   <!-- FIXME: I need to double check this process, this may be outdated with react -->
-  ```sh
+    ```sh
       cd simplified-supper/src/lib
       npm init
       npm i
       sudo npm install -g json-server
-  ```
+    ```
 
   In order to create and edit the required JSON file, you will need a text editor. For this project we used VS Code. Visit [VSCode](https://code.visualstudio.com/) to install a copy.
 
