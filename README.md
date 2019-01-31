@@ -85,8 +85,8 @@
   <!-- TODO: Insert ERD HERE -->
 
   ### Wireframes/ Mockups
-  ![Log In Page](/src/images/wireframe_1)
-  ![New User Intro Screen](/src/images/wireframe_2)
+  ![Log In Page](wireframe_1.png)
+  ![New User Intro Screen](/src/images/wireframe_2.png)
   ![New User Intro Screen 2](/src/images/wireframe_3)
   ![Recipe Options Display](/src/images/wireframe_4)
   ![Recipe Detail Card](/src/images/wireframe_5)
