@@ -96,8 +96,10 @@
   ## Appendix 2: Set Up Instructions
 
   You will need to have command line tools installed for your computer to use terminal commands.
-  Mac users follow the instructions below
+
   Linux/ Windows users, please visit the [Git page](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and follow the instructions for set up
+
+  Mac users follow the instructions below
 
   Open your terminal and type
   ```sh
