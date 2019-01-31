@@ -1,0 +1,28 @@
+.isHidden{
+  display: none;
+  visibility: hidden;
+}
+
+.rbc-time-content{
+  display: none!important;
+}
+
+.rbc-time-header-gutter{
+  display: none!important;
+}
+
+.displayRecipes{
+  overflow-y: auto;
+}
+
+.yellow{
+  color: yellow;
+}
+
+.red{
+  color: red;
+}
+
+.green{
+  color: green
+}

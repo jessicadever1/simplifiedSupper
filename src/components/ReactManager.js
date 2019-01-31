@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
-// import {Route, Redirect} from 'react-router-dom'
 import NavBar from './nav/NavBar'
 import ApplicationViews from './ApplicationViews'
 import APIManager from '../modules/APIManager'
-
-//TODO: Update navbar function to display dynamically based on if the user is logged in or not
 
 export default class ReactManager extends Component{
   state={
@@ -46,6 +43,10 @@ export default class ReactManager extends Component{
     })
     this.resetState()
     this.setState({newUser: true})
+  }
+
+  updateUserInfo=(updatedUser, id)=>{
+    APIManager.updateItem("users", id, updatedUser).then((user)=> this.setState({activeUser: user}))
   }
 
   render(){

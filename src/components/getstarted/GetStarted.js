@@ -1,30 +1,22 @@
-/*
-
-When the user selects a type of cuisine
-Then they will be presented with the opportunity to narrow their search by type of dish or protein
-
-When the user selects the sub-category of their choice
-Then they will be taken to the recipe suggestion engine with the result that best match what they have selected
-And the user will be allowed to click each of the recipe cards to pull up the full details
-
-When the user clicks any of the recipe cards, they will be taken to the appropriate recipe details (see #6 )
-And be given the affordance to select the date they would like to make that recipe
-*/
-
 import React, {Component} from 'react'
 import GetStartedCategory from './GetStartedCategory'
 import GetStartedDish from './GetStartedDish'
-import GetStartedProtein from './GetStartedProtein'
+import SuggestedRecipes from '../RecipeComponents/RecipeSuggestionEngine/GetStartedSuggestions/SuggestedRecipes';
+import APIManager from '../../modules/APIManager';
 
-
+//TODO: Find a way to store where the user is in the get started process so you can come back to the phase in the process if they leave before completion
 export default class GetStarted extends Component{
   state={
     category: "",
     dish: "",
-    protein: "",
     selectedCategory: false,
     selectedDish: false,
-    selectedProtein: false,
+    open: false,
+    showRecipe: false,
+    getStarted: true,
+    activeRecipeKey: "",
+    recipeDetails: [],
+    matches: []
   }
   handleDropdownChange =(e, {name, value}) => this.setState({ [name]: value})
 
@@ -33,26 +25,119 @@ export default class GetStarted extends Component{
       this.setState({selectedCategory: true})
       return
     } else if(evt.target.id === "dish"){
-      this.setState({selectedDish: true})
-      return
-    } else if(evt.target.id === "protein"){
-      this.setState({selectedProtein: true})
-      return
+      let matchedRecipes = []
+      let courseMatch=[]
+      let AssignedCourse = ""
+      if(this.state.dish === "Main+Dishes" || this.state.dish === "Side+Dishes" || this.state.dish === "Lunch+and+Snacks"){
+        if(this.state.dish === "Main+Dishes"){
+          AssignedCourse = "Main Dishes"
+        } else if(this.state.dish === "Side+Dishes"){
+          AssignedCourse = "Side Dishes"
+        } else if(this.state.dish === "Lunch+and+Snacks"){
+          AssignedCourse = "Lunch and Snacks"
+        }
+      } else{
+        AssignedCourse = this.state.dish
+      }
+      APIManager.getAllCategory("recipes")
+      .then(recipes => {
+        recipes.forEach(recipe =>{
+          recipe.attributes.course.forEach(course=>{
+            if(course === AssignedCourse){
+              courseMatch.push(recipe)
+            }
+          })
+        })
+        courseMatch.forEach(course =>{
+          if(course.attributes.cuisine){
+            course.attributes.cuisine.forEach(cuisine =>{
+              if(cuisine.toLowerCase() === this.state.category){
+                if(matchedRecipes.length === 0){
+                  matchedRecipes.push(course)
+                } else{
+                  if(!matchedRecipes.find(recipe => recipe.id === course.id)){
+                    matchedRecipes.push(course)
+                  }
+                }
+              }
+            })
+          }
+        })
+        this.setState({
+          matches: matchedRecipes,
+          selectedDish: true
+        })
+      })
+    } else if(evt.target.id === "startOver"){
+      this.setState({
+        selectedCategory: false,
+        selectedDish: false,
+        matches: [],
+        category: "",
+        dish: ""
+      })
     }
   }
+
+  closeRecipeDetails=()=>{
+    this.setState({showRecipe: false, open: false})
+  }
+
+  seeRecipeDetails=(id, num)=>{
+    APIManager.getOneFromCategory("fullRecipes",id)
+    .then((response)=>{
+      this.setState({
+        recipeDetails: response,
+        activeRecipeKey: num,
+        showRecipe: true,
+        open: true,
+      })
+    })
+  }
+
+  //FAKE RECIPES:
+  //After Demo, be sure to update the following recipes in the "recipes" collection back to the correct recipe_Id, remove the full recipes collection, remove any UsersRecipes with substituted recipe info, git rid of see recipe details that call local server found on get started and home files, update api manager file to include yummly api call
+  // 3354
+  // "Avgolemono-Soup-_aka-Greek-Lemon-Chicken-Soup_-1587365"
+  // 3222
+  // "Baba-ganoush-310030"
+  // 2332
+  // "Thai-Coconut-Soup-1045980"
+
+
+  // seeRecipeDetails=(id, num)=>{
+  //   APIManager.getRecipeDetails(id)
+  //   .then((response)=>{
+  //   this.setState({
+  //     recipeDetails: response,
+  //     activeRecipeKey: num,
+  //     showRecipe: true,
+  //     open: true,
+  //   })
+  // }
+  //   )
+  // }
+
+  handleCalendarChange=(key, id, date)=>{
+    if(key === "newRecipe"){
+      let newRecipe={
+        user_Id: parseInt(sessionStorage.getItem("id")),
+        recipe_Id: id,
+        recipe_Num: this.state.activeRecipeKey,
+        date: date
+      }
+      APIManager.saveItem("usersRecipes", newRecipe)
+      .then(()=> this.props.history.push("/"))
+    }
+  }
+
   render(){
-    let getStarted=""
     if(this.state.selectedCategory === false){
-      getStarted = <GetStartedCategory handleButtonClick={this.handleButtonClick} activeUser={this.props.activeUser} handleDropdownChange={this.handleDropdownChange}/>
+      return <GetStartedCategory handleButtonClick={this.handleButtonClick} activeUser={this.props.activeUser} handleDropdownChange={this.handleDropdownChange}/>
     } else if(this.state.selectedCategory === true && this.state.selectedDish === false){
-      getStarted = <GetStartedDish handleButtonClick={this.handleButtonClick} handleDropdownChange={this.handleDropdownChange} category={this.state.category}/>
-    } else if(this.state.selectedCategory === true && this.state.selectedDish === true && this.state.selectedProtein === false){
-      getStarted = <GetStartedProtein handleButtonClick={this.handleButtonClick} handleDropdownChange={this.handleDropdownChange}/>
+      return <GetStartedDish handleButtonClick={this.handleButtonClick} handleDropdownChange={this.handleDropdownChange} category={this.state.category}/>
+    } else if(this.state.selectedCategory === true && this.state.selectedDish === true){
+      return <SuggestedRecipes handleCalendarChange={this.handleCalendarChange} matches={this.state.matches} category={this.state.category} dish={this.state.dish} handleButtonClick={this.handleButtonClick} seeRecipeDetails={this.seeRecipeDetails} closeRecipeDetails={this.closeRecipeDetails} getStarted={this.state.getStarted} recipeDetails={this.state.recipeDetails} activeRecipeKey={this.state.activeRecipeKey} showRecipe={this.state.showRecipe} open={this.state.open}/>
     }
-    return(
-      <React.Fragment>
-        {getStarted}
-      </React.Fragment>
-    )
-  }
+}
 }

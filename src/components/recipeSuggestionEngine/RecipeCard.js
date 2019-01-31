@@ -1,7 +1,0 @@
-/*
-Given a user is reviewing recipes through either the recipe suggestion or directly in their calendar
-When the user clicks on the preview of the recipe
-Then the user should be presented with the full recipe details
-And be offered the affordance to add the recipe to a specific day
-And edit the date the recipe is assigned to
-*/

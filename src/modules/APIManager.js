@@ -1,4 +1,6 @@
 const URL = "http://localhost:8088/"
+// const YummlyDetails="http://api.yummly.com/v1/api/recipe/"
+// const YummlyAuth = "?_app_id=cd5fb393&_app_key=fe16ea520b72c15ff39525eed9947f8f"
 
  class APIManager{
   getAllCategory(category) {
@@ -23,6 +25,7 @@ const URL = "http://localhost:8088/"
   }
 
   deleteItem(category, id) {
+    // console.log(URL, category, id)
     return fetch(`${URL}${category}/${id}`, {
       method: "DELETE",
       headers: {
@@ -42,9 +45,17 @@ const URL = "http://localhost:8088/"
     })
   }
 
+
+  // getRecipeDetails(id){
+  //   return fetch(`${YummlyDetails}${id}${YummlyAuth}`)
+  //   .then(results => results.json())
+  // }
+
 }
 
 export default new APIManager()
+
+
 
 /*
 id: cd5fb393
