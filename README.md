@@ -6,13 +6,14 @@
   * [Technologies Used](#technologies-used)
   * [Installing and Launching Simplified Supper](#instructions-for-installing-simplified-supper)
   * [Appendix 1: Planning Documentation](#appendix-1-planning-documentation)
-    * [Entity Relationship Diagrams](#entity-relationship-diagrams)
+    * [Entity Relationship Diagrams](#entity-relationship-diagram)
     * [Wireframes](#wireframes)
   * [Appendix 2: Set Up Instructions](#appendix-2-set-up-instructions)
 
 ## Project Requirements and Features List
+<!-- TODO: Add a features list to this section -->
 
-  ## Topics Covered Building Simplified Supper
+  ### Topics Covered Building Simplified Supper
   1. Functions
   1. Stand-up Meetings
   1. ERD Diagrams
@@ -33,7 +34,7 @@
   <img src="./src/images/react.png" width="10%"></img> <img src="./src/images/momentjs.svg" width="10%"></img> <img src="./src/images/semanticui.png" width="10%"></img> <img src="./src/images/reactbigcalendar.png" width="10%"></img>
 
   ### Development Tools
-  <!-- Images for wireframe tool -->
+  <!-- TODO: Image for wireframe tool -->
   <img src="./src/images/github.png" width="10%"></img> <img src="./src/images/draw.io.jpg" width="10%"></img> <img src="./src/images/git.png" width="10%"></img> <img src="./src/images/vscode.png" width="10%"></img> <img src="./src/images/slack.png" width="10%"></img>
 
 ## Instructions for Installing Simplified Supper
@@ -83,9 +84,9 @@
 
   ## Appendix 1: Planning Documentation
 
-  ### Entity Relationship Diagrams
+  ### Entity Relationship Diagram
   <!-- FIXME: Link to ERD currently broken -->
-  ![Simplified Supper ERD](/src/images/Simplified_Supper_ERD.pdf)
+  ![Simplified Supper ERD](/src/images/Simplified_Supper_ERD.png)
 
   ### Wireframes/ Mockups
   <img src="./src/images/wireframe_1.png" width="40%"></img> <img src="./src/images/wireframe_2.png" width="40%"></img>
