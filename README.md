@@ -83,6 +83,7 @@
 
   ### Entity Relationship Diagrams
   <!-- TODO: Insert ERD HERE -->
+  ![Simplified Supper ERD](/src/images/Simplified_Supper_ERD.pdf)
 
   ### Wireframes/ Mockups
   ![Log In Page](/src/images/wireframe_1.png)
