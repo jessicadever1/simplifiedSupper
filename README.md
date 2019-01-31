@@ -38,44 +38,44 @@
   To launch the Simplified Supper app, you will need to have access to command line tools, node package manager, JSON Server. If you do not have access to any of these tools, you can find instructions for installing them in the [Appendix.](#appendix-2-set-up-instructions)
 
   Clone this repo on you personal machine using the following command
-    ```sh
+  ```sh
     git clone git@github.com:kellymorin/simplifiedSupper.git
-    ```
+  ```
 
   Install the NPM dependencies for this project using the following commands
-    ```sh
+  ```sh
     cd simplified-supper
     npm install
-    ```
+  ```
 
   Now create a new directory inside the simplified supper directory to store your JSON data
-    ```sh
+  ```sh
     mkdir api
     touch api/database.json
-    ```
+  ```
 
   open database.json and paste in the following test data
     <!-- TODO: Insert finalized JSON file -->
-    ```json
+  ```json
     {INSERT JSON FILE HERE}
-    ```
+  ```
 
   Now you're ready to launch the app, in your terminal window, type.
-    ```sh
+  ```sh
     cd simplified-supper/api
     json-server -p 8088 database.json
-    ```
+  ```
 
   From your terminal window, type Command T, then in the new tab type
-    ```sh
+  ```sh
     cd simplified-supper
     npm start
-    ```
+  ```
 
   Now that the server is up and running, you can open an internet browser and access the application
-    ```sh
+  ```sh
     http://localhost:8080/
-    ```
+  ```
 
  ### Congratulations you are now experiencing Simplified Supper!
 
