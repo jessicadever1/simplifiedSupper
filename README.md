@@ -100,35 +100,35 @@
   Linux/ Windows users, please visit the [Git page](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and follow the instructions for set up
 
   Open your terminal and type
-    ```sh
+  ```sh
     git --version
-    ```
+  ```
 
   You will now need to configure your git account. In the terminal window, type:
-    ```sh
+  ```sh
     git config -global user.name "Your Name"
     git config -global user.email "Your Email"
-    ```
+  ```
 
   If you do not have Node.js installed on your machine, visit the [Node.js Download Page](https://nodejs.org/en/download/) and  follow the instructions. To ensure that it is installed correctly, in your terminal window, type
-    ```sh
+  ```sh
     echo $PATH
-    ```
+  ```
   Ensure that the result has the following in the $PATH
-    ```sh
+  ```sh
     /usr/local/bin
     or
     /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-    ```
+  ```
 
   You will need to go into the lib folder in your directory and install and build npm modules and also your json-server. In your terminal, type
   <!-- FIXME: I need to double check this process, this may be outdated with react -->
-    ```sh
-      cd simplified-supper/src/lib
-      npm init
-      npm i
-      sudo npm install -g json-server
-    ```
+  ```sh
+    cd simplified-supper/src/lib
+    npm init
+    npm i
+    sudo npm install -g json-server
+  ```
 
   In order to create and edit the required JSON file, you will need a text editor. For this project we used VS Code. Visit [VSCode](https://code.visualstudio.com/) to install a copy.
 
