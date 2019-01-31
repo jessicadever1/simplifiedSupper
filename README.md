@@ -35,7 +35,7 @@
 
   ### Development Tools
   <!-- Images for wireframe tool -->
-  <img src="./src/images/github.jpg" width="30%"></img> <img src="./src/images/draw.io.jpg" width="30%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105284/26aa7ad4-63ae-11e5-88b7-bc523a095c9f.png" width="30%"></img>
+  <img src="./src/images/github.jpg" width="15%"></img> <img src="./src/images/draw.io.jpg" width="15%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105284/26aa7ad4-63ae-11e5-88b7-bc523a095c9f.png" width="15%"></img>
 
 ## Instructions for Installing Simplified Supper
   To launch the Simplified Supper app, you will need to have access to command line tools, node package manager, JSON Server. If you do not have access to any of these tools, you can find instructions for installing them in the [Appendix.](#appendix-2-set-up-instructions)
