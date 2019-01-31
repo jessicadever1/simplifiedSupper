@@ -30,12 +30,11 @@
 
 ## Technologies Used
   ### Development Languages and Libraries
-  <!-- Images for semantic ui for react, react big calendar -->
-  <img src="./src/images/react.png" width="15%"></img> <img src="./src/images/moment.jpg" width="15%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105284/26aa7ad4-63ae-11e5-88b7-bc523a095c9f.png" width="15%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105288/28698fae-63ae-11e5-8ba7-a62360a8e8a7.png" width="15%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105283/251b6868-63ae-11e5-9918-b789d9d682ec.png" width="15%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105290/2a183f3a-63ae-11e5-9380-50d9f6d8afd6.png" width="15%"></img>
+  <img src="./src/images/react.png" width="10%"></img> <img src="./src/images/momentjs.svg" width="10%"></img> <img src="./src/images/semanticui.png" width="10%"></img> <img src="./src/images/reactbigcalendar.png" width="10%"></img>
 
   ### Development Tools
   <!-- Images for wireframe tool -->
-  <img src="./src/images/github.jpg" width="15%"></img> <img src="./src/images/draw.io.jpg" width="15%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105284/26aa7ad4-63ae-11e5-88b7-bc523a095c9f.png" width="15%"></img>
+  <img src="./src/images/github.png" width="10%"></img> <img src="./src/images/draw.io.jpg" width="10%"></img> <img src="./src/images/git.png" width="10%"></img> <img src="./src/images/vscode.png" width="10%"></img> <img src="./src/images/slack.png" width="10%"></img>
 
 ## Instructions for Installing Simplified Supper
   To launch the Simplified Supper app, you will need to have access to command line tools, node package manager, JSON Server. If you do not have access to any of these tools, you can find instructions for installing them in the [Appendix.](#appendix-2-set-up-instructions)
@@ -89,12 +88,9 @@
   ![Simplified Supper ERD](/src/images/Simplified_Supper_ERD.pdf)
 
   ### Wireframes/ Mockups
-  ![Log In Page](/src/images/wireframe_1.png)
-  ![New User Intro Screen](/src/images/wireframe_2.png)
-  ![New User Intro Screen 2](/src/images/wireframe_3.png)
-  ![Recipe Options Display](/src/images/wireframe_4.png)
-  ![Recipe Detail Card](/src/images/wireframe_5.png)
-  ![Main View](/src/images/wireframe_6.png)
+  <img src="./src/images/wireframe_1.png" width="40%"></img> <img src="./src/images/wireframe_2.png" width="40%"></img>
+  <img src="./src/images/wireframe_3.png" width="40%"></img> <img src="./src/images/wireframe_4.png" width="40%"></img>
+  <img src="./src/images/wireframe_5.png" width="40%"></img> <img src="./src/images/wireframe_6.png" width="40%"></img>
 
 
   ## Appendix 2: Set Up Instructions
@@ -149,20 +145,3 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-
-
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
