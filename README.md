@@ -30,9 +30,14 @@
 
 ## Technologies Used
   ### Development Languages and Libraries
-  <!-- Images for react, semantic ui for react, momentjs, react big calendar -->
+  <!-- Images for semantic ui for react, momentjs, react big calendar -->
+  ![react](/src/images/react.png)
+  ![momentJS](/src/images/moment.jpg)
+
   ### Development Tools
-  <!-- Images for github, wireframe tool -->
+  <!-- Images for wireframe tool -->
+  ![Github](/src/images/github.jpg)
+  ![Draw.io](/src/images/draw.io.jpg)
 
 ## Instructions for Installing Simplified Supper
   To launch the Simplified Supper app, you will need to have access to command line tools, node package manager, JSON Server. If you do not have access to any of these tools, you can find instructions for installing them in the [Appendix.](#appendix-2-set-up-instructions)
@@ -82,7 +87,7 @@
   ## Appendix 1: Planning Documentation
 
   ### Entity Relationship Diagrams
-  <!-- TODO: Insert ERD HERE -->
+  <!-- FIXME: Link to ERD currently broken -->
   ![Simplified Supper ERD](/src/images/Simplified_Supper_ERD.pdf)
 
   ### Wireframes/ Mockups
