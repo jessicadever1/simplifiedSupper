@@ -10,16 +10,16 @@
 ```
 
 # Simplified Supper
-  Insert Simplified Supper description here. Introduction to the app, why I built it and how it benefits the user
+  Simplified Supper is intended to make meal planning easy, allowing the user to see at a glance what they have coming up so grocery shopping is a breeze. By looking at the meals the user has planned for the week, Simplified Supper provides suggested recipes based on the percentage of ingredients that can be repurposed from your chosen meals.
 
 ## Table of Contents
-  * [Project Requirements and Features List](INSERT LINK HERE)
-  * [Technologies Used](INSERT LINK HERE)
-  * [Installing and Launching Simplified Supper](INSERT LINK HERE)
-  * [Appendix 1: Planning Documentation](INSERT LINK HERE)
+  * [Project Requirements and Features List](#project-requirements-and-features-list)
+  * [Technologies Used](#technologies-used)
+  * [Installing and Launching Simplified Supper](#instructions-for-installing-simplified-supper)
+  * [Appendix 1: Planning Documentation](#appendix-1-planning-documentation)
     * [Entity Relationship Diagrams](INSERT LINK HERE)
     * [Wireframes](INSERT LINK HERE)
-  * [Appendix 2: Set Up Instructions](INSERT LINK HERE)
+  * [Appendix 2: Set Up Instructions](#appendix-2-set-up-instructions)
     * [Sub-directory 1](INSERT LINK HERE)
     * [Sub-directory 2](INSERT LINK HERE)
     * [Sub-directory 3](INSERT LINK HERE)
@@ -51,7 +51,7 @@
 
 {bold} Clone this repo on you personal machine using the following command
     ```sh
-    git clone {insert clone link for repo}
+    git clone git@github.com:kellymorin/simplifiedSupper.git
   ```
 
 {bold} Install the NPM dependencies for this project using the following commands
@@ -89,7 +89,7 @@
   ```
 
 {Bold larger text}
-  Congratulations you are now experiencing Simplified Supper!
+ ### Congratulations you are now experiencing Simplified Supper!
 
   ## Appendix 1: Planning Documentation
 
