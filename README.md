@@ -2,7 +2,7 @@
   Simplified Supper is intended to make meal planning easy, allowing the user to see at a glance what they have coming up so grocery shopping is a breeze. By looking at the meals the user has planned for the week, Simplified Supper provides suggested recipes based on the percentage of ingredients that can be repurposed from your chosen meals.
 
 ## Table of Contents
-  * [Project Requirements and Features List](#project-requirements-and-features-list)
+  <!-- * [Project Requirements and Features List](#project-requirements-and-features-list) -->
   * [Technologies Used](#technologies-used)
   * [Installing and Launching Simplified Supper](#instructions-for-installing-simplified-supper)
   * [Appendix 1: Planning Documentation](#appendix-1-planning-documentation)
@@ -10,24 +10,8 @@
     * [Wireframes](#wireframes)
   * [Appendix 2: Set Up Instructions](#appendix-2-set-up-instructions)
 
-## Project Requirements and Features List
-<!-- TODO: Add a features list to this section -->
+<!-- ## Project Requirements and Features List -->
 
-  ### Topics Covered Building Simplified Supper
-  1. Functions
-  1. Stand-up Meetings
-  1. ERD Diagrams
-  1. React
-  1. State-management
-  1. Databases/API
-  1. Working with external APIs
-  1. Git/ Github
-  1. Objects
-  1. Handling user events
-  1. Factory Functions
-  1. Data entry/editing
-  1. Modular Code
-  1. Relational Data
 
 ## Technologies Used
   ### Development Languages and Libraries
@@ -104,25 +88,8 @@
     /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
   ```
 
-  You will need to go into the lib folder in your directory and install and build npm modules and also your json-server. In your terminal, type
-  <!-- FIXME: I need to double check this process, this may be outdated with react -->
-  ```sh
-    cd simplified-supper/src/lib
-    npm init
-    npm i
-    sudo npm install -g json-server
-  ```
+  Now you can follow the [installation instructions](#instructions-for-installing-simplified-supper) to get Simplified Supper up and running on your machine.
 
-  In order to create and edit the required JSON file, you will need a text editor. For this project we used VS Code. Visit [VSCode](https://code.visualstudio.com/) to install a copy.
-
-
-
-
-
-
-
-
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
