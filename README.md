@@ -19,7 +19,9 @@
 
   ### Development Tools
   <!-- TODO: Image for wireframe tool -->
-  <img src="./src/images/github.png" width="10%"></img> <img src="./src/images/draw.io.jpg" width="10%"></img> <img src="./src/images/git.png" width="10%"></img> <img src="./src/images/vscode.png" width="10%"></img> <img src="./src/images/slack.png" width="10%"></img>
+  <!-- FIXME: Update image for slack, currently showing a broken link -->
+  <img src="./src/images/github.png" width="10%"></img> <img src="./src/images/draw.io.jpg" width="10%"></img> <img src="./src/images/git.png" width="10%"></img> <img src="./src/images/vscode.png" width="10%"></img>
+  <!-- <img src="./src/images/slack.png" width="10%"></img> -->
 
 ## Instructions for Installing Simplified Supper
   To launch the Simplified Supper app, you will need to have access to command line tools, node package manager, JSON Server. If you do not have access to any of these tools, you can find instructions for installing them in the [Appendix.](#appendix-2-set-up-instructions)
