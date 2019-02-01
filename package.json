@@ -12,10 +12,11 @@
     "semantic-ui-react": "^0.83.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start & npm run json",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "json": "json-server -p 5002 -w api/db.json"
   },
   "eslintConfig": {
     "extends": "react-app"
