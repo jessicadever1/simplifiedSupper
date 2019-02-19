@@ -31,67 +31,67 @@ export default class EditUser extends Component{
         <Placeholder style={{height:150, width: 150}}>
           <Placeholder.Image />
         </Placeholder>
-        <Form onSubmit={()=>this.props.handleFormSubmit("Edit Profile")}>
+        <Form onSubmit={()=>this.props.handle_form_submit("Edit Profile")}>
           <Form.Group widths="equal">
             <Form.Input
               fluid
               label="First Name"
-              id="firstName"
-              value={this.props.state.firstName}
-              onChange={(evt)=>this.props.handleFieldChange(evt, "Edit Profile")}
-              focus={this.props.state.firstNameFocus}
+              id="first_name"
+              value={this.props.state.first_name}
+              onChange={(evt)=>this.props.handle_field_change(evt, "Edit Profile")}
+              focus={this.props.state.first_nameFocus}
             />
             <Form.Input
               fluid
               label="Last Name"
-              id="lastName"
-              value={this.props.state.lastName}
-              onChange={(evt)=>this.props.handleFieldChange(evt, "Edit Profile")}
-              focus={this.props.state.lastNameFocus}
+              id="last_name"
+              value={this.props.state.last_name}
+              onChange={(evt)=>this.props.handle_field_change(evt, "Edit Profile")}
+              focus={this.props.state.last_nameFocus}
               />
           </Form.Group>
           <Form.Input
             label="Username"
             id="username"
             value={this.props.state.username}
-            onChange={(evt)=>this.props.handleFieldChange(evt, "Edit Profile")}
-            error={this.props.state.usernameError}
-            focus={this.props.state.usernameFocus}
+            onChange={(evt)=>this.props.handle_field_change(evt, "Edit Profile")}
+            error={this.props.state.username_error}
+            focus={this.props.state.username_focus}
           />
           <Form.Input
             label="Email"
             id="email"
             value={this.props.state.email}
-            onChange={(evt)=>this.props.handleFieldChange(evt, "Edit Profile")}
-            error={this.props.state.emailError}
-            focus={this.props.state.emailFocus}
+            onChange={(evt)=>this.props.handle_field_change(evt, "Edit Profile")}
+            error={this.props.state.email_error}
+            focus={this.props.state.email_focus}
           />
           <Form.Input
             label="Current Password"
             id="previousPassword"
-            value={this.props.state.previousPassword}
-            onChange={(evt)=>this.props.handleFieldChange(evt, "Edit Profile")}
-            error={this.props.state.previousPasswordError}
-            focus={this.props.state.previousPasswordFocus}
+            value={this.props.state.previous_password}
+            onChange={(evt)=>this.props.handle_field_change(evt, "Edit Profile")}
+            error={this.props.state.previous_password_error}
+            focus={this.props.state.previous_password_focus}
           />
           <Form.Input
             label="New Password"
             id="password"
             value={this.props.state.password}
-            onChange={(evt)=>this.props.handleFieldChange(evt, "Edit Profile")}
+            onChange={(evt)=>this.props.handle_field_change(evt, "Edit Profile")}
           />
           <Form.Input
             label="Confirm New Password"
             id="confirmPassword"
-            value={this.props.state.confirmPassword}
-            onChange={(evt)=>this.handleFieldChange(evt, "Edit Profile")}
-            error={this.props.state.confirmPasswordError}
-            focus={this.props.state.confirmPasswordFocus}
+            value={this.props.state.confirm_password}
+            onChange={(evt)=>this.handle_field_change(evt, "Edit Profile")}
+            error={this.props.state.confirm_password_error}
+            focus={this.props.state.confirm_password_focus}
           />
           <Form.Button type="submit" color="teal" content="Save Changes"/>
           <Button
             name = "View Profile"
-            onClick={this.props.handleItemClick}
+            onClick={this.props.handle_item_click}
             color="teal"
             content="Cancel Changes"
           />

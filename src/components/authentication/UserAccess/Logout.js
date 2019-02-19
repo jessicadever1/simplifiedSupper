@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 
 export default class Logout extends Component{
   componentDidMount=()=>{
-    this.props.logoutFunction()
+    this.props.logout_function()
   }
   render(){
     return(

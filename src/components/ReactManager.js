@@ -5,55 +5,55 @@ import APIManager from '../modules/APIManager'
 
 export default class ReactManager extends Component{
   state={
-    securityQuestions: [],
-    activeUser: [],
-    newUser: false,
+    security_questions: [],
+    active_user: [],
+    new_user: false,
   }
 
   componentDidMount=()=>{
-    this.resetState()
+    this.reset_state()
   }
 
-  resetState=()=>{
-    APIManager.getAllCategory("securityQuestions").then((questions) => this.setState({securityQuestions: questions})).then(()=> {
-      let currentUser= parseInt(sessionStorage.getItem("id"))
-      if(isNaN(currentUser)){
-        this.setState({activeUser: []})
+  reset_state=()=>{
+    APIManager.getAllCategory("securityQuestions").then((questions) => this.setState({security_questions: questions})).then(()=> {
+      let current_user= parseInt(sessionStorage.getItem("id"))
+      if(isNaN(current_user)){
+        this.setState({active_user: []})
       } else{
-        APIManager.getOneFromCategory("users", currentUser)
-        .then((user)=> this.setState({activeUser: user}))
+        APIManager.getOneFromCategory("users", current_user)
+        .then((user)=> this.setState({active_user: user}))
       }
     })
   }
 
-  loginFunction=(id)=>{
+  login_function=(id)=>{
     sessionStorage.setItem("id", id)
-    this.resetState()
+    this.reset_state()
   }
 
-  logoutFunction =()=>{
+  logout_function =()=>{
     sessionStorage.removeItem("id")
-    this.resetState();
+    this.reset_state();
   }
 
-  createNewUser=(newUser)=>{
-    APIManager.saveItem("users", newUser)
+  create_new_user=(new_user)=>{
+    APIManager.saveItem("users", new_user)
     .then((user)=> {
       sessionStorage.setItem("id", user.id)
     })
-    this.resetState()
-    this.setState({newUser: true})
+    this.reset_state()
+    this.setState({new_user: true})
   }
 
-  updateUserInfo=(updatedUser, id)=>{
-    APIManager.updateItem("users", id, updatedUser).then((user)=> this.setState({activeUser: user}))
+  update_user_info=(updated_user, id)=>{
+    APIManager.updateItem("users", id, updated_user).then((user)=> this.setState({active_user: user}))
   }
 
   render(){
     return(
       <React.Fragment>
-        <NavBar activeUser={this.state.activeUser} logoutFunction={this.logoutFunction}/>
-        <ApplicationViews securityQuestions={this.state.securityQuestions} logoutFunction={this.logoutFunction} loginFunction={this.loginFunction} createNewUser={this.createNewUser} newUser={this.state.newUser} activeUser={this.state.activeUser}/>
+        <NavBar active_user={this.state.active_user} logout_function={this.logout_function}/>
+        <ApplicationViews security_questions={this.state.security_questions} logout_function={this.logout_function} login_function={this.login_function} create_new_user={this.create_new_user} new_user={this.state.new_user} active_user={this.state.active_user}/>
       </React.Fragment>
     )
   }

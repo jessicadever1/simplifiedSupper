@@ -4,17 +4,17 @@ import LogIn from './LogIn';
 import Register from './Register';
 
 export default class LogInOrRegister extends Component {
-  state = { activeItem: 'LogIn' }
+  state = { active_item: 'LogIn' }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handle_item_click = (e, { name }) => this.setState({ active_item: name })
 
   render() {
-    const { activeItem } = this.state
-    let LogInOrRegister = ""
-    if (activeItem === "LogIn"){
-      LogInOrRegister = <LogIn loginFunction={this.props.loginFunction} handleFieldChange={this.props.handleFieldChange} handleFormSubmit={this.props.handleFormSubmit} state={this.props.state}/>
-    } else if (activeItem === "Register"){
-      LogInOrRegister = <Register securityQuestions={this.props.securityQuestions} createNewUser={this.props.createNewUser} handleFieldChange={this.props.handleFieldChange} handleFormSubmit={this.props.handleFormSubmit}activeUser={this.props.activeUser}/>
+    const { active_item } = this.state
+    let log_in_or_register = ""
+    if (active_item === "LogIn"){
+      log_in_or_register = <LogIn login_function={this.props.login_function} handle_field_change={this.props.handle_field_change} handle_form_submit={this.props.handle_form_submit} state={this.props.state}/>
+    } else if (active_item === "Register"){
+      log_in_or_register = <Register security_questions={this.props.security_questions} create_new_user={this.props.create_new_user} handle_field_change={this.props.handle_field_change} handle_form_submit={this.props.handle_form_submit} active_user={this.props.active_user}/>
     }
 
     return (
@@ -22,16 +22,16 @@ export default class LogInOrRegister extends Component {
             <Menu pointing secondary>
               <Menu.Item
                 name='LogIn'
-                active={activeItem === 'LogIn'}
-                onClick={this.handleItemClick}
+                active={active_item === 'LogIn'}
+                onClick={this.handle_item_click}
               />
               <Menu.Item
                 name='Register'
-                active={activeItem === 'Register'}
-                onClick={this.handleItemClick}
+                active={active_item === 'Register'}
+                onClick={this.handle_item_click}
               />
             </Menu>
-            {LogInOrRegister}
+            {log_in_or_register}
       </React.Fragment>
     )
   }

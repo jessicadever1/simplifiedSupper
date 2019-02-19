@@ -9,43 +9,43 @@ import UserManagement from './authentication/UserManagement';
 
 export default class ApplicationViews extends Component{
 
-  isNewUser = ()=> this.props.newUser !== false
+  is_new_user = ()=> this.props.new_user !== false
 
-  isAuthenticated = ()=> sessionStorage.getItem("id") !== null
+  is_authenticated = ()=> sessionStorage.getItem("id") !== null
 
   render(){
     return(
       <React.Fragment>
         <Route exact path="/" render={(props)=>{
-          if(this.isNewUser()){
+          if(this.is_new_user()){
             return <Redirect to="/GetStarted" />
-          } else if(this.isAuthenticated()){
-            return <Home activeUser={this.props.activeUser}/>
+          } else if(this.is_authenticated()){
+            return <Home active_user={this.props.active_user}/>
           }else{
-            return <UserManagement securityQuestions ={this.props.securityQuestions} loginFunction={this.props.loginFunction} createNewUser={this.props.createNewUser} activeUser={this.props.activeUser}/>
+            return <UserManagement security_questions ={this.props.security_questions} login_function={this.props.login_function} create_new_user={this.props.create_new_user} active_user={this.props.active_user}/>
           }
         }} />
         <Route exact path="/logout" render={(props)=>{
-          return <Logout logoutFunction={this.props.logoutFunction}/>
+          return <Logout logout_function={this.props.logout_function}/>
         }} />
         <Route exact path="/GetStarted" render={(props)=>{
-          return <GetStarted  {...props} activeUser={this.props.activeUser}/>
+          return <GetStarted  {...props} activeUser={this.props.active_user}/>
         }} />
         <Route exact path="/ViewProfile" render={(props)=>{
-            return <UserManagement securityQuestions={this.props.securityQuestions} loginFunction={this.props.loginFunction} createNewUser={this.props.createNewUser} activeUser={this.props.activeUser} />
+            return <UserManagement security_questions={this.props.security_questions} login_function={this.props.login_function} create_new_user={this.props.create_new_user} active_user={this.props.active_user} />
         }} />
         <Route exact path="/SuggestedRecipes" render={(props)=> {
-          if(this.isAuthenticated()){
+          if(this.is_authenticated()){
             return <SuggestedRecipes {...props}/>
           } else{
-            return <UserManagement securityQuestions={this.props.securityQuestions} loginFunction={this.props.loginFunction} createNewUser={this.props.createNewUser} activeUser={this.props.activeUser}/>
+            return <UserManagement security_questions={this.props.security_questions} login_function={this.props.login_function} create_new_user={this.props.create_new_user} active_user={this.props.active_user}/>
           }
           }} />
         <Route exact path="/RecipeCard" render={(props)=> {
-          if(this.isAuthenticated()){
+          if(this.is_authenticated()){
             return <RecipeModal {...props} />
           } else{
-            return <UserManagement securityQuestions={this.props.securityQuestions} loginFunction={this.props.loginFunction} createNewUser={this.props.createNewUser} activeUser={this.props.activeUser} />
+            return <UserManagement security_questions={this.props.security_questions} login_function={this.props.login_function} create_new_user={this.props.create_new_user} active_user={this.props.active_user} />
           }
           }} />
       </React.Fragment>

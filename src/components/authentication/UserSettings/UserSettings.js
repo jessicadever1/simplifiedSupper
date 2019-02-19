@@ -5,23 +5,23 @@ import { Segment } from 'semantic-ui-react';
 
 export default class UserSettings extends Component{
 
-  state = { activeItem: 'View Profile'}
+  state = { active_item: 'View Profile'}
 
-  handleItemClick = (e, {name}) => this.setState({activeItem: name})
+  handle_item_click = (e, {name}) => this.setState({active_item: name})
 
   render(){
-    const {activeItem} = this.state
-    let ViewOrEdit = ""
-    if(activeItem === 'View Profile'){
-      ViewOrEdit = <ViewUser activeUser={this.props.activeUser} handleItemClick={this.handleItemClick}/>
-    } else if(activeItem === 'Edit Profile'){
-      ViewOrEdit = <EditUser handleFormSubmit={this.props.handleFormSubmit} handleFieldChange ={this.props.handleFieldChange} handleItemClick={this.handleItemClick} state={this.props.state} activeUser={this.props.activeUser} securityQuestions={this.props.securityQuestions}/>
+    const {active_item} = this.state
+    let view_or_edit = ""
+    if(active_item === 'View Profile'){
+      view_or_edit = <ViewUser active_user={this.props.active_user} handle_item_click={this.handle_item_click}/>
+    } else if(active_item === 'Edit Profile'){
+      view_or_edit = <EditUser handleFormSubmit={this.props.handleFormSubmit} handle_field_change ={this.props.handle_field_change} handle_item_click={this.handle_item_click} state={this.props.state} active_user={this.props.active_user} security_questions={this.props.security_questions}/>
     }
     return(
       <React.Fragment>
         <Segment raised>
           <Segment size="large">
-            {ViewOrEdit}
+            {view_or_edit}
           </Segment>
         </Segment>
       </React.Fragment>

@@ -16,10 +16,10 @@ export default class ViewUser extends Component{
           </Segment>
           <Segment textAlign="left">
             <List>
-              <List.Item>{this.props.activeUser.firstName} {this.props.activeUser.lastName}</List.Item>
-              <List.Item icon="users" content={this.props.activeUser.username}/>
-              <List.Item icon="mail" content={this.props.activeUser.email} />
-              <List.Item icon="key" content={this.props.activeUser.password} />
+              <List.Item>{this.props.active_user.first_name} {this.props.active_user.last_name}</List.Item>
+              <List.Item icon="users" content={this.props.active_user.username}/>
+              <List.Item icon="mail" content={this.props.active_user.email} />
+              <List.Item icon="key" content={this.props.active_user.password} />
             </List>
           </Segment>
         </Segment.Group>
@@ -32,7 +32,7 @@ export default class ViewUser extends Component{
         />
         <Button
           color="teal"
-          onClick={this.props.handleItemClick}
+          onClick={this.props.handle_item_click}
           name="Edit Profile"
           content="Edit Profile"
         />

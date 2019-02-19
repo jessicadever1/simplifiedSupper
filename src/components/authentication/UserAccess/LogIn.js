@@ -8,12 +8,12 @@ export default class LogIn extends Component{
   render(){
     return(
       <React.Fragment>
-      <Form onSubmit={()=>this.props.handleFormSubmit("Log In")}>
+      <Form onSubmit={()=>this.props.handle_form_submit("Log In")}>
         <Form.Input
           id="username"
           label="Username"
           placeholder="Username"
-          onChange={(evt)=>this.props.handleFieldChange(evt, "Log In")}
+          onChange={(evt)=>this.props.handle_field_change(evt, "Log In")}
           value={this.props.username}
           required
         />
@@ -23,7 +23,7 @@ export default class LogIn extends Component{
           placeholder="Password"
           type="password"
           value={this.props.password}
-          onChange={(evt)=>this.props.handleFieldChange(evt, "Log In")}
+          onChange={(evt)=>this.props.handle_field_change(evt, "Log In")}
           required
         />
         <Form.Button

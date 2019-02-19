@@ -14,147 +14,147 @@ import UserSettings from './UserSettings/UserSettings';
 
 export default class UserManagement extends Component{
   state={
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     gender: "",
     username: "",
     email: "",
-    previousPassword: "",
+    previous_password: "",
     password: "",
-    confirmPassword: "",
-    securityQuestion: "",
-    securityQuestionAnswer: "",
+    confirm_password: "",
+    security_question: "",
+    security_question_answer: "",
     terms: false,
-    firstNameError: false,
-    lastNameError: false,
-    usernameError: false,
-    emailError: false,
-    passwordError: false,
-    confirmPasswordError: false,
-    previousPasswordError: false,
-    firstNameFocus: false,
-    lastNameFocus: false,
-    usernameFocus: false,
-    emailFocus: false,
-    previousPasswordFocus: false,
-    passwordFocus: false,
-    confirmPasswordFocus: false,
-    securityQuestionAnswerFocus: false,
+    first_name_error: false,
+    last_name_error: false,
+    username_error: false,
+    email_error: false,
+    password_error: false,
+    confirm_password_error: false,
+    previous_password_error: false,
+    first_name_focus: false,
+    last_name_focus: false,
+    username_focus: false,
+    email_focus: false,
+    previous_password_focus: false,
+    password_focus: false,
+    confirm_password_focus: false,
+    security_question_answer_focus: false,
     disabled: false
   }
 
-  handleFieldChange=(evt, key)=>{
-    let stateToChange ={}
+  handle_field_change=(evt, key)=>{
+    let state_to_change ={}
     // this.setState({disabled: true})
-    if(evt.target.id === "firstName"){
-      stateToChange[evt.target.id] = evt.target.value
-      stateToChange["firstNameFocus"] = true
-      this.setState(stateToChange)
-    } else if(evt.target.id === "lastName"){
-      stateToChange[evt.target.id] = evt.target.value
-      stateToChange["lastNameFocus"] = true
-      this.setState(stateToChange)
+    if(evt.target.id === "first_name"){
+      state_to_change[evt.target.id] = evt.target.value
+      state_to_change["first_name_focus"] = true
+      this.setState(state_to_change)
+    } else if(evt.target.id === "last_name"){
+      state_to_change[evt.target.id] = evt.target.value
+      state_to_change["last_name_focus"] = true
+      this.setState(state_to_change)
     } else if(evt.target.id === "password"){
-      stateToChange[evt.target.id] = evt.target.value
-      stateToChange["passwordFocus"] = true
-      this.setState(stateToChange)
-    } else if(evt.target.id === "previousPassword"){
-      let previousPassword = evt.target.value
-      stateToChange["previousPasswordFocus"] = true
-      stateToChange["previousPasswordError"] = false
-      this.setState(stateToChange)
-      if(previousPassword !== this.props.activeUser.password){
-        stateToChange["previousPasswordError"] = true
-        stateToChange["previousPassword"] = previousPassword
-        this.setState(stateToChange)
+      state_to_change[evt.target.id] = evt.target.value
+      state_to_change["password_focus"] = true
+      this.setState(state_to_change)
+    } else if(evt.target.id === "previous_password"){
+      let previous_password = evt.target.value
+      state_to_change["previous_password_focus"] = true
+      state_to_change["previous_password_error"] = false
+      this.setState(state_to_change)
+      if(previous_password !== this.props.active_user.password){
+        state_to_change["previous_password_error"] = true
+        state_to_change["previous_password"] = previous_password
+        this.setState(state_to_change)
       }else{
-        stateToChange["previousPassword"] = previousPassword
+        state_to_change["previous_password"] = previous_password
       }
-    } else if(evt.target.id === "confirmPassword"){
-      let confirmPassword = evt.target.value
-      this.setState({confirmPasswordError: false, confirmPasswordFocus: true})
-      if(this.state.password === confirmPassword){
-        stateToChange["confirmPassword"] = confirmPassword
-        this.setState(stateToChange)
+    } else if(evt.target.id === "confirm_password"){
+      let confirm_password = evt.target.value
+      this.setState({confirm_password_error: false, confirm_password_focus: true})
+      if(this.state.password === confirm_password){
+        state_to_change["confirm_password"] = confirm_password
+        this.setState(state_to_change)
       } else{
-        stateToChange["confirmPasswordError"] = true
-        this.setState(stateToChange)
+        state_to_change["confirm_password_error"] = true
+        this.setState(state_to_change)
         if(key === "Edit Profile"){
-          stateToChange["confirmPassword"] = confirmPassword
+          state_to_change["confirm_password"] = confirm_password
         }
       }
     }
     else if(evt.target.id === "email"){
       let email = evt.target.value
-      this.setState({emailFocus: true, emailError: false})
+      this.setState({email_focus: true, email_error: false})
       if(!email.includes("@")){
-        stateToChange["emailError"] = true
-        this.setState(stateToChange)
+        state_to_change["email_error"] = true
+        this.setState(state_to_change)
       }
       APIManager.getAllCategory("users").then(users => {
         users.forEach(user =>{
           if(user.email === email){
-            stateToChange["emailError"] = true
-            this.setState(stateToChange)
+            state_to_change["email_error"] = true
+            this.setState(state_to_change)
           } else{
-            stateToChange["email"] = email
-            this.setState(stateToChange)
+            state_to_change["email"] = email
+            this.setState(state_to_change)
           }
         })
       })
       if(key === "Edit Profile"){
-        stateToChange["email"] = this.props.activeUser.email
-        this.setState(stateToChange)
+        state_to_change["email"] = this.props.active_user.email
+        this.setState(state_to_change)
       }
     } else if(evt.target.id === "username"){
       let username = evt.target.value
-      this.setState({usernameError: false, usernameFocus: true})
+      this.setState({username_error: false, username_focus: true})
       APIManager.getAllCategory("users").then(users => {
         users.forEach(user => {
           if(user.username === username){
-            stateToChange["usernameError"] = true
-            this.setState(stateToChange)
+            state_to_change["username_error"] = true
+            this.setState(state_to_change)
           } else{
-            stateToChange["username"] = username
-            this.setState(stateToChange)
+            state_to_change["username"] = username
+            this.setState(state_to_change)
           }
         })
       })
       if(key === "Edit Profile"){
-        stateToChange["username"] = this.props.activeUser.username
-        this.setState(stateToChange)
+        state_to_change["username"] = this.props.active_user.username
+        this.setState(state_to_change)
       }
     }
 
     if(key === "Register"){
-      if(evt.target.id === "securityQuestionAnswer"){
-        stateToChange[evt.target.id] = evt.target.value
-        stateToChange["securityQuestionAnswerFocus"] = true
-        this.setState(stateToChange)
+      if(evt.target.id === "security_question_answer"){
+        state_to_change[evt.target.id] = evt.target.value
+        state_to_change["security_question_answer_focus"] = true
+        this.setState(state_to_change)
       }
       else if(evt.target.id === "terms"){
         let checkbox = evt.target
         console.log(checkbox)
         if(checkbox.checked){
-          stateToChange["terms"] = true
-          // stateToChange["disabled"] = false
-          this.setState(stateToChange)
+          state_to_change["terms"] = true
+          // state_to_change["disabled"] = false
+          this.setState(state_to_change)
         }
       }
     } else{
-      stateToChange[evt.target.id] = evt.target.value
-      this.setState(stateToChange)
+      state_to_change[evt.target.id] = evt.target.value
+      this.setState(state_to_change)
     }
   }
 
-  handleDropdownChange =(e, {name, value}) => this.setState({ [name]: value})
+  handle_dropdown_change =(e, {name, value}) => this.setState({ [name]: value})
 
-  handleFormSubmit=(key)=>{
+  handle_form_submit=(key)=>{
     if(key === "Log In"){
       APIManager.getAllCategory(`users/?q=${this.state.username}`).then(user => {
         if(user.length){
           if(user[0].password === this.state.password){
-            this.props.loginFunction(user[0].id)
+            this.props.login_function(user[0].id)
             // sessionStorage.setItem("id", user[0].id)
             this.setState({username: "", password: ""})
             return
@@ -167,55 +167,55 @@ export default class UserManagement extends Component{
         }
       })
     } else if(key === "Register"){
-      if(this.state.firstName !== "" || this.state.lastName !== "" || this.state.username !== "" || this.state.email !== "" || this.state.password !== "" || this.state.confirmPassword !== ""){
-        let newUser = {
-          firstName: this.state.firstName,
-          lastName: this.state.lastName,
+      if(this.state.first_name !== "" || this.state.last_name !== "" || this.state.username !== "" || this.state.email !== "" || this.state.password !== "" || this.state.confirm_password !== ""){
+        let new_user = {
+          first_name: this.state.first_name,
+          last_name: this.state.last_name,
           username: this.state.username,
           email: this.state.email,
-          password: this.state.confirmPassword,
+          password: this.state.confirm_password,
           terms: this.state.terms
         }
-        this.props.createNewUser(newUser)
+        this.props.create_new_user(new_user)
         this.setState({
-          firstName: "",
-          lastName: "",
+          first_name: "",
+          last_name: "",
           gender: "",
           username: "",
           email: "",
           password: "",
-          confirmPassword: "",
+          confirm_password: "",
           terms: false,
-          securityQuestion: "",
+          security_question: "",
           sqAnswer: "",
         })
-      document.querySelector("#confirmPassword").value = ""
+      document.querySelector("#confirm_password").value = ""
     }
     } else if(key === "Edit Profile"){
-      // let stateToChange = {}
-      if(this.state.firstName !== "" && this.state.lastName !== "" && this.state.username !== "" && this.state.email !== ""){
-        if(this.state.confirmPassword !== ""){
-          if(this.state.confirmPassword === this.state.password){
-            let updatedUser = {
-              firstName: this.state.firstName,
-              lastName: this.state.lastName,
+      // let state_to_change = {}
+      if(this.state.first_name !== "" && this.state.last_name !== "" && this.state.username !== "" && this.state.email !== ""){
+        if(this.state.confirm_password !== ""){
+          if(this.state.confirm_password === this.state.password){
+            let updated_user = {
+              first_name: this.state.first_name,
+              last_name: this.state.last_name,
               username: this.state.username,
               email: this.state.email,
-              password: this.state.confirmPassword
+              password: this.state.confirm_password
             }
-            APIManager.updateItem("users", this.props.activeUser.id, updatedUser)
+            APIManager.updateItem("users", this.props.active_user.id, updated_user)
           } else{
             console.log("Your passwords must match to save changes")
           }
         } else{
-          let updatedUser={
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
+          let updated_user={
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
             username: this.state.username,
             email: this.state.email,
-            password: this.props.activeUser.password
+            password: this.props.active_user.password
           }
-          this.props.updateUserInfo(updatedUser, this.props.activeUser.id)
+          this.props.update_user_info(updated_user, this.props.active_user.id)
         }
       } else{
         console.log("please fill out all fields")
@@ -223,14 +223,14 @@ export default class UserManagement extends Component{
     }
   }
 
-  isAuthenticated= ()=> sessionStorage.getItem("id") !== null
+  is_authenticated= ()=> sessionStorage.getItem("id") !== null
 
   render(){
-    let displayVariable = ""
-    if(this.isAuthenticated()){
-      displayVariable = <UserSettings activeUser={this.props.activeUser} handleFieldChange={this.handleFieldChange} handleFormSubmit={this.handleFormSubmit} state={this.state}/>
+    let display_variable = ""
+    if(this.is_authenticated()){
+      display_variable = <UserSettings active_user={this.props.active_user} handle_field_change={this.handle_field_change} handle_form_submit={this.handle_form_submit} state={this.state}/>
     } else{
-      displayVariable = <LogInRegister handleFieldChange={this.handleFieldChange} handleFormSubmit={this.handleFormSubmit} state={this.state} loginFunction={this.props.loginFunction} securityQuestions={this.props.securityQuestions}/>
+      display_variable = <LogInRegister handle_field_change={this.handle_field_change} handle_form_submit={this.handle_form_submit} state={this.state} login_function={this.props.login_function} security_questions={this.props.security_questions}/>
     }
     return(
       <React.Fragment>
@@ -243,7 +243,7 @@ export default class UserManagement extends Component{
         <Grid textAlign="center" style={{height: '100%'}} verticalAlign="middle">
           <Grid.Column style={{maxWidth: 450, height: '90vh'}}>
             <Header as="h2" color="teal" textAlign="center" content="Simplified Supper" />
-              {displayVariable}
+              {display_variable}
           </Grid.Column>
         </Grid>
         </div>

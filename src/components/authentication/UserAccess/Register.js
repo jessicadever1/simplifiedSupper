@@ -15,25 +15,25 @@ export default class Register extends Component{
   render(){
     return(
       <React.Fragment>
-        <Form onSubmit={()=>this.props.handleFormSubmit("Register")}>
+        <Form onSubmit={()=>this.props.handle_form_submit("Register")}>
           <Form.Group widths="equal">
             <Form.Input
               fluid
               placeholder="First Name"
-              id="firstName"
-              value={this.props.firstName}
-              onChange={(evt)=>this.props.handleFieldChange(evt, "Register")}
+              id="first_name"
+              value={this.props.first_name}
+              onChange={(evt)=>this.props.handle_field_change(evt, "Register")}
               required
-              focus={this.props.firstNameFocus}
+              focus={this.props.first_name_focus}
               />
             <Form.Input
               fluid
               placeholder="Last Name"
               id="lastName"
-              value={this.props.lastName}
-              onChange={(evt)=>this.props.handleFieldChange(evt, "Register")}
+              value={this.props.last_name}
+              onChange={(evt)=>this.props.handle_field_change(evt, "Register")}
               required
-              focus={this.props.lastNameFocus}
+              focus={this.props.last_name_focus}
             />
             <Form.Select
               fluid
@@ -41,66 +41,66 @@ export default class Register extends Component{
               options={options}
               placeholder="Gender"
               id="gender"
-              onChange={this.props.handleDropdownChange}
+              onChange={this.props.handle_dropdown_change}
             />
           </Form.Group>
           <Form.Input
             placeholder="Username"
             id="username"
             value={this.props.username}
-            onChange={(evt)=>this.props.handleFieldChange(evt, "Register")}
+            onChange={(evt)=>this.props.handle_field_change(evt, "Register")}
             required
-            error={this.props.usernameError}
-            focus={this.props.usernameFocus}
+            error={this.props.username_error}
+            focus={this.props.username_focus}
           />
           <Form.Input
             placeholder="Email Address"
             id="email"
             value={this.props.email}
-            onChange={(evt)=>this.props.handleFieldChange(evt, "Register")}
+            onChange={(evt)=>this.props.handle_field_change(evt, "Register")}
             required
-            error={this.props.emailError}
-            focus={this.props.emailFocus}
+            error={this.props.email_error}
+            focus={this.props.email_focus}
           />
           <Form.Input
             type="password"
             placeholder="Password"
             id="password"
             value={this.props.password}
-            onChange={(evt)=>this.props.handleFieldChange(evt, "Register")}
+            onChange={(evt)=>this.props.handle_field_change(evt, "Register")}
             required
-            focus={this.props.passwordFocus}
+            focus={this.props.password_focus}
           />
           <Form.Input
             type="password"
             placeholder="Confirm Password"
             id="confirmPassword"
-            value={this.props.confirmPassword}
-            onChange={(evt)=>this.props.handleFieldChange(evt, "Register")}
+            value={this.props.confirm_password}
+            onChange={(evt)=>this.props.handle_field_change(evt, "Register")}
             required
-            error={this.props.confirmPasswordError}
-            focus={this.props.confirmPasswordFocus}
+            error={this.props.confirm_password_error}
+            focus={this.props.confirm_password_focus}
           />
           <Form.Select
             name="securityQuestion"
-            options={this.props.securityQuestions}
+            options={this.props.security_questions}
             placeholder="Please Select a Security Question"
             id="securityQuestion"
-            onChange={this.props.handleDropdownChange}
+            onChange={this.props.handle_dropdown_change}
           />
           <Form.Input
             placeholder="Your Answer Here"
             id="securityQuestionAnswer"
-            value={this.props.securityQuestionAnswer}
-            onChange={(evt)=>this.props.handleFieldChange(evt, "Register")}
+            value={this.props.security_question_answer}
+            onChange={(evt)=>this.props.handle_field_change(evt, "Register")}
             required
-            focus={this.props.securityQuestionAnswerFocus}
+            focus={this.props.security_question_answer_focus}
           />
           <Form.Checkbox
             label="I agree to the Terms and Conditions"
             id="terms"
             checked={this.props.terms}
-            onChange={(evt)=>this.props.handleFieldChange(evt, "Register")}
+            onChange={(evt)=>this.props.handle_field_change(evt, "Register")}
           />
           <Form.Button
             disabled={this.props.disabled}
