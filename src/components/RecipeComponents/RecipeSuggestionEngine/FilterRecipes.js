@@ -2,33 +2,33 @@ import React, {Component} from 'react'
 import { Menu, Form, Accordion} from 'semantic-ui-react';
 
 export default class FilterRecipes extends Component{
-  state = {activeIndex: 0}
+  state = {active_index: 0}
 
-  handleClick = (e, titleProps) =>{
-    const {index} = titleProps
-    const {activeIndex} = this.state
-    const newIndex = activeIndex === index ? -1 : index
+  handle_click = (e, title_props) =>{
+    const {index} = title_props
+    const {active_index} = this.state
+    const new_index = active_index === index ? -1 : index
 
-    this.setState({activeIndex: newIndex})
+    this.setState({active_index: new_index})
   }
-  makeCuisineForm = (cuisines) =>{
+  make_cuisine_form = (cuisines) =>{
     return <Form className="filter">
       <Form.Group grouped>
         {
           cuisines.map(cuisine =>{
-            return <Form.Checkbox key={cuisine.id} label={cuisine.text} id={`cuisine-${cuisine.id}`} onChange={(evt) => this.props.filterRecipes(evt)} value={cuisine.text}/>
+            return <Form.Checkbox key={cuisine.id} label={cuisine.text} id={`cuisine-${cuisine.id}`} onChange={(evt) => this.props.filter_recipes(evt)} value={cuisine.text}/>
           })
         }
       </Form.Group>
     </Form>
   }
 
-  makeCourseForm = (courses) =>{
+  make_course_form = (courses) =>{
     return <Form className="filter">
       <Form.Group grouped>
         {
           courses.map(course =>{
-            return <Form.Checkbox key={course.id} label={course.text} id={`course-${course.id}`} value={course.text} onChange={(evt)=> this.props.filterRecipes(evt)}/>
+            return <Form.Checkbox key={course.id} label={course.text} id={`course-${course.id}`} value={course.text} onChange={(evt)=> this.props.filter_recipes(evt)}/>
           })
         }
       </Form.Group>
@@ -84,38 +84,38 @@ export default class FilterRecipes extends Component{
   //   </Form>
   // }
 
-  makeOtherForm = () =>{
+  make_other_form = () =>{
     return <Form>
       <Form.Group grouped>
-        <Form.Checkbox onChange={(evt)=> this.props.filterRecipes(evt)} label="Eat Out" id={`otherFilter-eatOut`} value="Eat Out"/>
-        <Form.Checkbox onChange={(evt)=> this.props.filterRecipes(evt)} label="Leftovers" id="otherFilter-leftovers" value="Leftovers" />
+        <Form.Checkbox onChange={(evt)=> this.props.filter_recipes(evt)} label="Eat Out" id={`otherFilter-eatOut`} value="Eat Out"/>
+        <Form.Checkbox onChange={(evt)=> this.props.filter_recipes(evt)} label="Leftovers" id="otherFilter-leftovers" value="Leftovers" />
       </Form.Group>
     </Form>
   }
 
   render(){
-    const {activeIndex} = this.state
+    const {active_index} = this.state
     return(
       <React.Fragment>
         <Accordion as={Menu} vertical>
           <Menu.Item header>Filter Recipes</Menu.Item>
           <Menu.Item>
             <Accordion.Title
-              active= {activeIndex === 0}
+              active= {active_index === 0}
               content="Cuisine"
               index={0}
-              onClick = {this.handleClick}
+              onClick = {this.handle_click}
               />
-            <Accordion.Content active={activeIndex === 0} content={this.makeCuisineForm(this.props.cuisines)} />
+            <Accordion.Content active={active_index === 0} content={this.make_cuisine_form(this.props.cuisines)} />
           </Menu.Item>
           <Menu.Item>
             <Accordion.Title
-              active={activeIndex === 1}
+              active={active_index === 1}
               content = "Courses"
               index={1}
-              onClick={this.handleClick}
+              onClick={this.handle_click}
             />
-            <Accordion.Content active={activeIndex === 1} content={this.makeCourseForm(this.props.courses)} />
+            <Accordion.Content active={active_index === 1} content={this.make_course_form(this.props.courses)} />
           </Menu.Item>
           {/* <Menu.Item>
             <Accordion.Title
@@ -128,12 +128,12 @@ export default class FilterRecipes extends Component{
           </Menu.Item> */}
           <Menu.Item>
             <Accordion.Title
-              active={activeIndex === 3}
+              active={active_index === 3}
               content="Other"
               index={3}
-              onClick={this.handleClick}
+              onClick={this.handle_click}
             />
-            <Accordion.Content active={activeIndex === 3} content={this.makeOtherForm()} />
+            <Accordion.Content active={active_index === 3} content={this.make_other_form()} />
           </Menu.Item>
         </Accordion>
 

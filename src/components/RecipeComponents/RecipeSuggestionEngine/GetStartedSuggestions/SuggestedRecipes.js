@@ -5,17 +5,17 @@ import RecipeModal from '../../RecipeModal/RecipeModal';
 export default class SuggestedRecipes extends Component{
 
   render(){
-    let showRecpie = ""
-    if(this.props.showRecipe === true){
-      showRecpie = <RecipeModal getStarted={this.props.getStarted}
-      handleCalendarChange={this.props.handleCalendarChange} closeRecipeDetails={this.props.closeRecipeDetails} recipeDetails={this.props.recipeDetails} open={this.props.open} activeRecipeKey={this.props.activeRecipeKey}/>
+    let show_recpie = ""
+    if(this.props.show_recipe === true){
+      show_recpie = <RecipeModal get_started={this.props.get_started}
+      handle_calendar_change={this.props.handle_calendar_change} close_recipe_details={this.props.close_recipe_details} recipe_details={this.props.recipe_details} open={this.props.open} active_recipe_key={this.props.active_recipe_key}/>
     } else if(this.props.matches.length === 0){
       return <Segment>
         <Header>
           <Icon name="thumbs down icon"/>
           Bummer, we dont have any recipes suggestions for {this.props.category} {this.props.dish}
         </Header>
-        <Button id="startOver" primary onClick={this.props.handleButtonClick} content="Try Again"/>
+        <Button id="startOver" primary onClick={this.props.handle_button_click} content="Try Again"/>
       </Segment>
     }
     return(
@@ -40,7 +40,7 @@ export default class SuggestedRecipes extends Component{
                   this.props.matches.map((match, index) => {
                     return <Card
                     key={index}
-                    onClick={()=>this.props.seeRecipeDetails( match.recipe_Id, match.id)}
+                    onClick={()=>this.props.see_recipe_details( match.recipe_Id, match.id)}
                     image={match.imageUrlsBySize[90]}
                     header={match.recipeName}
                     meta={match.sourceDisplayName}
@@ -52,7 +52,7 @@ export default class SuggestedRecipes extends Component{
           </Grid.Row>
         </Grid>
         </div>
-        {showRecpie}
+        {show_recpie}
       </React.Fragment>
     )
   }

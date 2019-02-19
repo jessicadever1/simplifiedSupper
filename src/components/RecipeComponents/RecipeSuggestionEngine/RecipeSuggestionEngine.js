@@ -5,18 +5,18 @@ import '../../RecipeComponents/Recipe.css'
 export default class BuildSuggestions extends Component{
   state={
     ingredients: [],
-    showRecipe: false,
-    getStarted: true,
+    show_recipe: false,
+    get_started: true,
     open: false,
-    recipeDetails: []
+    recipe_details: []
   }
 
-  createCardColor=(recipe)=>{
+  create_card_color=(recipe)=>{
     if(recipe.recipe_Id === "leftovers" || recipe.recipe_Id === "eatOut"){
       return
-    } else if(recipe.percentageMatch < 50){
+    } else if(recipe.percentage_match < 50){
         return "red"
-    } else if(recipe.percentageMatch >= 75){
+    } else if(recipe.percentage_match >= 75){
       return "green"
     } else{
       return "yellow"
@@ -27,30 +27,30 @@ export default class BuildSuggestions extends Component{
     if(recipe.recipe_Id === "leftovers" || recipe.recipe_Id === "eatOut"){
       return
     } else{
-      return <Statistic horizontal color={this.createCardColor(recipe)} value={Math.floor(recipe.percentageMatch)} label="Match"/>
+      return <Statistic horizontal color={this.create_card_color(recipe)} value={Math.floor(recipe.percentage_match)} label="Match"/>
     }
   }
 
 
   render(){
-    this.props.matchedRecipes.sort(function(a,b){
-      return b.percentageMatch-a.percentageMatch
+    this.props.matched_recipes.sort(function(a,b){
+      return b.percentage_match-a.percentage_match
     })
     return(
       <React.Fragment>
         <Card.Group itemsPerRow={6}>
         {
-          this.props.matchedRecipes.map((match, index)=>{
+          this.props.matched_recipes.map((match, index)=>{
             return <Card
             key={index}
-            color={this.createCardColor(match)}
-            onClick={()=> this.props.showRecipeDetails(match, "suggestionEngine")}>
+            color={this.create_card_color(match)}
+            onClick={()=> this.props.show_recipe_details(match, "suggestionEngine")}>
               <Card.Content>
                 <Image src={match.imageUrlsBySize[90]} />
                 <Card.Header content={match.recipeName} />
                 <Card.Meta content={match.sourceDisplayName} />
                 <Card.Content extra>
-                {this.createCardStat(match)}
+                {this.create_card_stat(match)}
                 </Card.Content>
               </Card.Content>
             </Card>
