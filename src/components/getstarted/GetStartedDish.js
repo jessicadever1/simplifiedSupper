@@ -35,13 +35,13 @@ export default class GetStartedDish extends Component{
           <Grid.Row>
             <Grid.Column style={{maxWidth: '80vw', height: '15vh'}} >
               <Form>
-                <Form.Select label="What type of dish would you like to make?" options={this.state.dishes} name="dish" onChange={this.props.handleDropdownChange}/>
+                <Form.Select label="What type of dish would you like to make?" options={this.state.dishes} name="dish" onChange={this.props.handle_dropdown_change}/>
               </Form>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
             <Grid.Column style={{maxWidth: '80vw', height: '40vh'}}>
-              <Button primary id="dish" onClick={this.props.handleButtonClick} content="Next Page"/>
+              <Button primary id="dish" onClick={this.props.handle_button_click} content="Next Page"/>
             </Grid.Column>
           </Grid.Row>
       </Grid>

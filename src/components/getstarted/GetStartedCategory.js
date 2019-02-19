@@ -29,7 +29,7 @@ export default class GetStartedCategory extends Component{
             <Grid.Row>
               <Grid.Column style={{maxWidth: '80vw', height: '15vh'}}>
                 <Header as="h1" color="teal" textAlign="center">
-                  Welcome, {this.props.activeUser.firstName}!
+                  Welcome, {this.props.active_user.first_name}!
                   Thanks for joining Simplified Supper. Let's get started by selecting your first recipe.
                 </Header>
               </Grid.Column>
@@ -37,13 +37,13 @@ export default class GetStartedCategory extends Component{
             <Grid.Row>
               <Grid.Column style={{maxWidth: '80vw', height: '15vh'}} >
                 <Form>
-                  <Form.Select label="What are you in the mood for?" options={this.state.categories} name="category" onChange={this.props.handleDropdownChange}/>
+                  <Form.Select label="What are you in the mood for?" options={this.state.categories} name="category" onChange={this.props.handle_dropdown_change}/>
                 </Form>
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
               <Grid.Column style={{maxWidth: '80vw', height: '40vh'}}>
-                <Button primary id="category" onClick={this.props.handleButtonClick} content="Next Page"/>
+                <Button primary id="category" onClick={this.props.handle_button_click} content="Next Page"/>
               </Grid.Column>
             </Grid.Row>
         </Grid>

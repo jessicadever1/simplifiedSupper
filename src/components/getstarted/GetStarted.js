@@ -9,54 +9,54 @@ export default class GetStarted extends Component{
   state={
     category: "",
     dish: "",
-    selectedCategory: false,
-    selectedDish: false,
+    selected_category: false,
+    selected_dish: false,
     open: false,
-    showRecipe: false,
-    getStarted: true,
-    activeRecipeKey: "",
-    recipeDetails: [],
+    show_recipe: false,
+    get_started: true,
+    active_recipe_key: "",
+    recipe_details: [],
     matches: []
   }
-  handleDropdownChange =(e, {name, value}) => this.setState({ [name]: value})
+  handle_dropdown_change =(e, {name, value}) => this.setState({ [name]: value})
 
-  handleButtonClick=(evt)=>{
+  handle_button_click=(evt)=>{
     if(evt.target.id === "category"){
-      this.setState({selectedCategory: true})
+      this.setState({selected_category: true})
       return
     } else if(evt.target.id === "dish"){
-      let matchedRecipes = []
-      let courseMatch=[]
-      let AssignedCourse = ""
+      let matched_recipes = []
+      let course_match=[]
+      let assigned_course = ""
       if(this.state.dish === "Main+Dishes" || this.state.dish === "Side+Dishes" || this.state.dish === "Lunch+and+Snacks"){
         if(this.state.dish === "Main+Dishes"){
-          AssignedCourse = "Main Dishes"
+          assigned_course = "Main Dishes"
         } else if(this.state.dish === "Side+Dishes"){
-          AssignedCourse = "Side Dishes"
+          assigned_course = "Side Dishes"
         } else if(this.state.dish === "Lunch+and+Snacks"){
-          AssignedCourse = "Lunch and Snacks"
+          assigned_course = "Lunch and Snacks"
         }
       } else{
-        AssignedCourse = this.state.dish
+        assigned_course = this.state.dish
       }
       APIManager.getAllCategory("recipes")
       .then(recipes => {
         recipes.forEach(recipe =>{
           recipe.attributes.course.forEach(course=>{
-            if(course === AssignedCourse){
-              courseMatch.push(recipe)
+            if(course === assigned_course){
+              course_match.push(recipe)
             }
           })
         })
-        courseMatch.forEach(course =>{
+        course_match.forEach(course =>{
           if(course.attributes.cuisine){
             course.attributes.cuisine.forEach(cuisine =>{
               if(cuisine.toLowerCase() === this.state.category){
-                if(matchedRecipes.length === 0){
-                  matchedRecipes.push(course)
+                if(matched_recipes.length === 0){
+                  matched_recipes.push(course)
                 } else{
-                  if(!matchedRecipes.find(recipe => recipe.id === course.id)){
-                    matchedRecipes.push(course)
+                  if(!matched_recipes.find(recipe => recipe.id === course.id)){
+                    matched_recipes.push(course)
                   }
                 }
               }
@@ -64,14 +64,14 @@ export default class GetStarted extends Component{
           }
         })
         this.setState({
-          matches: matchedRecipes,
-          selectedDish: true
+          matches: matched_recipes,
+          selected_dish: true
         })
       })
-    } else if(evt.target.id === "startOver"){
+    } else if(evt.target.id === "start_over"){
       this.setState({
-        selectedCategory: false,
-        selectedDish: false,
+        selected_category: false,
+        selected_dish: false,
         matches: [],
         category: "",
         dish: ""
@@ -79,17 +79,17 @@ export default class GetStarted extends Component{
     }
   }
 
-  closeRecipeDetails=()=>{
-    this.setState({showRecipe: false, open: false})
+  close_recipe_details=()=>{
+    this.setState({show_recipe: false, open: false})
   }
 
-  seeRecipeDetails=(id, num)=>{
+  see_recipe_details=(id, num)=>{
     APIManager.getOneFromCategory("fullRecipes",id)
     .then((response)=>{
       this.setState({
-        recipeDetails: response,
-        activeRecipeKey: num,
-        showRecipe: true,
+        recipe_details: response,
+        active_recipe_key: num,
+        show_recipe: true,
         open: true,
       })
     })
@@ -118,26 +118,26 @@ export default class GetStarted extends Component{
   //   )
   // }
 
-  handleCalendarChange=(key, id, date)=>{
-    if(key === "newRecipe"){
-      let newRecipe={
+  handle_calendar_change=(key, id, date)=>{
+    if(key === "new_recipe"){
+      let new_recipe={
         user_Id: parseInt(sessionStorage.getItem("id")),
         recipe_Id: id,
-        recipe_Num: this.state.activeRecipeKey,
+        recipe_Num: this.state.active_recipe_key,
         date: date
       }
-      APIManager.saveItem("usersRecipes", newRecipe)
+      APIManager.saveItem("usersRecipes", new_recipe)
       .then(()=> this.props.history.push("/"))
     }
   }
 
   render(){
-    if(this.state.selectedCategory === false){
-      return <GetStartedCategory handleButtonClick={this.handleButtonClick} activeUser={this.props.activeUser} handleDropdownChange={this.handleDropdownChange}/>
-    } else if(this.state.selectedCategory === true && this.state.selectedDish === false){
-      return <GetStartedDish handleButtonClick={this.handleButtonClick} handleDropdownChange={this.handleDropdownChange} category={this.state.category}/>
-    } else if(this.state.selectedCategory === true && this.state.selectedDish === true){
-      return <SuggestedRecipes handleCalendarChange={this.handleCalendarChange} matches={this.state.matches} category={this.state.category} dish={this.state.dish} handleButtonClick={this.handleButtonClick} seeRecipeDetails={this.seeRecipeDetails} closeRecipeDetails={this.closeRecipeDetails} getStarted={this.state.getStarted} recipeDetails={this.state.recipeDetails} activeRecipeKey={this.state.activeRecipeKey} showRecipe={this.state.showRecipe} open={this.state.open}/>
+    if(this.state.selected_category === false){
+      return <GetStartedCategory handle_button_click={this.handle_button_click} active_user={this.props.active_user} handle_dropdown_change={this.handle_dropdown_change}/>
+    } else if(this.state.selected_category === true && this.state.selected_dish === false){
+      return <GetStartedDish handle_button_click={this.handle_button_click} handle_dropdown_change={this.handle_dropdown_change} category={this.state.category}/>
+    } else if(this.state.selected_category === true && this.state.selected_dish === true){
+      return <SuggestedRecipes handle_calendar_change={this.handle_calendar_change} matches={this.state.matches} category={this.state.category} dish={this.state.dish} handle_button_click={this.handle_button_click} see_recipe_details={this.see_recipe_details} close_recipe_details={this.close_recipe_details} get_started={this.state.get_started} recipe_details={this.state.recipe_details} active_recipe_key={this.state.active_recipe_key} show_recipe={this.state.show_recipe} open={this.state.open}/>
     }
 }
 }
