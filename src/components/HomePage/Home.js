@@ -12,34 +12,34 @@ import FilterRecipes from '../RecipeComponents/RecipeSuggestionEngine/FilterReci
 //Current status note: Filter functionality is working for cuisine and course, still need to add for eatout/leftover, add additional functionality for dietary restrictions and allergies and flavor profiles
 export default class Home extends Component{
   state={
-    viewRecipeDetails: false,
-    getStarted: false,
+    view_recipe_details: false,
+    get_started: false,
     open: false,
-    activeRecipeKey: "",
+    active_recipe_key: "",
     date: "",
-    recipe_Id: "",
+    recipe_id: "",
     visible: false,
-    recipeDetails: [],
+    recipe_details: [],
     events: [],
     cuisines: [],
     courses: [],
     ingredients: [],
-    matchedRecipes: [],
-    allMatchedRecipes: [],
-    filterCriteria: [],
+    matched_recipes: [],
+    all_matched_recipes: [],
+    filter_criteria: [],
   }
 
   componentDidMount=()=>{
     this.updateData()
   }
 
-  updateData=()=>{
+  update_data=()=>{
     APIManager.getAllCategory("usersRecipes")
     .then((usersRecipes)=>{
-      let recipeEvents = []
+      let recipe_events = []
       usersRecipes.forEach(recipe => {
         if(recipe.user_Id === parseInt(sessionStorage.getItem("id"))){
-          recipeEvents.push(APIManager.getOneFromCategory("recipes", recipe.recipe_Num)
+          recipe_events.push(APIManager.getOneFromCategory("recipes", recipe.recipe_Num)
           .then((response)=> {
             let expandedRecipe = {
               id: recipe.recipe_Id,
@@ -48,7 +48,7 @@ export default class Home extends Component{
               allDay: true,
               start: recipe.date,
               end: recipe.date,
-              recipeDetails: response
+              recipe_details: response
             }
             return expandedRecipe
           })
@@ -57,7 +57,7 @@ export default class Home extends Component{
           return
         }
       })
-      return Promise.all(recipeEvents)
+      return Promise.all(recipe_events)
     })
     .then(data =>{
       this.setState({
@@ -68,59 +68,59 @@ export default class Home extends Component{
     .then((response)=> this.setState({cuisines: response}))
     .then(()=> APIManager.getAllCategory("courses"))
     .then((response)=> this.setState({courses: response}))
-    .then(()=> this.createIngredientList())
+    .then(()=> this.create_ingredient_list())
   }
 
-  createIngredientList=()=>{
-    let selectedIngredients = []
+  create_ingredient_list=()=>{
+    let selected_ingredients = []
     let thisWeek = moment().week()
     this.state.events.forEach(event =>{
       //Check to see if recipe is scheduled for this week
       if(moment(event.start).week() === thisWeek){
-        event.recipeDetails.ingredients.forEach(ingredient =>{
+        event.recipe_details.ingredients.forEach(ingredient =>{
           //Check to see if ingredient already exists in array
-          if(selectedIngredients.length === 0 && ingredient !== " "){
-            selectedIngredients.push(ingredient)
+          if(selected_ingredients.length === 0 && ingredient !== " "){
+            selected_ingredients.push(ingredient)
           } else if(ingredient !== " "){
-            if(!selectedIngredients.includes(ingredient)){
-              selectedIngredients.push(ingredient)
+            if(!selected_ingredients.includes(ingredient)){
+              selected_ingredients.push(ingredient)
             }
           }
         })
       }
     })
-    this.setState({ingredients: selectedIngredients})
-    this.percentageMatchCalculator()
+    this.setState({ingredients: selected_ingredients})
+    this.percentage_match_calculator()
   }
 
-  percentageMatchCalculator=()=>{
-    let scheduledRecipes = []
-    let thisWeek = moment().week()
-    let filteredRecipes = []
+  percentage_match_calculator=()=>{
+    let scheduled_recipes = []
+    let this_week = moment().week()
+    let filtered_recipes = []
     this.state.events.forEach(event =>{
-      if(moment(event.start).week() === thisWeek){
-        scheduledRecipes.push(event.recipeDetails.id)
+      if(moment(event.start).week() === this_week){
+        scheduled_recipes.push(event.recipe_details.id)
       }
     })
     APIManager.getAllCategory("recipes")
     .then((recipes)=>{
       recipes.forEach(recipe =>{
         //Remove the recipes that are already scheduled for the week
-        if(!scheduledRecipes.includes(recipe.id)){
+        if(!scheduled_recipes.includes(recipe.id)){
           let counter = 0
           recipe.ingredients.forEach(ingredient =>{
             if(this.state.ingredients.includes(ingredient)){
               counter +=1
             }
           })
-          let percentageMatch = (counter/recipe.ingredients.length)*100
-          if(percentageMatch > 25 || recipe.recipe_Id === "leftovers" || recipe.recipe_Id === "eatOut"){
-            let newObj = Object.assign({}, recipe, {percentageMatch: percentageMatch})
-            if(filteredRecipes.length === 0){
-              filteredRecipes.push(newObj)
+          let percentage_match = (counter/recipe.ingredients.length)*100
+          if(percentage_match > 25 || recipe.recipe_Id === "leftovers" || recipe.recipe_Id === "eatOut"){
+            let new_obj = Object.assign({}, recipe, {percentage_match: percentage_match})
+            if(filtered_recipes.length === 0){
+              filtered_recipes.push(new_obj)
             } else{
-              if(filteredRecipes.find(filRecipe => filRecipe.id === recipe.id) === undefined){
-                filteredRecipes.push(newObj)
+              if(filtered_recipes.find(filRecipe => filRecipe.id === recipe.id) === undefined){
+                filtered_recipes.push(new_obj)
               } else{
                 return
               }
@@ -128,20 +128,20 @@ export default class Home extends Component{
           }
         }
       })
-      this.setState({matchedRecipes: filteredRecipes, allMatchedRecipes: filteredRecipes})
+      this.setState({matched_recipes: filtered_recipes, all_matched_recipes: filtered_recipes})
     })
   }
 
-  showRecipeDetails=(details, key)=>{
+  show_recipe_details=(details, key)=>{
     if(key === "calendar"){
-      APIManager.getOneFromCategory("fullRecipes", details.recipeDetails.recipe_Id)
+      APIManager.getOneFromCategory("fullRecipes", details.recipe_details.recipe_Id)
       .then((response)=>{
         this.setState({
-          recipeDetails: response,
+          recipe_details: response,
           recipe_Id: details.id,
           date: moment(details.start).format("YYYY-MM-DD"),
-          activeRecipeKey: details.eventId,
-          viewRecipeDetails: true,
+          active_recipe_key: details.eventId,
+          view_recipe_details: true,
           open: true,
         })
       })
@@ -151,11 +151,11 @@ export default class Home extends Component{
          APIManager.getOneFromCategory("fullRecipes", details.recipe_Id)
          .then((response)=> {
            this.setState({
-             recipeDetails: response,
-             activeRecipeKey: details.id,
-             viewRecipeDetails: true,
+             recipe_details: response,
+             active_recipe_key: details.id,
+             view_recipe_details: true,
              open: true,
-             getStarted: true,
+             get_started: true,
            })
          })
        } else{
@@ -163,11 +163,11 @@ export default class Home extends Component{
          APIManager.getOneFromCategory("fullRecipes",details.recipe_Id)
          .then((response)=>{
            this.setState({
-             recipeDetails: response,
-             activeRecipeKey: details.id,
-             viewRecipeDetails: true,
+             recipe_details: response,
+             active_recipe_key: details.id,
+             view_recipe_details: true,
              open: true,
-             getStarted: true,
+             get_started: true,
            })
          })
        }
@@ -202,118 +202,118 @@ export default class Home extends Component{
   //   }
   // }
 
-  closeRecipeDetails=()=>{
-    this.setState({viewRecipeDetails: false, open: false, getStarted: false})
+  close_recipe_details=()=>{
+    this.setState({view_recipe_details: false, open: false, get_started: false})
   }
 
-  deleteRecipe=()=>{
-    APIManager.deleteItem("usersRecipes", this.state.activeRecipeKey)
+  delete_recipe=()=>{
+    APIManager.deleteItem("usersRecipes", this.state.active_recipe_key)
     .then(()=>{
-      this.updateData()
-      this.closeRecipeDetails()
+      this.update_data()
+      this.close_recipe_details()
     })
   }
 
-  handleCalendarChange=(key, id, date)=>{
+  handle_calendar_change=(key, id, date)=>{
     if(key === "existingRecipe"){
-      let updatedRecipe ={
+      let updated_recipe ={
         user_Id: parseInt(sessionStorage.getItem("id")),
         recipe_Id: id,
         date: date,
       }
-      APIManager.updateItem("usersRecipes", this.state.activeRecipeKey, updatedRecipe)
+      APIManager.updateItem("usersRecipes", this.state.active_recipe_key, updated_recipe)
       .then(()=> {
-        this.updateData()
-        this.closeRecipeDetails()
+        this.update_data()
+        this.close_recipe_details()
       })
     } else if(key === "newRecipe"){
-      let newRecipe={
+      let new_recipe={
         user_Id: parseInt(sessionStorage.getItem("id")),
         recipe_Id: id,
-        recipe_Num: this.state.activeRecipeKey,
+        recipe_Num: this.state.active_recipe_key,
         date: date,
       }
-      APIManager.saveItem("usersRecipes", newRecipe)
+      APIManager.saveItem("usersRecipes", new_recipe)
       .then(()=>{
-        this.updateData()
-        this.closeRecipeDetails()
+        this.update_data()
+        this.close_recipe_details()
       })
     }
   }
 
-  handleFilterChange = (evt)=>{
+  handle_filter_change = (evt)=>{
     let checkbox = evt.target
-    let selectedFilters = []
-    let activeFilter_cuisine = []
-    let activeFilter_course = []
-    selectedFilters = this.state.filterCriteria
-    if(this.state.filterCriteria.length === 0){
+    let selected_filters = []
+    let active_filter_cuisine = []
+    let active_filter_course = []
+    selected_filters = this.state.filter_criteria
+    if(this.state.filter_criteria.length === 0){
       if(checkbox.checked){
-        selectedFilters.push(checkbox.id)
-        this.setState({filterCriteria: [checkbox.id]})
+        selected_filters.push(checkbox.id)
+        this.setState({filter_criteria: [checkbox.id]})
       }
     } else{
       if(checkbox.checked){
-        if(!selectedFilters.includes(checkbox.id)){
-          selectedFilters.push(checkbox.id)
-          this.setState({filterCriteria: selectedFilters})
+        if(!selected_filters.includes(checkbox.id)){
+          selected_filters.push(checkbox.id)
+          this.setState({filter_criteria: selected_filters})
         }
       } else if(!checkbox.checked){
-        if(selectedFilters.includes(checkbox.id)){
-          let updatedFilters = selectedFilters.filter(item => item !== checkbox.id)
-          selectedFilters = updatedFilters
-          this.setState({filterCriteria: updatedFilters})
+        if(selected_filters.includes(checkbox.id)){
+          let updated_filters = selected_filters.filter(item => item !== checkbox.id)
+          selected_filters = updated_filters
+          this.setState({filter_criteria: updated_filters})
         }
       }
     }
-    selectedFilters.forEach(filter =>{
-      let splitDetails = filter.split("-")
-      if(splitDetails[0] === "cuisine"){
+    selected_filters.forEach(filter =>{
+      let split_details = filter.split("-")
+      if(split_details[0] === "cuisine"){
         this.state.cuisines.forEach(cuisine =>{
-          if(cuisine.id === parseInt(splitDetails[1])){
-            activeFilter_cuisine.push(cuisine.text)
+          if(cuisine.id === parseInt(split_details[1])){
+            active_filter_cuisine.push(cuisine.text)
           }
         })
-      } else if(splitDetails[0] === "course"){
+      } else if(split_details[0] === "course"){
         this.state.courses.forEach(course =>{
-          if(course.id === parseInt(splitDetails[1])){
-            activeFilter_course.push(course.text)
+          if(course.id === parseInt(split_details[1])){
+            active_filter_course.push(course.text)
           }
         })
       }
     })
-    this.displayFilteredRecipes(activeFilter_cuisine, activeFilter_course)
+    this.display_filtered_recipes(active_filter_cuisine, active_filter_course)
   }
 
-  displayFilteredRecipes = (cuisines, courses)=>{
-    let filteredRecipes = []
-    let doubleFilter = []
+  display_filtered_recipes = (cuisines, courses)=>{
+    let filtered_recipes = []
+    let double_filter = []
     if(cuisines.length){
       if(!courses.length){
         //If there are only cuisine filters selected and nothing else, execute the below function
         cuisines.forEach(cuisine =>{
-          this.state.allMatchedRecipes.forEach(recipe =>{
+          this.state.all_matched_recipes.forEach(recipe =>{
             if(recipe.attributes.cuisine){
               if(recipe.attributes.cuisine.length !== undefined && recipe.attributes.cuisine.length !== 0 && recipe.attributes.cuisine.length !== null){
                 recipe.attributes.cuisine.forEach(item =>{
                   if(item === cuisine){
-                    filteredRecipes.push(recipe)
+                    filtered_recipes.push(recipe)
                   }
                 })
               }
             }
           })
         })
-        this.setState({matchedRecipes: filteredRecipes})
+        this.setState({matched_recipes: filtered_recipes})
       } else if(courses.length){
         //If both cuisine and course filters have been selected, execute the below function
         cuisines.forEach(cuisine =>{
-          this.state.allMatchedRecipes.forEach(recipe => {
+          this.state.all_matched_recipes.forEach(recipe => {
             if(recipe.attributes.cuisine){
               if(recipe.attributes.cuisine.length !== undefined){
                 recipe.attributes.cuisine.forEach(item =>{
                   if(item === cuisine){
-                    filteredRecipes.push(recipe)
+                    filtered_recipes.push(recipe)
                   }
                 })
               }
@@ -321,44 +321,44 @@ export default class Home extends Component{
           })
         })
         courses.forEach(course =>{
-          filteredRecipes.forEach(recipe => {
+          filtered_recipes.forEach(recipe => {
             if(recipe.attributes.course){
               if(recipe.attributes.course.length !== undefined){
                 recipe.attributes.course.forEach(item =>{
                   if(item === course){
-                    doubleFilter.push(recipe)
+                    double_filter.push(recipe)
                   }
                 })
               }
             }
           })
         })
-        this.setState({matchedRecipes: doubleFilter})
+        this.setState({matched_recipes: double_filter})
       }
     } else if(courses.length){
       if(!cuisines.length){
         courses.forEach(course =>{
-          this.state.allMatchedRecipes.forEach(recipe =>{
+          this.state.all_matched_recipes.forEach(recipe =>{
             if(recipe.attributes.course){
               if(recipe.attributes.course.length !== undefined){
                 recipe.attributes.course.forEach(item =>{
                   if(item === course){
-                    filteredRecipes.push(recipe)
+                    filtered_recipes.push(recipe)
                   }
                 })
               }
             }
           })
         })
-        this.setState({matchedRecipes: filteredRecipes})
+        this.setState({matched_recipes: filtered_recipes})
       } else if(cuisines.length){
         courses.forEach(course => {
-          this.state.allMatchedRecipes.forEach(recipe =>{
+          this.state.all_matched_recipes.forEach(recipe =>{
             if(recipe.attributes.course){
               if(recipe.attributes.course.length !== undefined){
                 recipe.attributes.course.forEach(item =>{
                   if(item === course){
-                    filteredRecipes.push(recipe)
+                    filtered_recipes.push(recipe)
                   }
                 })
               }
@@ -366,30 +366,30 @@ export default class Home extends Component{
           })
         })
         cuisines.forEach(cuisine =>{
-          filteredRecipes.forEach(recipe =>{
+          filtered_recipes.forEach(recipe =>{
             if(recipe.attributes.cuisine){
               if(recipe.attributes.cuisine.length !== undefined){
                 recipe.attributes.cuisine.forEach(item =>{
                   if(item === cuisine){
-                    doubleFilter.push(recipe)
+                    double_filter.push(recipe)
                   }
                 })
               }
             }
           })
         })
-        this.setState({matchedRecipes: doubleFilter})
+        this.setState({matched_recipes: double_filter})
       }
     }
     else if(cuisines.length === 0 && courses.length === 0){
-      this.setState({matchedRecipes: this.state.allMatchedRecipes})
+      this.setState({matched_recipes: this.state.all_matched_recipes})
     }
   }
 
 
   render(){
-    if(this.state.viewRecipeDetails === true){
-      return <RecipeModal recipeDetails={this.state.recipeDetails} getStarted={this.state.getStarted} closeRecipeDetails={this.closeRecipeDetails} handleCalendarChange={this.handleCalendarChange} deleteRecipe={this.deleteRecipe} date={this.state.date} open={this.state.open} recipe_id={this.state.recipe_Id}/>
+    if(this.state.view_recipe_details === true){
+      return <RecipeModal recipe_details={this.state.recipe_details} get_started={this.state.get_started} close_recipe_details={this.close_recipe_details} handle_calendar_change={this.handle_calendar_change} delete_recipe={this.delete_recipe} date={this.state.date} open={this.state.open} recipe_id={this.state.recipe_Id}/>
     }
     return(
       <React.Fragment>
@@ -408,15 +408,15 @@ export default class Home extends Component{
           </Grid.Row>
           <Grid.Row style={{maxWidth: '80vw', height: '50vh'}}>
             <Grid.Column textAlign="left" style={{width: '20%', height: '50vh'}} className="displayRecipes">
-              <FilterRecipes filterRecipes={this.handleFilterChange} courses={this.state.courses} cuisines={this.state.cuisines}/>
+              <FilterRecipes filter_recipes={this.handle_filter_change} courses={this.state.courses} cuisines={this.state.cuisines}/>
             </Grid.Column>
             <Grid.Column style={{width: '80%', height: '50vh'}} className="displayRecipes">
-              <RecipeSuggestionEngine  matchedRecipes = {this.state.matchedRecipes}showRecipeDetails={this.showRecipeDetails} closeRecipeDetails={this.closeRecipeDetails}/>
+              <RecipeSuggestionEngine  matched_recipes = {this.state.matched_recipes}show_recipe_details={this.show_recipe_details} close_recipe_details={this.close_recipe_details}/>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row verticalAlign="bottom">
             <Grid.Column verticalAlign="bottom" style={{maxWidth: '80vw', height: '35vh'}} className="calendar">
-              <RecipeCalendar activeUser={this.props.activeUser} events= {this.state.events} showRecipeDetails={this.showRecipeDetails} closeRecipeDetails={this.closeRecipeDetails}/>
+              <RecipeCalendar active_user={this.props.active_user} events= {this.state.events} show_recipe_details={this.show_recipe_details} close_recipe_details={this.close_recipe_details}/>
             </Grid.Column>
           </Grid.Row>
         </Grid>
