@@ -5,45 +5,45 @@ import {Menu, Dropdown} from 'semantic-ui-react'
 //TODO: Need to add the simplified supper logo to the nav bar
 export default class NavBar extends Component{
   state={
-    activeItem: 'home',
+    active_item: 'home',
   }
 
-  isAuthenticated = ()=> sessionStorage.getItem("id") !== null
+  is_authenticated = ()=> sessionStorage.getItem("id") !== null
 
-  handleItemClick=(e, {name}) => this.setState({activeItem: name})
+  handle_item_click=(e, {name}) => this.setState({active_item: name})
 
   render(){
-  const {activeItem} = this.state
-  if(this.isAuthenticated()){
+  const {active_item} = this.state
+  if(this.is_authenticated()){
     return <React.Fragment>
       <Menu pointing secondary>
         <Menu.Item
           as={Link}
           to="/"
           name='home'
-          active={activeItem === 'home'}
-          onClick={this.handleItemClick}
+          active={active_item === 'home'}
+          onClick={this.handle_item_click}
         />
         <Menu.Item/>
         <Menu.Menu position="right">
           <Dropdown
             item
-            text={this.props.activeUser.firstName}>
+            text={this.props.active_user.first_name}>
             <Dropdown.Menu>
               <Dropdown.Item
                 as={Link}
                 to="/ViewProfile"
                 name='viewProfile'
-                active={activeItem === 'viewProfile'}
-                onClick={this.handleItemClick}
+                active={active_item === 'viewProfile'}
+                onClick={this.handle_item_click}
                 content="Account Settings"
               />
               <Dropdown.Item
                 as={Link}
                 to="/logout"
                 name='logout'
-                active={activeItem === 'logout'}
-                onClick={this.handleItemClick}
+                active={active_item === 'logout'}
+                onClick={this.handle_item_click}
                 content="Log Out"
               />
             </Dropdown.Menu>
