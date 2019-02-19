@@ -15,9 +15,9 @@ export default class RecipeCalendar extends Component{
     return <Card
             key={event.id}
             className=""
-            image={event.recipeDetails.imageUrlsBySize[90]}
+            image={event.recipe_details.imageUrlsBySize[90]}
             header={event.title}
-            meta={event.recipeDetails.sourceDisplayName}/>
+            meta={event.recipe_details.sourceDisplayName}/>
   }
 
   render(){
@@ -30,7 +30,7 @@ export default class RecipeCalendar extends Component{
           events={this.props.events}
           startAccessor="start"
           endAccessor="end"
-          onSelectEvent={(event) => this.props.showRecipeDetails(event, "calendar")}
+          onSelectEvent={(event) => this.props.show_recipe_details(event, "calendar")}
           components={{
             event: this.Event,
           }}
