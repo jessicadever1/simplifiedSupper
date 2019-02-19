@@ -23,7 +23,7 @@ export default class BuildSuggestions extends Component{
     }
   }
 
-  createCardStat = (recipe)=>{
+  create_card_stat = (recipe)=>{
     if(recipe.recipe_Id === "leftovers" || recipe.recipe_Id === "eatOut"){
       return
     } else{

@@ -115,13 +115,13 @@ export default class RecipeModal extends Component{
                   </a>
                 </div>
                 {
-                  this.makeModalStats(this.props.recipe_details)
+                  this.make_modal_stats(this.props.recipe_details)
                 }
                 {
-                  this.makeIngredientsList(this.props.recipe_details)
+                  this.make_ingredients_list(this.props.recipe_details)
                 }
                 {
-                  this.makeInstructionButton(this.props.recipe_details)
+                  this.make_instruction_button(this.props.recipe_details)
                 }
               {/* <div>
                 <a href={this.props.recipeDetails.attribution.link} >{this.props.recipeDetails.attribution.text}</a>
@@ -130,7 +130,7 @@ export default class RecipeModal extends Component{
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            {this.makeButtons(this.props.get_started)}
+            {this.make_buttons(this.props.get_started)}
           </Modal.Actions>
         </Modal>
       </React.Fragment>

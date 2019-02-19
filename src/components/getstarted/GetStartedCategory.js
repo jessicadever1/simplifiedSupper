@@ -29,7 +29,7 @@ export default class GetStartedCategory extends Component{
             <Grid.Row>
               <Grid.Column style={{maxWidth: '80vw', height: '15vh'}}>
                 <Header as="h1" color="teal" textAlign="center">
-                  Welcome, {this.props.active_user.first_name}!
+                  Welcome, {this.props.active_user.firstName}!
                   Thanks for joining Simplified Supper. Let's get started by selecting your first recipe.
                 </Header>
               </Grid.Column>

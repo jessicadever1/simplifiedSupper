@@ -29,7 +29,7 @@ export default class ApplicationViews extends Component{
           return <Logout logout_function={this.props.logout_function}/>
         }} />
         <Route exact path="/GetStarted" render={(props)=>{
-          return <GetStarted  {...props} activeUser={this.props.active_user}/>
+          return <GetStarted  {...props} active_user={this.props.active_user}/>
         }} />
         <Route exact path="/ViewProfile" render={(props)=>{
             return <UserManagement security_questions={this.props.security_questions} login_function={this.props.login_function} create_new_user={this.props.create_new_user} active_user={this.props.active_user} />

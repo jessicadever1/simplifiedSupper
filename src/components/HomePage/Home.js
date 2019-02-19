@@ -30,7 +30,7 @@ export default class Home extends Component{
   }
 
   componentDidMount=()=>{
-    this.updateData()
+    this.update_data()
   }
 
   update_data=()=>{
