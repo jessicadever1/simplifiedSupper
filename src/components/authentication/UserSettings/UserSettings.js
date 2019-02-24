@@ -15,7 +15,7 @@ export default class UserSettings extends Component{
     if(active_item === 'View Profile'){
       view_or_edit = <ViewUser active_user={this.props.active_user} handle_item_click={this.handle_item_click}/>
     } else if(active_item === 'Edit Profile'){
-      view_or_edit = <EditUser handleFormSubmit={this.props.handleFormSubmit} handle_field_change ={this.props.handle_field_change} handle_item_click={this.handle_item_click} state={this.props.state} active_user={this.props.active_user} security_questions={this.props.security_questions}/>
+      view_or_edit = <EditUser handle_form_submit={this.props.handle_form_submit} handle_field_change ={this.props.handle_field_change} handle_item_click={this.handle_item_click} state={this.props.state} active_user={this.props.active_user} security_questions={this.props.security_questions}/>
     }
     return(
       <React.Fragment>
