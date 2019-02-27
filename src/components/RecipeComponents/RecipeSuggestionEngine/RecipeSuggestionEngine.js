@@ -23,14 +23,6 @@ export default class BuildSuggestions extends Component{
     }
   }
 
-  create_card_stat = (recipe)=>{
-    if(recipe.recipe_Id === "leftovers" || recipe.recipe_Id === "eatOut"){
-      return
-    } else{
-      return <Statistic horizontal color={this.create_card_color(recipe)} value={Math.floor(recipe.percentage_match)} label="Match"/>
-    }
-  }
-
 
   render(){
     this.props.matched_recipes.sort(function(a,b){
@@ -50,7 +42,11 @@ export default class BuildSuggestions extends Component{
                 <Card.Header content={match.recipeName} />
                 <Card.Meta content={match.sourceDisplayName} />
                 <Card.Content extra>
-                {this.create_card_stat(match)}
+                {
+                  (match.recipe_Id === "leftovers" || match.recipe_Id === "eatOut")
+                    ? null
+                    : <Statistic horizontal color={this.create_card_color(match)} value={Math.floor(match.percentage_match)} label="Match"/>
+                }
                 </Card.Content>
               </Card.Content>
             </Card>
