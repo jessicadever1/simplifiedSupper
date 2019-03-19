@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Route, Redirect} from 'react-router-dom'
 import Logout from './authentication/UserAccess/Logout'
-import GetStarted from './getstarted/GetStarted';
+import GetStarted from './getStarted/GetStarted';
 import Home from './HomePage/Home'
 import SuggestedRecipes from './RecipeComponents/RecipeSuggestionEngine/GetStartedSuggestions/SuggestedRecipes';
 import RecipeModal from './RecipeComponents/RecipeModal/RecipeModal'
