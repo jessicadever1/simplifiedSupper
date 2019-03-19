@@ -134,7 +134,7 @@ export default class Home extends Component{
 
   showRecipeDetails=(details, key)=>{
     if(key === "calendar"){
-      APIManager.getOneFromCategory("fullRecipes", details.recipeDetails.recipe_Id)
+      APIManager.getRecipeDetails(details.id)
       .then((response)=>{
         this.setState({
           recipeDetails: response,
@@ -159,48 +159,19 @@ export default class Home extends Component{
            })
          })
        } else{
-        //  Eventually will need to swap this section of code out for Yummly API call
-         APIManager.getOneFromCategory("fullRecipes",details.recipe_Id)
-         .then((response)=>{
-           this.setState({
-             recipeDetails: response,
-             activeRecipeKey: details.id,
-             viewRecipeDetails: true,
-             open: true,
-             getStarted: true,
-           })
-         })
-       }
+        APIManager.getRecipeDetails(details.recipe_Id)
+          .then((response)=>{
+            this.setState({
+              recipeDetails: response,
+              activeRecipeKey: details.id,
+              viewRecipeDetails: true,
+              open: true,
+              getStarted: true,
+            })
+          })
+      }
     }
   }
-
-  // showRecipeDetails=(details, key)=>{
-  //   if(key === "calendar"){
-  //     APIManager.getRecipeDetails(details.id)
-  //     .then((response)=>{
-  //       this.setState({
-  //         recipeDetails: response,
-  //         recipe_Id: details.id,
-  //         date: moment(details.start).format("YYYY-MM-DD"),
-  //         activeRecipeKey: details.eventId,
-  //         viewRecipeDetails: true,
-  //         open: true,
-  //       })
-  //     })
-  //   }
-  //    else if(key === "suggestionEngine"){
-  //     APIManager.getRecipeDetails(details.recipe_Id)
-  //     .then((response)=>{
-  //       this.setState({
-  //         recipeDetails: response,
-  //         activeRecipeKey: details.id,
-  //         viewRecipeDetails: true,
-  //         open: true,
-  //         getStarted: true,
-  //       })
-  //     })
-  //   }
-  // }
 
   closeRecipeDetails=()=>{
     this.setState({viewRecipeDetails: false, open: false, getStarted: false})
