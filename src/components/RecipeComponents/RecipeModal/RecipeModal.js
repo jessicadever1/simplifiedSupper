@@ -123,10 +123,10 @@ export default class RecipeModal extends Component{
                 {
                   this.makeInstructionButton(this.props.recipeDetails)
                 }
-              {/* <div>
+              <div>
                 <a href={this.props.recipeDetails.attribution.link} >{this.props.recipeDetails.attribution.text}</a>
                 <img src={this.props.recipeDetails.attribution.logo} alt="Yummly Logo"/>
-              </div> */}
+              </div>
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
