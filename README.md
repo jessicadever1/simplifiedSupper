@@ -2,7 +2,7 @@
   Simplified Supper is intended to make meal planning easy, allowing the user to see at a glance what they have coming up so grocery shopping is a breeze. By looking at the meals the user has planned for the week, Simplified Supper provides suggested recipes based on the percentage of ingredients that can be repurposed from your chosen meals.
 
 ## Table of Contents
-  <!-- * [Project Requirements and Features List](#project-requirements-and-features-list) -->
+  * [Project Requirements and Features List](#project-requirements-and-features-list)
   * [Technologies Used](#technologies-used)
   * [Installing and Launching Simplified Supper](#instructions-for-installing-simplified-supper)
   * [Appendix 1: Planning Documentation](#appendix-1-planning-documentation)
@@ -10,8 +10,14 @@
     * [Wireframes](#wireframes)
   * [Appendix 2: Set Up Instructions](#appendix-2-set-up-instructions)
 
-<!-- ## Project Requirements and Features List -->
+## Project Requirements and Features List
+### Get Started
+When a user first registers an account with Simplified Supper they will be taken through a series of prompts to select their first recipe. By selecting what type of cuisine and course they would like, the user is then presented with all recipes that match their search and are able to select any of them to view more details or add to the calendar, where they can then view their suggested recipes.
+![Get Started GIF](src/gif/get-started-view.gif)
 
+### Suggested Recipes
+Once a user has a recipe on their calendar for the week they will be shown all matched recipes in order from highest percentage match of similar ingredients to lowest percentage match of similar ingredients. They can filter these results by cuisine and course, results will be updated in real time. They can also edit the recipes on their calendar or delete any recipes on their calendar and matched recipes will change accordingly.
+![Recipe Suggestion Engine GIF](src/gif/recipe-suggestion-engine.gif)
 
 ## Technologies Used
   ### Development Languages and Libraries
